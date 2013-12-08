@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <!-- 主界面 -->
+    <!-- 班报提报主界面 -->
 
     <include
         android:id="@+id/title_bar"
@@ -23,16 +23,55 @@
 
         <LinearLayout 
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="left">
+            android:layout_marginLeft="10dp"
+            android:gravity="center">
+            
             <TextView android:id="@+id/tourreport_holenumber_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:text="@string/tourreport_holenumber_title"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 />
+            
+            <TextView android:id="@+id/tourreport_holenumber_value"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                />
+            
+            <TextView android:id="@+id/tourreport_rigmachine_number_title"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="@string/tourreport_rigmachine_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                />
+            
+            <TextView android:id="@+id/tourreport_rigmachine_number_value"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+        
+        
+        <LinearLayout 
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center">
             
             
         </LinearLayout>
