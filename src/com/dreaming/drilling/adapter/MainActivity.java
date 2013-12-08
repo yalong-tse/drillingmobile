@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
 		Log.d("holenumber", holenumber);
 		// 设置字体样式
 		SpannableString msp = new SpannableString(holenumber);
-        msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, holenumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);  //粗体
+        //msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, holenumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);  //粗体
         msp.setSpan(new UnderlineSpan(), 0,holenumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		textview_holenumber.setText(msp);
 		
@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
 		String rignumber = this.sharedPrefs.getString("rignumber", "rigmachine001");
 		// 设置字体样式
 		SpannableString msp_rig = new SpannableString(rignumber);
-		msp_rig.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, rignumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);  //粗体
+		//msp_rig.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, rignumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);  //粗体
 		msp_rig.setSpan(new UnderlineSpan(), 0,rignumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		textview_rigmachine_number.setText(msp_rig);
 		
@@ -90,9 +90,9 @@ public class MainActivity extends Activity {
 		tv_starttime = (TextView) findViewById(R.id.tourreport_starttime_value);
 		tv_endtime = (TextView) findViewById(R.id.tourreport_endtime_value);
 		
-		tv_date.setText(date_fmt.format(thedate.getTime()));
-		tv_starttime.setText(time_fmt.format(starttime.getTime()));
-		tv_endtime.setText(time_fmt.format(endtime.getTime()));
+		updateDate();
+		updateStarttime();
+		updateEndtime();
 		
 		tv_date.setOnClickListener(dp_click);
 		tv_starttime.setOnClickListener(tp_starttime_click);
@@ -202,7 +202,9 @@ public class MainActivity extends Activity {
 	{
 		if(tv_date!=null)
 		{
-			tv_date.setText(this.date_fmt.format(thedate.getTime()));
+			SpannableString msp_date = new SpannableString(date_fmt.format(thedate.getTime()));
+			msp_date.setSpan(new UnderlineSpan(), 0,date_fmt.format(thedate.getTime()).length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			tv_date.setText(msp_date);
 		}
 		
 	}
@@ -211,7 +213,9 @@ public class MainActivity extends Activity {
 	{
 		if(tv_starttime!=null)
 		{
-			tv_starttime.setText(this.time_fmt.format(starttime.getTime()));
+			SpannableString msp_starttime = new SpannableString(time_fmt.format(starttime.getTime()));
+			msp_starttime.setSpan(new UnderlineSpan(), 0,time_fmt.format(starttime.getTime()).length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			tv_starttime.setText(msp_starttime);
 			
 		}
 	}
@@ -220,7 +224,9 @@ public class MainActivity extends Activity {
 	{
 		if(tv_endtime!=null)
 		{
-			tv_endtime.setText(this.time_fmt.format(endtime.getTime()));
+			SpannableString msp_endtime = new SpannableString(time_fmt.format(endtime.getTime()));
+			msp_endtime.setSpan(new UnderlineSpan(), 0,time_fmt.format(endtime.getTime()).length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			tv_endtime.setText(msp_endtime);
 		}
 		
 	}
