@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 主界面 -->
+    <string name="app_name">Drilling</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="settings">设置</string>
+
+    
+    <!-- 班报填写 -->
+    <string name="tourreport_holenumber_title">孔号</string>
+    <string name="tourreport_rigmachine_title">钻机</string>
+    <string name="tourreport_date_title">日期</string>
+    <string name="tourreport_time_title">时间</string>
+    <string name="tourreport_workcontent_title">工作内容</string>
+    <string name="tourreport_upleft_title">上余</string>
+    <string name="tourreport_drilllength_title">进尺</string>
+    <string name="tourreport_holedeep_title">孔深</string>
+    <string name="tourreport_drilling_pressure_title">钻压</string>
+    <string name="tourreport_rotate_speed_title">转速</string>
+    <string name="tourreport_pump_title">泵量</string>
+    <string name="tourreport_core_length_title">心长</string>
+    <string name="tourreport_takeover_instruction">交接说明</string>
+    <string name="tourreport_fangxie_step">防斜措施</string>
+    <string name="tourreport_fuzhengqichang">扶正器长</string>
+    <string name="tourreport_handle_drilling_tools">交接钻具</string>
+    
+    <string name="tourreport_time_statistic">时间统计</string>
+    <string name="tourreport_drilling_time">纯钻</string>
+    <string name="tourreport_auxiliary_time">辅助</string>
+    <string name="tourreport_holeinner_time">孔内</string>
+    <string name="tourreport_device_repair_time">设备</string>
+    <string name="tourreport_other_time">其他</string>
+    <string name="tourreport_summary_time">合计</string>
+    
+    <string name="tourreport_total_drillinglength">进尺</string>
+    <string name="tourreport_total_corelength">取心</string>
+    <string name="tourreport_total_holedeep">孔深</string>
+    <string name="tourreport_onduty">出勤人员</string>
+    
+    
+    
+    
+    
+    <!-- 底部公共菜单模块 -->
+    <string name="menu_bottom_1">班报填写</string>
+    <string name="menu_bottom_2">班报查看</string>
+    <string name="menu_bottom_3">个人设置</string>
+    <string name="menu_bottom_4">统计分析</string>
+    <string name="menu_more">菜单4</string>
+    <string name="title_activity_calculator">CalculatorActivity</string>
+    
+    
+    
+    
+</resources>
