@@ -1,11 +1,12 @@
 package com.dreaming.drilling.adapter;
 
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 import com.dreaming.drilling.utils.GlobalConstants;
-import com.example.drilling.R;
+import com.dreaming.drilling.R;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -23,6 +24,10 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+
+/**
+ * 班报填报的界面，也是主界面
+ * */
 public class MainActivity extends Activity {
 	
 	private String title_name = "班报录入";
@@ -30,8 +35,12 @@ public class MainActivity extends Activity {
 	protected SharedPreferences sharedPrefs;
 	
 	//获取一个日历对象  
-    Calendar dateAndTime = Calendar.getInstance(Locale.CHINA);  
+    private Calendar thedate = Calendar.getInstance(Locale.CHINA); 
+    private Calendar starttime = Calendar.getInstance();
+    private Calendar endtime = Calendar.getInstance();
 
+    private java.text.DateFormat date_fmt = DateFormat.getDateInstance(); 
+    private DateFormat time_fmt = DateFormat.getTimeInstance();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +83,8 @@ public class MainActivity extends Activity {
 		// 处理班报的日期和时间
 		TextView tv_date = (TextView) findViewById(R.id.tourreport_date_value);
 		TextView tv_time = (TextView) findViewById(R.id.tourreport_time_value);
+		//tv_date.setText(date_fmt.format(thedate));
+		//tv_time.setText(time_fmt.format(starttime));
 		tv_date.setOnClickListener(dp_click);
 		tv_time.setOnClickListener(tp_click);
 		
@@ -84,8 +95,8 @@ public class MainActivity extends Activity {
     {  
          @Override 
          public void onTimeSet(TimePicker view, int hourOfDay, int minute) {  
-             dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);  
-             dateAndTime.set(Calendar.MINUTE, minute);  
+             starttime.set(Calendar.HOUR_OF_DAY, hourOfDay);  
+             starttime.set(Calendar.MINUTE, minute);  
              updateLabel();  
          }
      };  
@@ -99,9 +110,9 @@ public class MainActivity extends Activity {
     	 {  
     		 //修改日历控件的年，月，日  
     		 //这里的year,monthOfYear,dayOfMonth的值与DatePickerDialog控件设置的最新值一致  
-    		 dateAndTime.set(Calendar.YEAR, year);  
-    		 dateAndTime.set(Calendar.MONTH, monthOfYear);  
-    		 dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);     
+    		 thedate.set(Calendar.YEAR, year);  
+    		 thedate.set(Calendar.MONTH, monthOfYear);  
+    		 thedate.set(Calendar.DAY_OF_MONTH, dayOfMonth);     
     		 //将页面TextView的显示更新为最新时间  
     		 updateLabel();             
     	 }
@@ -114,9 +125,9 @@ public class MainActivity extends Activity {
     		 //生成一个DatePickerDialog对象，并显示。显示的DatePickerDialog控件可以选择年月日，并设置  
     		 new DatePickerDialog(
     				 MainActivity.this,dp_listener,
-    				 dateAndTime.get(Calendar.YEAR),
-    				 dateAndTime.get(Calendar.MONTH),
-    				 dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
+    				 thedate.get(Calendar.YEAR),
+    				 thedate.get(Calendar.MONTH),
+    				 thedate.get(Calendar.DAY_OF_MONTH)).show();
     	}  
     };
 
@@ -124,8 +135,8 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			new TimePickerDialog(MainActivity.this,tp_listener,
-					dateAndTime.get(Calendar.HOUR_OF_DAY),
-					dateAndTime.get(Calendar.MINUTE),true).show();  
+					starttime.get(Calendar.HOUR_OF_DAY),
+					starttime.get(Calendar.MINUTE),true).show();  
 		}
 	};
      
@@ -138,6 +149,9 @@ public class MainActivity extends Activity {
 	}
 	
 	
+	/**
+	 * 系统的基本设置
+	 * */
 	public void buildingPreference()
 	{
 		this.sharedPrefs = this.getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
