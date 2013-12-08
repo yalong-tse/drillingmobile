@@ -21,6 +21,10 @@
         android:layout_below="@id/title_bar"
         android:fadingEdge="none" >
 
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
         <LinearLayout 
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -73,7 +77,46 @@
             android:layout_marginLeft="10dp"
             android:gravity="center">
             
+            <TextView android:id="@+id/tourreport_date_title"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="@string/tourreport_date_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                />
+
+            <TextView android:id="@+id/tourreport_date_value"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                />
             
+            <TextView android:id="@+id/tourreport_time_title"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="@string/tourreport_time_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                />
+            
+            <TextView android:id="@+id/tourreport_time_value"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                />
+            
+            
+            
+        </LinearLayout>
+        
         </LinearLayout>
     </ScrollView>
 
