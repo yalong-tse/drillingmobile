@@ -2,6 +2,7 @@ package com.dreaming.drilling.adapter;
 
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -36,11 +37,15 @@ public class MainActivity extends Activity {
 	
 	//获取一个日历对象  
     private Calendar thedate = Calendar.getInstance(Locale.CHINA); 
-    private Calendar starttime = Calendar.getInstance();
-    private Calendar endtime = Calendar.getInstance();
+    private Calendar starttime = Calendar.getInstance(Locale.CHINA);
+    private Calendar endtime = Calendar.getInstance(Locale.CHINA);
 
-    private java.text.DateFormat date_fmt = DateFormat.getDateInstance(); 
-    private DateFormat time_fmt = DateFormat.getTimeInstance();
+    private SimpleDateFormat date_fmt = new SimpleDateFormat("yyyy-MM-dd"); 
+    private SimpleDateFormat time_fmt = new SimpleDateFormat("HH:mm");
+    
+    private TextView tv_date;
+    private TextView tv_starttime;
+    private TextView tv_endtime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,26 +86,40 @@ public class MainActivity extends Activity {
 		
 		
 		// 处理班报的日期和时间
-		TextView tv_date = (TextView) findViewById(R.id.tourreport_date_value);
-		TextView tv_time = (TextView) findViewById(R.id.tourreport_time_value);
-		//tv_date.setText(date_fmt.format(thedate));
-		//tv_time.setText(time_fmt.format(starttime));
+		tv_date = (TextView) findViewById(R.id.tourreport_date_value);
+		tv_starttime = (TextView) findViewById(R.id.tourreport_starttime_value);
+		tv_endtime = (TextView) findViewById(R.id.tourreport_endtime_value);
+		
+		tv_date.setText(date_fmt.format(thedate.getTime()));
+		tv_starttime.setText(time_fmt.format(starttime.getTime()));
+		tv_endtime.setText(time_fmt.format(endtime.getTime()));
+		
 		tv_date.setOnClickListener(dp_click);
-		tv_time.setOnClickListener(tp_click);
+		tv_starttime.setOnClickListener(tp_starttime_click);
+		tv_endtime.setOnClickListener(tp_endtime_click);
 		
 		
 	}
 	
-    private TimePickerDialog.OnTimeSetListener tp_listener = new TimePickerDialog.OnTimeSetListener() 
+    private TimePickerDialog.OnTimeSetListener tp_starttime_listener = new TimePickerDialog.OnTimeSetListener() 
     {  
          @Override 
          public void onTimeSet(TimePicker view, int hourOfDay, int minute) {  
              starttime.set(Calendar.HOUR_OF_DAY, hourOfDay);  
              starttime.set(Calendar.MINUTE, minute);  
-             updateLabel();  
+             updateStarttime();  
          }
      };  
 
+     private TimePickerDialog.OnTimeSetListener tp_endtime_listener = new TimePickerDialog.OnTimeSetListener() 
+     {  
+          @Override 
+          public void onTimeSet(TimePicker view, int hourOfDay, int minute) {  
+              endtime.set(Calendar.HOUR_OF_DAY, hourOfDay);  
+              endtime.set(Calendar.MINUTE, minute);  
+              updateEndtime();  
+          }
+      };  
      
      //当点击DatePickerDialog控件的设置按钮时，调用该方法  
      private DatePickerDialog.OnDateSetListener dp_listener = new DatePickerDialog.OnDateSetListener()  
@@ -114,7 +133,7 @@ public class MainActivity extends Activity {
     		 thedate.set(Calendar.MONTH, monthOfYear);  
     		 thedate.set(Calendar.DAY_OF_MONTH, dayOfMonth);     
     		 //将页面TextView的显示更新为最新时间  
-    		 updateLabel();             
+    		 updateDate();             
     	 }
      };  
 
@@ -131,12 +150,21 @@ public class MainActivity extends Activity {
     	}  
     };
 
-     private View.OnClickListener tp_click = new View.OnClickListener() {
+     private View.OnClickListener tp_starttime_click = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			new TimePickerDialog(MainActivity.this,tp_listener,
+			new TimePickerDialog(MainActivity.this,tp_starttime_listener,
 					starttime.get(Calendar.HOUR_OF_DAY),
 					starttime.get(Calendar.MINUTE),true).show();  
+		}
+	};
+	
+	private View.OnClickListener tp_endtime_click = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			new TimePickerDialog(MainActivity.this,tp_endtime_listener,
+					endtime.get(Calendar.HOUR_OF_DAY),
+					endtime.get(Calendar.MINUTE),true).show();  
 		}
 	};
      
@@ -170,9 +198,32 @@ public class MainActivity extends Activity {
 		
 	}
 	
-	private void updateLabel() {
+	private void updateDate() 
+	{
+		if(tv_date!=null)
+		{
+			tv_date.setText(this.date_fmt.format(thedate.getTime()));
+		}
 		
-	}  
+	}
+	
+	private void updateStarttime()
+	{
+		if(tv_starttime!=null)
+		{
+			tv_starttime.setText(this.time_fmt.format(starttime.getTime()));
+			
+		}
+	}
+	
+	private void updateEndtime()
+	{
+		if(tv_endtime!=null)
+		{
+			tv_endtime.setText(this.time_fmt.format(endtime.getTime()));
+		}
+		
+	}
 
 	
 	

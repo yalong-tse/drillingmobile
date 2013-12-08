@@ -13,6 +13,7 @@
     <string name="tourreport_rigmachine_title">钻机</string>
     <string name="tourreport_date_title">日期</string>
     <string name="tourreport_time_title">时间</string>
+    <string name="tourreport_time_span_title">至</string>
     <string name="tourreport_workcontent_title">工作内容</string>
     <string name="tourreport_upleft_title">上余</string>
     <string name="tourreport_drilllength_title">进尺</string>
