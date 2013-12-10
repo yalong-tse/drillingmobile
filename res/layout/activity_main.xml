@@ -41,7 +41,7 @@
                     android:layout_weight="2"
                     android:text="@string/tourreport_holenumber_title"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
                 <!-- 钻孔编号 -->
 
@@ -52,7 +52,7 @@
                     android:layout_marginLeft="1dp"
                     android:layout_weight="4"
                     android:textColor="@color/red"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tourreport_rigmachine_number_title"
@@ -61,7 +61,7 @@
                     android:layout_weight="2"
                     android:text="@string/tourreport_rigmachine_title"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
                 <!-- 钻机编号 -->
 
@@ -72,7 +72,7 @@
                     android:layout_marginLeft="1dp"
                     android:layout_weight="5"
                     android:textColor="@color/red"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -89,7 +89,7 @@
                     android:layout_weight="2"
                     android:text="@string/tourreport_date_title"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
                 <!-- 班报日期 -->
 
@@ -100,7 +100,7 @@
                     android:layout_marginLeft="1dp"
                     android:layout_weight="4"
                     android:textColor="@color/red"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tourreport_starttime_title"
@@ -109,7 +109,7 @@
                     android:layout_weight="2"
                     android:text="@string/tourreport_time_title"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
                 <!-- 班报开始时间 -->
 
                 <TextView
@@ -119,7 +119,7 @@
                     android:layout_marginLeft="1dp"
                     android:layout_weight="2"
                     android:textColor="@color/red"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tourreport_endtime_title"
@@ -128,7 +128,7 @@
                     android:layout_weight="1"
                     android:text="@string/tourreport_time_span_title"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
                 <!-- 班报结束日期 -->
 
                 <TextView
@@ -138,10 +138,33 @@
                     android:layout_marginLeft="1dp"
                     android:layout_weight="2"
                     android:textColor="@color/red"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
+                
             </LinearLayout>
             
             
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+                
+                <Button android:id="@+id/tourreport_add_workcontent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tourreport_workcontent_new"
+                    android:textColor="@color/blue"
+                    android:textSize="15sp"
+                    />
+                
+                <Button android:id="@+id/tourreport_add_takeover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
+                    android:textSize="15sp"
+                    android:text="@string/tourreport_takeover_new"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

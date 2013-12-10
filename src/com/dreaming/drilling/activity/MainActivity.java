@@ -1,4 +1,4 @@
-package com.dreaming.drilling.adapter;
+package com.dreaming.drilling.activity;
 
 
 import java.text.DateFormat;
@@ -13,14 +13,15 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -29,7 +30,7 @@ import android.widget.TimePicker;
 /**
  * 班报填报的界面，也是主界面
  * */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 	
 	private String title_name = "班报录入";
 	
@@ -54,7 +55,6 @@ public class MainActivity extends Activity {
 		
 		buildingPreference();
 		initView();
-		
 
 	}
 
@@ -97,6 +97,10 @@ public class MainActivity extends Activity {
 		tv_date.setOnClickListener(dp_click);
 		tv_starttime.setOnClickListener(tp_starttime_click);
 		tv_endtime.setOnClickListener(tp_endtime_click);
+		
+		
+		findViewById(R.id.tourreport_add_takeover).setOnClickListener(this);
+		findViewById(R.id.tourreport_add_workcontent).setOnClickListener(this);
 		
 		
 	}
@@ -230,7 +234,29 @@ public class MainActivity extends Activity {
 		}
 		
 	}
+	
+	@Override
+	public void onClick(View v) {
+	
+		switch (v.getId()) {
+		case R.id.tourreport_add_takeover:
+			open_workcontent();
+			break;
+			
+		case R.id.tourreport_add_workcontent:
+			open_workcontent();
+			break;
+		}
+	}
 
+	
+	
+	private void open_workcontent()
+	{
+		Intent intent = new Intent(MainActivity.this, WorkcontentActivity.class);
+		startActivity(intent);
+		
+	}
 	
 	
 
