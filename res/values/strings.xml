@@ -50,6 +50,7 @@
     <string name="workcontent_rotatespeed_hint">填写钻机转速</string>
     <string name="workcontent_pump_hint">填写泵量</string>
     <string name="workcontent_save">保存</string>
+    <string name="workcontent_cancel">取消</string>
     <string name="mile">m</string>
     <string name="kilogram">kg</string>
     <string name="rotatespeed">r/min</string>

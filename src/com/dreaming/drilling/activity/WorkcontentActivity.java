@@ -16,10 +16,13 @@ import android.text.Spanned;
 import android.text.style.UnderlineSpan;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class WorkcontentActivity extends Activity {
 
@@ -71,7 +74,24 @@ public class WorkcontentActivity extends Activity {
 		workcontent_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner_workcontent.setAdapter(workcontent_adapter);
 		
-		
+		spinner_workcontent.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id){
+				// TODO Auto-generated method stub
+				String str=parent.getItemAtPosition(position).toString();
+				Toast.makeText(WorkcontentActivity.this, "Äãµã»÷µÄÊÇ:"+str, 2000).show();
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 	}
 	
