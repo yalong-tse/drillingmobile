@@ -90,6 +90,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/linelayout_upleft"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal" >
 
@@ -123,6 +124,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/linelayout_drillinglength"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal" >
 
@@ -156,6 +158,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/linelayout_holedeep"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal" >
 
@@ -189,6 +192,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/linelayout_corelength"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal" >
 
@@ -222,6 +226,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/linelayout_pressure"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal" >
 
@@ -255,6 +260,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/linelayout_rotatespeed"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal" >
 
@@ -288,6 +294,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/linelayout_pump"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal" >
 

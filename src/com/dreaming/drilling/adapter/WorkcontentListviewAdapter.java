@@ -3,6 +3,8 @@ package com.dreaming.drilling.adapter;
 import java.util.List;
 import java.util.Map;
 
+import com.dreaming.drilling.R;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
@@ -24,8 +26,6 @@ public class WorkcontentListviewAdapter extends BaseAdapter {
 	private Context context;
 	private List<Map<String,Object>> listItems;
 	private LayoutInflater listContainer;
-	
-	
 	
 	
 	public WorkcontentListviewAdapter(Context context,List<Map<String,Object>> listItems)
@@ -62,6 +62,18 @@ public class WorkcontentListviewAdapter extends BaseAdapter {
 	public View getView(int position, View convertview, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		
+		TextView tv_date = (TextView) convertview.findViewById(R.id.tourreport_list_date);
+		TextView tv_time = (TextView) convertview.findViewById(R.id.tourreport_list_time);
+		TextView tv_drillinglength = (TextView) convertview.findViewById(R.id.tourreport_list_drillinglength);
+		TextView tv_corelength = (TextView) convertview.findViewById(R.id.tourreport_list_corelength);
+		TextView tv_holedeep = (TextView) convertview.findViewById(R.id.tourreport_list_holedeep);
+		
+		
+		tv_date.setText(listItems.get(position).get("").toString());
+		tv_time.setText(listItems.get(position).get("").toString());
+		tv_drillinglength.setText(listItems.get(position).get("").toString());
+		tv_corelength.setText(listItems.get(position).get("").toString());
+		tv_holedeep.setText(listItems.get(position).get("").toString());
 		
 		return convertview;
 	}

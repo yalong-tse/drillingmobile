@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class WorkcontentListActivity extends Activity {
 
-	private String title_name = "�౨�б�";
+	private String title_name = "班报列表";
 	private ListView listview = null;
 	
 	@Override

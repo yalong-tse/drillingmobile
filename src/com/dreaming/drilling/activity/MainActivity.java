@@ -26,15 +26,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 /**
- * °à±¨Ìî±¨µÄ½çÃæ£¬Ò²ÊÇÖ÷½çÃæ
+ * ç­æŠ¥å¡«æŠ¥çš„ç•Œé¢ï¼Œä¹Ÿæ˜¯ä¸»ç•Œé¢
  * */
 public class MainActivity extends Activity implements OnClickListener {
 
-	private String title_name = "°à±¨Â¼Èë";
+	private String title_name = "ç­æŠ¥å½•å…¥";
 
 	protected SharedPreferences sharedPrefs;
 
-	// »ñÈ¡Ò»¸öÈÕÀú¶ÔÏó
+	// è·å–ä¸€ä¸ªæ—¥å†å¯¹è±¡
 	private Calendar thedate = Calendar.getInstance(Locale.CHINA);
 	private Calendar starttime = Calendar.getInstance(Locale.CHINA);
 	private Calendar endtime = Calendar.getInstance(Locale.CHINA);
@@ -60,32 +60,32 @@ public class MainActivity extends Activity implements OnClickListener {
 		TextView textView_title = (TextView) findViewById(R.id.title);
 		textView_title.setText(title_name);
 
-		// ¿×ºÅ
+		// å­”å·
 		TextView textview_holenumber = (TextView) findViewById(R.id.tourreport_holenumber_value);
 		String holenumber = this.sharedPrefs.getString("holenumber", "zk001");
 		Log.d("holenumber", holenumber);
-		// ÉèÖÃ×ÖÌåÑùÊ½
+		// è®¾ç½®å­—ä½“æ ·å¼
 		SpannableString msp = new SpannableString(holenumber);
 		// msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0,
-		// holenumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); //´ÖÌå
+		// holenumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); //ç²—ä½“
 		msp.setSpan(new UnderlineSpan(), 0, holenumber.length(),
 				Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		textview_holenumber.setText(msp);
 
-		// ×ê»ú±àºÅ
+		// é’»æœºç¼–å·
 		TextView textview_rigmachine_number = (TextView) findViewById(R.id.tourreport_rigmachine_number_value);
 
 		String rignumber = this.sharedPrefs.getString("rignumber",
 				"rigmachine001");
-		// ÉèÖÃ×ÖÌåÑùÊ½
+		// è®¾ç½®å­—ä½“æ ·å¼
 		SpannableString msp_rig = new SpannableString(rignumber);
 		// msp_rig.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0,
-		// rignumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); //´ÖÌå
+		// rignumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); //ç²—ä½“
 		msp_rig.setSpan(new UnderlineSpan(), 0, rignumber.length(),
 				Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		textview_rigmachine_number.setText(msp_rig);
 
-		// ´¦Àí°à±¨µÄÈÕÆÚºÍÊ±¼ä
+		// å¤„ç†ç­æŠ¥çš„æ—¥æœŸå’Œæ—¶é—´
 		tv_date = (TextView) findViewById(R.id.tourreport_date_value);
 		tv_starttime = (TextView) findViewById(R.id.tourreport_starttime_value);
 		tv_endtime = (TextView) findViewById(R.id.tourreport_endtime_value);
@@ -126,17 +126,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	};
 
-	// µ±µã»÷DatePickerDialog¿Ø¼şµÄÉèÖÃ°´Å¥Ê±£¬µ÷ÓÃ¸Ã·½·¨
+	// å½“ç‚¹å‡»DatePickerDialogæ§ä»¶çš„è®¾ç½®æŒ‰é’®æ—¶ï¼Œè°ƒç”¨è¯¥æ–¹æ³•
 	private DatePickerDialog.OnDateSetListener dp_listener = new DatePickerDialog.OnDateSetListener() {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {
-			// ĞŞ¸ÄÈÕÀú¿Ø¼şµÄÄê£¬ÔÂ£¬ÈÕ
-			// ÕâÀïµÄyear,monthOfYear,dayOfMonthµÄÖµÓëDatePickerDialog¿Ø¼şÉèÖÃµÄ×îĞÂÖµÒ»ÖÂ
+			// ä¿®æ”¹æ—¥å†æ§ä»¶çš„å¹´ï¼Œæœˆï¼Œæ—¥
+			// è¿™é‡Œçš„year,monthOfYear,dayOfMonthçš„å€¼ä¸DatePickerDialogæ§ä»¶è®¾ç½®çš„æœ€æ–°å€¼ä¸€è‡´
 			thedate.set(Calendar.YEAR, year);
 			thedate.set(Calendar.MONTH, monthOfYear);
 			thedate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-			// ½«Ò³ÃæTextViewµÄÏÔÊ¾¸üĞÂÎª×îĞÂÊ±¼ä
+			// å°†é¡µé¢TextViewçš„æ˜¾ç¤ºæ›´æ–°ä¸ºæœ€æ–°æ—¶é—´
 			updateDate();
 		}
 	};
@@ -144,7 +144,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private View.OnClickListener dp_click = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// Éú³ÉÒ»¸öDatePickerDialog¶ÔÏó£¬²¢ÏÔÊ¾¡£ÏÔÊ¾µÄDatePickerDialog¿Ø¼ş¿ÉÒÔÑ¡ÔñÄêÔÂÈÕ£¬²¢ÉèÖÃ
+			// ç”Ÿæˆä¸€ä¸ªDatePickerDialogå¯¹è±¡ï¼Œå¹¶æ˜¾ç¤ºã€‚æ˜¾ç¤ºçš„DatePickerDialogæ§ä»¶å¯ä»¥é€‰æ‹©å¹´æœˆæ—¥ï¼Œå¹¶è®¾ç½®
 			new DatePickerDialog(MainActivity.this, dp_listener,
 					thedate.get(Calendar.YEAR), thedate.get(Calendar.MONTH),
 					thedate.get(Calendar.DAY_OF_MONTH)).show();
@@ -177,7 +177,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * ÏµÍ³µÄ»ù±¾ÉèÖÃ
+	 * ç³»ç»Ÿçš„åŸºæœ¬è®¾ç½®
 	 * */
 	public void buildingPreference() {
 		this.sharedPrefs = this.getSharedPreferences(
@@ -188,7 +188,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		SharedPreferences.Editor localEditor = this.sharedPrefs.edit();
 
-		// ÏµÍ³ËùĞèµÄ»ù±¾ÅäÖÃ
+		// ç³»ç»Ÿæ‰€éœ€çš„åŸºæœ¬é…ç½®
 		localEditor.putBoolean("first2", false);
 
 		localEditor.putString("holenumber", "zk002");

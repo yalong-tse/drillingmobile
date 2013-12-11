@@ -35,8 +35,8 @@ public class WorkcontentActivity extends Activity {
     private TextView tv_endtime;
     private Spinner spinner_workcontent;
 
-    private String title_name = "¹¤×÷ÄÚÈİ";
-    private String[] workcontent_arr = {"ÆğÏÂ×ê","×ê½ø","È¡ĞÄ","ÆğÏÂ×ê£¬È¡ĞÄ"};
+    private String title_name = "å·¥ä½œå†…å®¹";
+    private String[] workcontent_arr = {"èµ·ä¸‹é’»","é’»è¿›","å–å¿ƒ","èµ·ä¸‹å°é’»å–å¿ƒ"};
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,38 @@ public class WorkcontentActivity extends Activity {
 					int position, long id){
 				// TODO Auto-generated method stub
 				String str=parent.getItemAtPosition(position).toString();
-				Toast.makeText(WorkcontentActivity.this, "Äãµã»÷µÄÊÇ:"+str, 2000).show();
+				if(str.equalsIgnoreCase("èµ·ä¸‹é’»"))
+				{
+					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
+				}
+				else if(str.equalsIgnoreCase("é’»è¿›"))
+				{
+					findViewById(R.id.linelayout_corelength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_drillinglength).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_pressure).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_pump).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.VISIBLE);
+				}
+				else if(str.equalsIgnoreCase("èµ·ä¸‹å°é’»å–å¿ƒ"))
+				{
+					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
+					
+				}
+				//Toast.makeText(WorkcontentActivity.this, "ä½ ç‚¹å‡»çš„æ˜¯:"+str, 2000).show();
 				
 			}
 
