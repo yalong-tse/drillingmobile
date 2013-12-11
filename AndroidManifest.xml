@@ -26,6 +26,10 @@
             android:name="com.dreaming.drilling.activity.WorkcontentActivity"
             android:label="@string/title_activity_workcontent" >
         </activity>
+        <activity
+            android:name="com.dreaming.drilling.activity.WorkcontentListActivity"
+            android:label="@string/title_activity_workcontent_list" >
+        </activity>
     </application>
 
 </manifest>

@@ -40,7 +40,6 @@
     <string name="tourreport_onduty">出勤人员</string>
     <string name="tourreport_time_to">至</string>
 
-    
     <!-- 填写工作内容的界面 -->
     <string name="workcontent_upleft_hint">填写上余数量</string>
     <string name="workcontent_drillinglength_hint">填写进尺数量</string>
@@ -55,8 +54,7 @@
     <string name="kilogram">kg</string>
     <string name="rotatespeed">r/min</string>
     <string name="L">L/min</string>
-    
-    
+
     <!-- 底部公共菜单模块 -->
     <string name="menu_bottom_1">班报填写</string>
     <string name="menu_bottom_2">班报查看</string>
@@ -65,5 +63,6 @@
     <string name="menu_more">菜单4</string>
     <string name="title_activity_calculator">CalculatorActivity</string>
     <string name="title_activity_workcontent">WorkcontentActivity</string>
+    <string name="title_activity_workcontent_list">WorkcontentListActivity</string>
 
 </resources>
