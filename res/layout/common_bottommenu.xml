@@ -1,104 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="horizontal"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:layout_alignParentBottom="true" android:gravity="center">
-	
-	<LinearLayout android:orientation="horizontal"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:baselineAligned="false">
-		
-	    <!-- menu1:财务分析 -->
-		<LinearLayout android:orientation="vertical" android:id="@+id/menu_home"
-			android:layout_width="0dip" android:layout_weight="0.20"
-			android:layout_height="wrap_content" android:clickable="true"
-			android:background="@drawable/bottom_bar">
-			
-			<ImageView android:layout_width="wrap_content" android:id="@+id/menu_home_img"
-				android:layout_gravity="center_horizontal" android:layout_height="27dip"
-				android:src="@drawable/bottom_bar_1" />
-				
-			<TextView android:id="@+id/menu_home_text"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:textSize="12sp" android:gravity="center_horizontal"
-				android:textColor="@color/bottom_menu_text" android:text="@string/menu_bottom_1" />
-				
-		</LinearLayout>
-		
-		<!-- menu2:资产配置 -->
-		<LinearLayout android:orientation="vertical" android:id="@+id/menu_brand"
-			android:background="@drawable/bottom_bar" android:layout_width="0dip"
-			android:layout_weight="0.20" android:layout_height="wrap_content"
-			android:clickable="true">
-			
-			<ImageView android:layout_width="wrap_content" android:id="@+id/menu_brand_img"
-				android:layout_gravity="center_horizontal" android:layout_height="27dip"
-				android:src="@drawable/bottom_bar_2" 
-				/>
-				
-			<TextView android:id="@+id/menu_brand_text"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:textSize="12sp" android:gravity="center_horizontal"
-				android:textColor="@color/bottom_menu_text" android:text="@string/menu_bottom_2" />
-				
-		</LinearLayout>
-		
-		<!-- menu3:金融超市 -->
-		<LinearLayout android:orientation="vertical"
-			android:id="@+id/menu_shopping_cart" android:background="@drawable/bottom_bar"
-			android:layout_width="0dip" android:layout_weight="0.20"
-			android:layout_height="wrap_content" android:clickable="true">
-			
-			<ImageView android:layout_width="wrap_content"
-				android:id="@+id/menu_shopping_cart_img" android:layout_gravity="center_horizontal"
-				android:layout_height="27dip" android:src="@drawable/bottom_bar_3" />
-				
-			<TextView android:id="@+id/menu_shopping_cart_text"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:textSize="12sp" android:gravity="center_horizontal"
-				android:textColor="@color/bottom_menu_text" android:text="@string/menu_bottom_3" />
-				
-		</LinearLayout>
-		
-		<!-- menu4:理财圈子 -->
-		<LinearLayout android:orientation="vertical" android:id="@+id/menu_my_letao"
-			android:background="@drawable/bottom_bar" android:layout_width="0dip"
-			android:layout_weight="0.20" android:layout_height="wrap_content"
-			android:clickable="true">
-			
-			<ImageView android:layout_width="wrap_content" android:id="@+id/menu_my_letao_img"
-				android:layout_gravity="center_horizontal" android:layout_height="27dip"
-				android:src="@drawable/bottom_bar_4" />
-				
-			<TextView android:id="@+id/menu_my_letao_text"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:textSize="12sp" android:gravity="center_horizontal"
-				android:textColor="@color/bottom_menu_text" android:text="@string/menu_bottom_4" />
-				
-		</LinearLayout>
-		<!-- 
-		<LinearLayout android:orientation="vertical" android:id="@+id/menu_more"
-			android:background="@drawable/menu" android:layout_width="0dip"
-			android:layout_weight="0.20" android:layout_height="wrap_content"
-			android:clickable="true">
-			
-			<ImageView android:layout_width="wrap_content" android:id="@+id/menu_more_img"
-				android:layout_gravity="center_horizontal" android:layout_height="27dip"
-				android:src="@drawable/menu_more_released" />
-				
-			<TextView android:id="@+id/menu_more_text"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:textSize="12sp" android:gravity="center_horizontal"
-				android:textColor="@color/white" android:text="@string/menu_more" />
-				 
-		</LinearLayout>
-		-->
-	</LinearLayout>
-	
-	<TextView android:id="@+id/menu_shopping_cart_productnum_text"
-		android:visibility="gone" android:layout_width="20dip"
-		android:layout_height="20dip" android:textColor="@color/white"
-		android:textSize="12sp" android:gravity="center_horizontal"
-		android:layout_marginLeft="165dip" android:background="@drawable/paopao" />
-		
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <!-- menu1:报班填写 -->
+
+        <LinearLayout
+            android:id="@+id/menu_add_tourreport"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:background="@drawable/bottom_bar"
+            android:clickable="true"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/menu_home_img"
+                android:layout_width="wrap_content"
+                android:layout_height="27dip"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/bottom_bar_2" />
+
+            <TextView
+                android:id="@+id/menu_bottombar_a"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/menu_bottom_1"
+                android:textColor="@color/bottom_menu_text"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- menu2:班报查看 -->
+
+        <LinearLayout
+            android:id="@+id/menu_tourreport_list"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:background="@drawable/bottom_bar"
+            android:clickable="true"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/menu_brand_img"
+                android:layout_width="wrap_content"
+                android:layout_height="27dip"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/bottom_bar_4" />
+
+            <TextView
+                android:id="@+id/menu_bottombar_b"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/menu_bottom_2"
+                android:textColor="@color/bottom_menu_text"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- menu3:统计分析 -->
+
+        <LinearLayout
+            android:id="@+id/menu_tourreport_report"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:background="@drawable/bottom_bar"
+            android:clickable="true"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/menu_shopping_cart_img"
+                android:layout_width="wrap_content"
+                android:layout_height="27dip"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/bottom_bar_1" />
+
+            <TextView
+                android:id="@+id/menu_bottombar_c"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/menu_bottom_3"
+                android:textColor="@color/bottom_menu_text"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- menu4:个人设置 -->
+
+        <LinearLayout
+            android:id="@+id/menu_tourreport_setting"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:background="@drawable/bottom_bar"
+            android:clickable="true"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/menu_my_letao_img"
+                android:layout_width="wrap_content"
+                android:layout_height="27dip"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/bottom_bar_3" />
+
+            <TextView
+                android:id="@+id/menu_bottombar_d"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/menu_bottom_4"
+                android:textColor="@color/bottom_menu_text"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
 </RelativeLayout>

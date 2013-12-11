@@ -7,11 +7,13 @@ import com.dreaming.drilling.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class WorkcontentListActivity extends Activity {
 
 	private String title_name = "°à±¨ÁÐ±í";
+	private ListView listview = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,12 @@ public class WorkcontentListActivity extends Activity {
 	{
 		TextView textView_title = (TextView)findViewById(R.id.title);
 		textView_title.setText(title_name);
+		
+		listview = (ListView) findViewById(R.id.workcontent_list);
+		
+		
+		
+		
 	}
 
 	

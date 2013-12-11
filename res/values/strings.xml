@@ -58,8 +58,8 @@
     <!-- 底部公共菜单模块 -->
     <string name="menu_bottom_1">班报填写</string>
     <string name="menu_bottom_2">班报查看</string>
-    <string name="menu_bottom_3">个人设置</string>
-    <string name="menu_bottom_4">统计分析</string>
+    <string name="menu_bottom_3">统计分析</string>
+    <string name="menu_bottom_4">个人设置</string>
     <string name="menu_more">菜单4</string>
     <string name="title_activity_calculator">CalculatorActivity</string>
     <string name="title_activity_workcontent">WorkcontentActivity</string>
