@@ -69,4 +69,8 @@
 	<color name="dialog_value">#FF5c5c5c</color>
     <color name="dialog_btn1">#FF63b207</color>
     <color name="dialog_btn2">#ff37aadf</color>
+    
+    
+    <color name="listview_border">#BDBBB7</color>
+    <color name="layout_bg_pressed">#FF8800</color>
 </resources>

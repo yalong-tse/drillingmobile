@@ -1,13 +1,14 @@
 package com.dreaming.drilling.utils;
 
 /**
- * drilling 所需的全局变量
+ * drilling鍏ㄥ眬鍙橀噺
  * */
 public class GlobalConstants {
 	
 	
-	// share Preference 配置
-	public static int MODE = android.app.Activity.MODE_PRIVATE;//定义访问模式为私有模式
-	public static final String PREFERENCE_NAME = "drilling";//设置保存时的文件的名称
-
+	// share Preference 
+	public static int MODE = android.app.Activity.MODE_PRIVATE;//
+	public static final String PREFERENCE_NAME = "drilling";// preference 鏂囦欢
+	
+	public static final String WORKCONTENT = "com.dreaming.drilling.workcontent.parcel";
 }

@@ -7,15 +7,19 @@ import java.util.Locale;
 import com.dreaming.drilling.R;
 import com.dreaming.drilling.R.layout;
 import com.dreaming.drilling.R.menu;
+import com.dreaming.drilling.bean.Workcontent;
+import com.dreaming.drilling.utils.GlobalConstants;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.UnderlineSpan;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -24,7 +28,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class WorkcontentActivity extends Activity {
+public class WorkcontentActivity extends Activity implements OnClickListener{
 
 	private Calendar starttime = Calendar.getInstance(Locale.CHINA);
     private Calendar endtime = Calendar.getInstance(Locale.CHINA);
@@ -37,6 +41,7 @@ public class WorkcontentActivity extends Activity {
 
     private String title_name = "工作内容";
     private String[] workcontent_arr = {"起下钻","钻进","取心","起下小钻取心"};
+    private String currentselected;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,7 @@ public class WorkcontentActivity extends Activity {
 					int position, long id){
 				// TODO Auto-generated method stub
 				String str=parent.getItemAtPosition(position).toString();
+				currentselected = str;
 				if(str.equalsIgnoreCase("起下钻"))
 				{
 					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
@@ -102,6 +108,17 @@ public class WorkcontentActivity extends Activity {
 					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.VISIBLE);
 				}
 				else if(str.equalsIgnoreCase("起下小钻取心"))
+				{
+					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
+					
+				}
+				else if(str.equalsIgnoreCase("取心"))
 				{
 					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
@@ -190,6 +207,84 @@ public class WorkcontentActivity extends Activity {
 	}
 	
 	
+	
+
+	private void btn_save()
+	{
+		Workcontent workcontent = new Workcontent();
+		
+		workcontent.setStarttime(((TextView) findViewById(R.id.sub_starttime_value)).getText().toString());
+		workcontent.setEndtime(((TextView) findViewById(R.id.sub_endtime_value)).getText().toString());
+		workcontent.setType(this.currentselected);
+		
+		String upleft = ((TextView) findViewById(R.id.sub_workcontent_upleft)).getText().toString();
+		if(upleft==null || upleft.equalsIgnoreCase(""))
+			workcontent.setUpleft(0);
+		else
+			workcontent.setUpleft(Float.parseFloat(upleft));
+		
+		String drillinglength = ((TextView) findViewById(R.id.sub_workcontent_drillinglength)).getText().toString();
+		if(drillinglength==null || drillinglength.equalsIgnoreCase(""))
+			workcontent.setDrillinglength(0);
+		else
+			workcontent.setDrillinglength(Float.parseFloat(drillinglength));
+		
+		String holedeep = ((TextView) findViewById(R.id.sub_workcontent_holedeep)).getText().toString();
+		if(holedeep==null || holedeep.equalsIgnoreCase(""))
+			workcontent.setHoledeep(0);
+		else
+			workcontent.setHoledeep(Float.parseFloat(holedeep));
+		
+		String corelength = ((TextView) findViewById(R.id.sub_workcontent_core_length)).getText().toString();
+		if(corelength==null || corelength.equalsIgnoreCase(""))
+			workcontent.setCorelength(0);
+		else
+			workcontent.setCorelength(Float.parseFloat(corelength));
+				
+		String pressure = ((TextView) findViewById(R.id.sub_workcontent_pressure)).getText().toString();
+		if(pressure==null || pressure.equalsIgnoreCase(""))
+			workcontent.setPressure(0);
+		else
+			workcontent.setPressure(Float.parseFloat(pressure));
+		
+		String rotatespeed = ((TextView) findViewById(R.id.sub_workcontent_rotatespeed)).getText().toString();
+		if(rotatespeed==null || rotatespeed.equalsIgnoreCase(""))
+			workcontent.setRotatespeed(0);
+		else
+			workcontent.setRotatespeed(Float.parseFloat(rotatespeed));
+		
+		String pump = ((TextView) findViewById(R.id.sub_workcontent_pump)).getText().toString();
+		if(pump==null || pump.equalsIgnoreCase(""))
+			workcontent.setPump(0);
+		else
+			workcontent.setPump(Float.parseFloat(pump));
+		
+		// 传递给主窗体
+		Intent mIntent = new Intent(this,MainActivity.class);
+		Bundle mBundle = new Bundle();
+		mBundle.putParcelable(GlobalConstants.WORKCONTENT, workcontent);
+		mIntent.putExtras(mBundle);
+		startActivity(mIntent);
+		
+	}
+	private void btn_cancel()
+	{
+		
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.workcontent_btn_save:
+			btn_save();
+			break;
+		case R.id.workcontent_btn_cancel:
+			btn_cancel();
+			break;
+		}
+		
+	}
 	
       
 }
