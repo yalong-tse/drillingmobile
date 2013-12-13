@@ -141,6 +141,9 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 			
 		});
 		
+		
+		findViewById(R.id.workcontent_btn_save).setOnClickListener(this);
+		findViewById(R.id.workcontent_btn_cancel).setOnClickListener(this);
 	}
 	
 	private TimePickerDialog.OnTimeSetListener tp_starttime_listener = new TimePickerDialog.OnTimeSetListener() 
@@ -209,6 +212,9 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 	
 	
 
+	/**
+	 * 保存按钮把实体对象传递给主窗体
+	 * **/
 	private void btn_save()
 	{
 		Workcontent workcontent = new Workcontent();
@@ -269,6 +275,8 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 	}
 	private void btn_cancel()
 	{
+		Intent mIntent = new Intent(this,MainActivity.class);
+		startActivity(mIntent);
 		
 	}
 
