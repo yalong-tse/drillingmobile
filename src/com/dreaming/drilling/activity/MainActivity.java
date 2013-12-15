@@ -68,6 +68,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		initView();
 		buildingWorkcontent();
 		building_takeover_content();
+		computelength();
 	}
 
 	private void initView() {
@@ -258,6 +259,28 @@ public class MainActivity extends Activity implements OnClickListener {
 			((TextView)findViewById(R.id.tourreport_takeover_tools_value)).setText(GlobalConstants.takeover.getTakeovertools());
 			((TextView)findViewById(R.id.tourreport_onduty_value)).setText(GlobalConstants.takeover.getOnduty());
 		}
+	}
+	
+	private void computelength()
+	{
+		float sum_drilling=0;
+		float sum_core=0;
+		float sum_holedeep =0;
+		for(Workcontent wc:GlobalConstants.list_workcontents)
+		{
+			if(wc.getHoledeep()>sum_holedeep)
+			{
+				sum_holedeep = wc.getHoledeep();
+			}
+			sum_drilling += wc.getDrillinglength();
+			sum_core += wc.getCorelength();
+		}
+		
+		((TextView)findViewById(R.id.tourreport_core_length_value)).setText(sum_core+"");
+		((TextView)findViewById(R.id.tourreport_drillinglength_value)).setText(sum_drilling+"");
+		((TextView)findViewById(R.id.tourreport_holedeep_value)).setText(sum_holedeep+"");
+		
+		
 	}
 	private TimePickerDialog.OnTimeSetListener tp_starttime_listener = new TimePickerDialog.OnTimeSetListener() {
 		@Override
