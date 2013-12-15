@@ -29,5 +29,20 @@ public class GlobalConstants {
 		list_workcontents.remove(wc);
 	}
 	
+
+	/**
+	 * 获取上一次的（最新）的孔深
+	 * */
+	public static float getLastholedeep()
+	{
+		float result = 0;
+		for(Workcontent c:list_workcontents)
+		{
+			if(c.getHoledeep()!=0)
+				result = c.getHoledeep();
+		}
+		return result;
+	}
+	
 	
 }

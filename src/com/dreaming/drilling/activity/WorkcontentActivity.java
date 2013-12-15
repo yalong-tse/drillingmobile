@@ -23,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -141,7 +142,9 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 			
 		});
 		
-		
+		float holedeep = GlobalConstants.getLastholedeep();
+		EditText et_deep = ((EditText)findViewById(R.id.sub_workcontent_holedeep));
+		if(et_deep!=null) et_deep.setText(holedeep+"");
 		findViewById(R.id.workcontent_btn_save).setOnClickListener(this);
 		findViewById(R.id.workcontent_btn_cancel).setOnClickListener(this);
 	}

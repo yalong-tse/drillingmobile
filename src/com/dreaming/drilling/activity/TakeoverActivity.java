@@ -23,6 +23,7 @@ public class TakeoverActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_takeover);
 		
 		initView();
+		buildingcontent();
 	}
 
 	@Override
@@ -38,9 +39,29 @@ public class TakeoverActivity extends Activity implements OnClickListener{
 		textView_title.setText(title_name);
 		
 		
-		findViewById(R.id.takeover_btn_cancel).setOnClickListener(this);
 		findViewById(R.id.takeover_btn_save).setOnClickListener(this);
+		findViewById(R.id.takeover_btn_cancel).setOnClickListener(this);
 		
+	}
+	
+	private void buildingcontent()
+	{
+	
+		Takeovercontent to = GlobalConstants.takeover;
+		TextView tv_takeoverdesc = (TextView) findViewById(R.id.takeover_desc);
+		tv_takeoverdesc.setText(to.getTakeover_desc());
+		
+		TextView tv_fangxie = (TextView) findViewById(R.id.faxie_value);
+		tv_fangxie.setText(to.getFangxie());
+		
+		TextView tv_fuzheng = (TextView) findViewById(R.id.fuzheng_value);
+		tv_fuzheng.setText(to.getFuzheng());
+		
+		TextView tv_tools = (TextView) findViewById(R.id.takeover_tools_value);
+		tv_tools.setText(to.getTakeovertools());
+		
+		TextView tv_onduty = (TextView) findViewById(R.id.onduty_value);
+		tv_onduty.setText(to.getOnduty());
 	}
 
 	@Override
@@ -85,9 +106,5 @@ public class TakeoverActivity extends Activity implements OnClickListener{
 		Intent mIntent = new Intent(this,MainActivity.class);
 		startActivity(mIntent);
 	}
-	
-	
-	
-	
 
 }
