@@ -66,7 +66,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		buildingPreference();
 		initView();
-		buildingFromIntent();
+		buildingWorkcontent();
+		building_takeover_content();
 	}
 
 	private void initView() {
@@ -123,7 +124,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	
 	
 	// 动态增加控件的方法
-	private void buildingFromIntent()
+	private void buildingWorkcontent()
 	{
 		//Workcontent wc = getIntent().getParcelableExtra(GlobalConstants.WORKCONTENT);
 		LinearLayout linelayout = (LinearLayout) findViewById(R.id.main_workcontent_container);
@@ -246,6 +247,18 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 	}
 
+	
+	private void building_takeover_content()
+	{
+		if(GlobalConstants.takeover!=null)
+		{
+			((TextView)findViewById(R.id.tourreport_takeover_value)).setText(GlobalConstants.takeover.getTakeover_desc());
+			((TextView)findViewById(R.id.tourreport_fangxie_value)).setText(GlobalConstants.takeover.getFangxie());
+			((TextView)findViewById(R.id.tourreport_fuzheng_value)).setText(GlobalConstants.takeover.getFuzheng());
+			((TextView)findViewById(R.id.tourreport_takeover_tools_value)).setText(GlobalConstants.takeover.getTakeovertools());
+			((TextView)findViewById(R.id.tourreport_onduty_value)).setText(GlobalConstants.takeover.getOnduty());
+		}
+	}
 	private TimePickerDialog.OnTimeSetListener tp_starttime_listener = new TimePickerDialog.OnTimeSetListener() {
 		@Override
 		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {

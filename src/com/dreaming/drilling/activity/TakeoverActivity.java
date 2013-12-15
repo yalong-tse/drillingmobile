@@ -3,6 +3,8 @@ package com.dreaming.drilling.activity;
 import com.dreaming.drilling.R;
 import com.dreaming.drilling.R.layout;
 import com.dreaming.drilling.R.menu;
+import com.dreaming.drilling.bean.Takeovercontent;
+import com.dreaming.drilling.utils.GlobalConstants;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -64,6 +66,22 @@ public class TakeoverActivity extends Activity implements OnClickListener{
 	
 	private void btn_save()
 	{
+		Takeovercontent takeover =  GlobalConstants.takeover;
+		TextView tv_takeoverdesc = (TextView) findViewById(R.id.takeover_desc);
+		takeover.setTakeover_desc(tv_takeoverdesc.getText().toString());
+		
+		TextView tv_fangxie = (TextView) findViewById(R.id.faxie_value);
+		takeover.setFangxie(tv_fangxie.getText().toString());
+		
+		TextView tv_fuzheng = (TextView) findViewById(R.id.fuzheng_value);
+		takeover.setFuzheng(tv_fuzheng.getText().toString());
+		
+		TextView tv_tools = (TextView) findViewById(R.id.takeover_tools_value);
+		takeover.setTakeovertools(tv_tools.getText().toString());
+		
+		TextView tv_onduty = (TextView) findViewById(R.id.onduty_value);
+		takeover.setOnduty(tv_onduty.getText().toString());
+		
 		Intent mIntent = new Intent(this,MainActivity.class);
 		startActivity(mIntent);
 	}

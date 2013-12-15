@@ -57,15 +57,15 @@
     
     
     <!-- 填写交接说明 -->
-    <string name="takeover_title">交接说明或者记事</string>
+    <string name="takeover_title">交接说明\n或者记事</string>
     <string name="takeover_desc_hint">填写交接说明</string>
-    <string name="faxie_title">防斜措施</string>
+    <string name="faxie_title">防斜\n措施</string>
     <string name="faxie_hint">输入防斜措施</string>
-    <string name="fuzheng_title">扶正器长(m)</string>
+    <string name="fuzheng_title">扶正\n器长(m)</string>
     <string name="fuzheng_hint">输入扶正器长</string>
-    <string name="takeover_tools_title">交接钻具</string>
+    <string name="takeover_tools_title">交接\n钻具</string>
     <string name="takeover_tools_hint">1个单根，长：3.02m：①3.02②     ③  ；41个立根， 长：371.87m。</string>
-    <string name="onduty_title">出勤人员</string>
+    <string name="onduty_title">出勤\n人员</string>
     <string name="onduty_hint">输入出勤人员</string>
     
     
