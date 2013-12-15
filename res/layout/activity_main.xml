@@ -23,14 +23,17 @@
         android:fadingEdge="none" >
 
         <LinearLayout
+            android:id="@+id/main_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_layerlist"
                 android:gravity="center"
                 android:orientation="horizontal" >
 
@@ -38,6 +41,7 @@
                     android:id="@+id/tourreport_holenumber_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="@string/tourreport_holenumber_title"
                     android:textColor="@color/black"
@@ -77,8 +81,10 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_layerlist"
                 android:gravity="center"
                 android:orientation="horizontal" >
 
@@ -86,6 +92,7 @@
                     android:id="@+id/tourreport_date_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="@string/tourreport_date_title"
                     android:textColor="@color/black"
@@ -139,31 +146,54 @@
                     android:layout_weight="2"
                     android:textColor="@color/red"
                     android:textSize="15sp" />
-                
             </LinearLayout>
-            
-            
+
             <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_layerlist"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/tourreport_add_workcontent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/tourreport_workcontent_new"
+                    android:textColor="@color/blue"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/tourreport_add_takeover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/tourreport_takeover_new"
+                    android:textColor="@color/blue"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- 工作内容的容器 -->
+
+            <LinearLayout
+                android:id="@+id/main_workcontent_container"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-                
-                <Button android:id="@+id/tourreport_add_workcontent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tourreport_workcontent_new"
-                    android:textColor="@color/blue"
-                    android:textSize="15sp"
-                    />
-                
-                <Button android:id="@+id/tourreport_add_takeover"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/blue"
-                    android:textSize="15sp"
-                    android:text="@string/tourreport_takeover_new"/>
+                android:layout_marginRight="10dp"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <!-- 交接说明的容器 -->
+
+            <LinearLayout
+                android:id="@+id/main_takeover_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

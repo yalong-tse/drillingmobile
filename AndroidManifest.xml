@@ -30,6 +30,10 @@
             android:name="com.dreaming.drilling.activity.WorkcontentListActivity"
             android:label="@string/title_activity_workcontent_list" >
         </activity>
+        <activity
+            android:name="com.dreaming.drilling.activity.TakeoverActivity"
+            android:label="@string/title_activity_takeover" >
+        </activity>
     </application>
 
 </manifest>

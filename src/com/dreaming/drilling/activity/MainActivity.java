@@ -2,9 +2,12 @@ package com.dreaming.drilling.activity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
+import com.dreaming.drilling.bean.Workcontent;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.R;
 
@@ -14,6 +17,8 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.UnderlineSpan;
@@ -21,7 +26,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -46,6 +57,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private TextView tv_starttime;
 	private TextView tv_endtime;
 
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,7 +66,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		buildingPreference();
 		initView();
-
+		buildingFromIntent();
 	}
 
 	private void initView() {
@@ -106,6 +119,131 @@ public class MainActivity extends Activity implements OnClickListener {
 		findViewById(R.id.menu_tourreport_report).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_setting).setOnClickListener(this);
 
+	}
+	
+	
+	// 动态增加控件的方法
+	private void buildingFromIntent()
+	{
+		//Workcontent wc = getIntent().getParcelableExtra(GlobalConstants.WORKCONTENT);
+		LinearLayout linelayout = (LinearLayout) findViewById(R.id.main_workcontent_container);
+		for(Workcontent wc: GlobalConstants.list_workcontents)
+		if(wc!=null)
+		{
+			// 列表中添加
+			//GlobalConstants.list_workcontents.add(wc);
+			
+			LayoutParams LP_FW = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+			TableLayout tl = new TableLayout(this);
+			tl.setBackgroundResource(R.drawable.bg_layerlist);
+			tl.setLayoutParams(LP_FW);
+			tl.setStretchAllColumns(true); 
+			
+			// 第一行
+			TableRow tr1 = new TableRow(this);
+			//tr1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,80));
+			//Button btn_del = new Button(this);
+			TextView tv_del = new TextView(this);
+			//btn_del.setText("删除");
+			//image.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			//btn_del.setTag(wc);
+			tv_del.setTag(wc);
+			tv_del.setText("删除");
+			tv_del.setTextSize(15);
+			//tv_del.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			tv_del.setPadding(15, 0, 0, 0);
+			tv_del.setTextColor(Color.RED);
+			tv_del.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					// TODO Auto-generated method stub
+					TextView btn = (TextView) view;
+					Workcontent obj = (Workcontent) btn.getTag();
+					((TableLayout) view.getParent().getParent()).removeAllViews();
+					GlobalConstants.remove_workcontent(obj);
+				}
+			});
+			
+			tr1.addView(tv_del);
+			
+			TextView tv_time = new TextView(this);
+			tv_time.setTextColor(Color.BLACK);
+			tv_time.setText("时间:"+ wc.getStarttime() +"至" + wc.getEndtime());
+			tv_time.setTextSize(15);
+			tr1.addView(tv_time);
+			
+			TextView tv_content = new TextView(this);
+			tv_content.setTextColor(Color.BLACK);
+			tv_content.setTextSize(15);
+			tv_content.setText("工作内容:"+wc.getType());
+			tr1.addView(tv_content);
+			tl.addView(tr1,new LayoutParams(LayoutParams.MATCH_PARENT, 50));
+			
+			// 第二行
+			TableRow tr2 = new TableRow(this);
+			tr2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,40));
+			if(wc.getUpleft()!=0)
+			{
+				TextView tv_upleft = new TextView(this);
+				tv_upleft.setText("上余:" + wc.getUpleft());
+				tv_upleft.setPadding(15, 0, 0, 0);
+				tv_upleft.setTextColor(Color.BLACK);
+				tr2.addView(tv_upleft);
+			}
+			
+			if(wc.getDrillinglength()!=0)
+			{
+				TextView tv_drillinglength = new TextView(this);
+				tv_drillinglength.setTextColor(Color.BLACK);
+				tv_drillinglength.setText("进尺:"+ wc.getDrillinglength());
+				tr2.addView(tv_drillinglength);
+			}
+			
+			if(wc.getHoledeep()!=0)
+			{
+				TextView tv_holedeep = new TextView(this);
+				tv_holedeep.setTextColor(Color.BLACK);
+				tv_holedeep.setText("孔深:" + wc.getHoledeep());
+				tr2.addView(tv_holedeep);
+			}
+			
+			if(wc.getCorelength()!=0)
+			{
+				TextView tv_core = new TextView(this);
+				tv_core.setTextColor(Color.BLACK);
+				tv_core.setText("岩心长度:" + wc.getCorelength());
+				tr2.addView(tv_core);
+			}
+			tl.addView(tr2,new LayoutParams(LayoutParams.MATCH_PARENT, 50));
+
+			// 第三行
+			TableRow tr3 = new TableRow(this);
+			tr3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,40));
+			if(wc.getPressure()!=0)
+			{
+				TextView tv_pressure = new TextView(this);
+				tv_pressure.setText("钻压:"+wc.getPressure());
+				tv_pressure.setPadding(15, 0, 0, 0);
+				tr3.addView(tv_pressure);
+			}
+			
+			if(wc.getRotatespeed()!=0)
+			{
+				TextView tv_speed = new TextView(this);
+				tv_speed.setText("转速:"+ wc.getRotatespeed());
+				tr3.addView(tv_speed);
+			}
+			
+			if(wc.getPump()!=0)
+			{
+				TextView tv_pump = new TextView(this);
+				tv_pump.setText("泵量:"+ wc.getPump());
+				tr3.addView(tv_pump);
+			}
+			tl.addView(tr3);
+			linelayout.addView(tl);
+		}
+		
 	}
 
 	private TimePickerDialog.OnTimeSetListener tp_starttime_listener = new TimePickerDialog.OnTimeSetListener() {
@@ -239,7 +377,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.tourreport_add_takeover:
-			open_workcontent();
+			open_takeover();
 			break;
 
 		case R.id.tourreport_add_workcontent:
@@ -263,6 +401,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		Intent intent = new Intent(MainActivity.this, WorkcontentActivity.class);
 		startActivity(intent);
 
+	}
+	
+	
+	private void open_takeover()
+	{
+		Intent intent = new Intent(MainActivity.this, TakeoverActivity.class);
+		startActivity(intent);
 	}
 	
 	

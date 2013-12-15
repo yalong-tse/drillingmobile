@@ -265,11 +265,12 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 		else
 			workcontent.setPump(Float.parseFloat(pump));
 		
+		GlobalConstants.list_workcontents.add(workcontent);
 		// 传递给主窗体
 		Intent mIntent = new Intent(this,MainActivity.class);
-		Bundle mBundle = new Bundle();
-		mBundle.putParcelable(GlobalConstants.WORKCONTENT, workcontent);
-		mIntent.putExtras(mBundle);
+		//Bundle mBundle = new Bundle();
+		//mBundle.putParcelable(GlobalConstants.WORKCONTENT, workcontent);
+		//mIntent.putExtras(mBundle);
 		startActivity(mIntent);
 		
 	}

@@ -1,0 +1,212 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/android_layout_bg"
+    tools:context=".TakeoverActivity" >
+
+    <!-- 班报填写   填写交接说明的界面 -->
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/title" />
+
+    <ScrollView
+        android:id="@+id/takeover_srollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/title_bar"
+        android:fadingEdge="none" >
+
+        <LinearLayout
+            android:id="@+id/product_detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!-- 交接说明或记事 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_layerlist"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="right|center"
+                    android:text="@string/takeover_title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/takeover_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="8"
+                    android:gravity="left|top"
+                    android:inputType="textMultiLine"
+                    android:hint="@string/takeover_desc_hint"
+                    />
+            </LinearLayout>
+
+            <!-- 防斜措施 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_layerlist"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="right|center"
+                    android:text="@string/faxie_title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/faxie_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="8"
+                    android:hint="@string/faxie_hint"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <!-- 扶正器长 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_layerlist"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="right|center"
+                    android:text="@string/fuzheng_title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/fuzheng_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="8"
+                    android:hint="@string/fuzheng_hint"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <!-- 交接钻具 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_layerlist"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="right|center"
+                    android:text="@string/takeover_tools_title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/takeover_tools_value"
+                    android:layout_width="0dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="8"
+                    android:gravity="left|top"
+                    android:inputType="textMultiLine"
+                    android:text="@string/takeover_tools_hint" />
+            </LinearLayout>
+
+            <!-- 出勤人员 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_layerlist"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="right|center"
+                    android:text="@string/onduty_title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/onduty_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="8"
+                    android:inputType="text"
+                    android:hint="@string/onduty_hint" />
+            </LinearLayout>
+            
+            <!-- 确定按钮 -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/bg_layerlist"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/takeover_btn_save"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="@string/workcontent_save"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp" />
+                
+                <Button
+                    android:id="@+id/takeover_btn_cancel"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toRightOf="@id/takeover_btn_save"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/workcontent_cancel"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -3,6 +3,10 @@ package com.dreaming.drilling.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * workcontent 对象，方便在窗体之间传递的对象
+ * 
+ * */
 public class Workcontent implements Parcelable {
 
 	private String starttime;
