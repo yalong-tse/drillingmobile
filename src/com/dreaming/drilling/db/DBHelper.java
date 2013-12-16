@@ -64,7 +64,7 @@ public class DBHelper extends SQLiteOpenHelper
 
 	// 数据库名称
 	public static final String DB_NAME = "drilling";
-	public static final int VERSION = 2;
+	public static final int VERSION = 3;
 
 	public static final String DB_CREATE_TOURREPORT = "CREATE TABLE IF NOT EXISTS  " +
 			"tourreport ( _id INTEGEREGER PRIMARY KEY, tourreportid integer, holenumber varchar(32),administrator VARCHAR(32),recorder varchar(32)," +
