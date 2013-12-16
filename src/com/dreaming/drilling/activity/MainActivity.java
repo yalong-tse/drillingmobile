@@ -41,7 +41,7 @@ import android.widget.TimePicker;
  * */
 public class MainActivity extends Activity implements OnClickListener {
 
-	private String title_name = "班报录入";
+	private String title_name = "班报填写";
 
 	protected SharedPreferences sharedPrefs;
 

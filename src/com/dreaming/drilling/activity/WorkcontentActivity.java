@@ -41,7 +41,7 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
     private Spinner spinner_workcontent;
 
     private String title_name = "工作内容";
-    private String[] workcontent_arr = {"起下钻","钻进","取心","起下小钻取心"};
+    private String[] workcontent_arr = {"钻进","起下钻取心","起钻取心","起钻","下钻","取心","孔内事故","设备事故","停待","简易水文观测","封孔","其他"};
     private String currentselected;
     
 	@Override

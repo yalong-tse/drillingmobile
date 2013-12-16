@@ -44,5 +44,20 @@ public class GlobalConstants {
 		return result;
 	}
 	
+
+	/**
+	 * 获取最大的一个孔深
+	 * */
+	public static float getMaxholedeep()
+	{
+		float result = 0;
+		for(Workcontent c:list_workcontents)
+		{
+			if(c.getHoledeep()>result)
+				result = c.getHoledeep();
+		}
+		return result;
+	}
+	
 	
 }
