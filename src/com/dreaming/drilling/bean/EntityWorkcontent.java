@@ -4,6 +4,24 @@ import java.sql.Date;
 
 /**
  * 工作内容的实体类
+ * * tourreportid
+ * content 工作内容
+ * starttime
+ * endtime
+ * 
+ * upmore  上余
+ * corename  岩心名称
+ * coregrade   岩心等级
+ * corenumber   岩心编号
+ * corelength   取心长度
+ * coreleftlength  残留岩心长度
+ * drillinglength 钻进
+ * drillbit  钻头规格
+ * rotatespeed 转速
+ * pumpquantity  泵量
+ * pumppressure  泵压
+ * holedeep  孔深
+ * 
  * */
 public class EntityWorkcontent {
 

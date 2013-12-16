@@ -5,6 +5,35 @@ import java.sql.Date;
 /**
  * 班报的实体类
  * 
+ * 需要考虑的是 多个渠道填写班报的时候，ID的机制如何维护，可能会调整大平台的ID 产生机制
+ * 
+ *  * holenumber
+ * administrator 机长
+ * recorder 记录员
+ * projectmanager 项目经理
+ * tourleader 本班班长
+ * 
+ * tourdate 本班日期
+ * starttime  开始时间
+ * endtime    结束时间
+ * tourshift 本班进尺
+ * tourcore  本班取心
+ * 
+ * status 状态
+ * lastdeep  上一班孔深
+ * currentdeep 当前孔深
+ * tourdrillingtime  纯钻时长
+ * tourauxiliarytime 辅助时长
+ * holeaccidenttime 孔内事故时长
+ * deviceaccidenttime 设备事故时长
+ * othertime  其他时长
+ * totaltime  合计时长
+ * takeoverremark 交接说明
+ * intrumenttakeover 钻具交接
+ * centralizer 扶正器长
+ * antideviation 防斜措施
+
+ * 
  * */
 public class EntityTourreport {
 	private Integer id;

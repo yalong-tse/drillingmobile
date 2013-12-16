@@ -261,6 +261,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 	
+	/**
+	 * 计算长度的方法
+	 * */
 	private void computelength()
 	{
 		float sum_drilling=0;
@@ -280,6 +283,25 @@ public class MainActivity extends Activity implements OnClickListener {
 		((TextView)findViewById(R.id.tourreport_drillinglength_value)).setText(sum_drilling+"");
 		((TextView)findViewById(R.id.tourreport_holedeep_value)).setText(sum_holedeep+"");
 		
+		
+	}
+	
+	
+	/**
+	 * 计算几个时长的方法
+	 * */
+	private void computetime()
+	{
+		long drilltime = 0;
+		long auxtime =0;
+		long holeinner = 0;
+		long devicetime = 0;
+		long othertime = 0;
+		long totaltime = 0;
+		for(Workcontent wc:GlobalConstants.list_workcontents)
+		{
+			//if(wc.getStarttime())
+		}
 		
 	}
 	private TimePickerDialog.OnTimeSetListener tp_starttime_listener = new TimePickerDialog.OnTimeSetListener() {
