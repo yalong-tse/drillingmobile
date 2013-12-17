@@ -222,7 +222,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:text="@string/takeover_title"
                         android:textColor="@color/black"
@@ -252,7 +252,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:text="@string/faxie_title"
                         android:textColor="@color/black"
@@ -282,7 +282,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:text="@string/fuzheng_title"
                         android:textColor="@color/black"
@@ -312,7 +312,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:text="@string/takeover_tools_title"
                         android:textColor="@color/black"
@@ -342,7 +342,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:text="@string/onduty_title"
                         android:textColor="@color/black"
@@ -381,7 +381,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
                         android:text="@string/tourreport_drilling_time"
                         android:textColor="@color/black"
@@ -391,7 +391,6 @@
                         android:id="@+id/tourreport_drilling_time_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:textColor="@color/red"
                         android:textSize="15sp" />
@@ -399,7 +398,6 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:text="@string/tourreport_auxiliary_time"
                         android:textColor="@color/black"
@@ -409,7 +407,6 @@
                         android:id="@+id/tourreport_auxiliary_time_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:textColor="@color/red"
                         android:textSize="15sp" />
@@ -429,7 +426,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
                         android:text="@string/tourreport_holeinner_time"
                         android:textColor="@color/black"
@@ -439,7 +436,6 @@
                         android:id="@+id/tourreport_holeinner_time_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:textColor="@color/red"
                         android:textSize="15sp" />
@@ -447,7 +443,6 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:text="@string/tourreport_device_repair_time"
                         android:textColor="@color/black"
@@ -457,7 +452,6 @@
                         android:id="@+id/tourreport_device_repair_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:textColor="@color/red"
                         android:textSize="15sp" />
@@ -477,7 +471,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
                         android:text="@string/tourreport_other_time"
                         android:textColor="@color/black"
@@ -487,7 +481,6 @@
                         android:id="@+id/tourreport_other_time_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:textColor="@color/red"
                         android:textSize="15sp" />
@@ -495,7 +488,6 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:text="@string/tourreport_summary_time"
                         android:textColor="@color/black"
@@ -505,7 +497,6 @@
                         android:id="@+id/tourreport_summary_time_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:textColor="@color/red"
                         android:textSize="15sp" />
@@ -525,7 +516,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
                         android:text="@string/tourreport_drilllength_title"
                         android:textColor="@color/black"
@@ -535,7 +526,6 @@
                         android:id="@+id/tourreport_drillinglength_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:textColor="@color/red"
                         android:textSize="15sp" />
@@ -543,7 +533,6 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:text="@string/tourreport_core_length_title"
                         android:textColor="@color/black"
@@ -553,7 +542,6 @@
                         android:id="@+id/tourreport_core_length_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="2"
                         android:textColor="@color/red"
                         android:textSize="15sp" />
@@ -573,7 +561,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="5"
                         android:text="@string/tourreport_holedeep_title"
                         android:textColor="@color/black"
@@ -583,7 +571,6 @@
                         android:id="@+id/tourreport_holedeep_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="5"
                         android:textColor="@color/red"
                         android:textSize="15sp" />
