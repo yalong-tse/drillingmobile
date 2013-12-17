@@ -24,6 +24,7 @@ public class GlobalConstants {
 	// 交接说明
 	public static Takeovercontent takeover = new Takeovercontent();
 	
+	
 	public static void remove_workcontent(Workcontent wc)
 	{
 		list_workcontents.remove(wc);
@@ -59,5 +60,21 @@ public class GlobalConstants {
 		return result;
 	}
 	
+	
+	/**
+	 * 根据分钟计算需要 
+	 * 
+	 * 小时：分钟 样式
+	 * 
+	 * */
+	public static String formatTimespan(long minutes)
+	{
+		String result = "00:00";
+		
+		if(minutes>0)
+			result = Math.round((minutes/60)) +":" + Math.round(minutes%60);
+		
+		return result;
+	}
 	
 }

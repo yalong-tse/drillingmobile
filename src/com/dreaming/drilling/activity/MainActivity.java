@@ -1,9 +1,11 @@
 package com.dreaming.drilling.activity;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,8 +59,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	private TextView tv_starttime;
 	private TextView tv_endtime;
 
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,6 +69,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		buildingWorkcontent();
 		building_takeover_content();
 		computelength();
+		try
+		{
+			computetime();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	private void initView() {
@@ -122,188 +130,227 @@ public class MainActivity extends Activity implements OnClickListener {
 		findViewById(R.id.menu_tourreport_setting).setOnClickListener(this);
 
 	}
-	
-	
+
 	// 动态增加控件的方法
-	private void buildingWorkcontent()
-	{
-		//Workcontent wc = getIntent().getParcelableExtra(GlobalConstants.WORKCONTENT);
+	private void buildingWorkcontent() {
+		// Workcontent wc =
+		// getIntent().getParcelableExtra(GlobalConstants.WORKCONTENT);
 		LinearLayout linelayout = (LinearLayout) findViewById(R.id.main_workcontent_container);
-		for(Workcontent wc: GlobalConstants.list_workcontents)
-		if(wc!=null)
-		{
-			// 列表中添加
-			//GlobalConstants.list_workcontents.add(wc);
-			
-			LayoutParams LP_FW = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-			TableLayout tl = new TableLayout(this);
-			tl.setBackgroundResource(R.drawable.bg_layerlist);
-			tl.setLayoutParams(LP_FW);
-			tl.setStretchAllColumns(true); 
-			
-			// 第一行
-			TableRow tr1 = new TableRow(this);
-			//tr1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,80));
-			//Button btn_del = new Button(this);
-			TextView tv_del = new TextView(this);
-			//btn_del.setText("删除");
-			//image.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			//btn_del.setTag(wc);
-			tv_del.setTag(wc);
-			tv_del.setText("删除");
-			tv_del.setTextSize(15);
-			//tv_del.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			tv_del.setPadding(15, 0, 0, 0);
-			tv_del.setTextColor(Color.RED);
-			tv_del.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					// TODO Auto-generated method stub
-					TextView btn = (TextView) view;
-					Workcontent obj = (Workcontent) btn.getTag();
-					((TableLayout) view.getParent().getParent()).removeAllViews();
-					GlobalConstants.remove_workcontent(obj);
+		for (Workcontent wc : GlobalConstants.list_workcontents)
+			if (wc != null) {
+				// 列表中添加
+				// GlobalConstants.list_workcontents.add(wc);
+
+				LayoutParams LP_FW = new LayoutParams(LayoutParams.FILL_PARENT,
+						LayoutParams.WRAP_CONTENT);
+				TableLayout tl = new TableLayout(this);
+				tl.setBackgroundResource(R.drawable.bg_layerlist);
+				tl.setLayoutParams(LP_FW);
+				tl.setStretchAllColumns(true);
+
+				// 第一行
+				TableRow tr1 = new TableRow(this);
+				// tr1.setLayoutParams(new
+				// LayoutParams(LayoutParams.MATCH_PARENT,80));
+				// Button btn_del = new Button(this);
+				TextView tv_del = new TextView(this);
+				// btn_del.setText("删除");
+				// image.setLayoutParams(new
+				// LayoutParams(LayoutParams.WRAP_CONTENT,
+				// LayoutParams.WRAP_CONTENT));
+				// btn_del.setTag(wc);
+				tv_del.setTag(wc);
+				tv_del.setText("删除");
+				tv_del.setTextSize(15);
+				// tv_del.setLayoutParams(new
+				// LayoutParams(LayoutParams.WRAP_CONTENT,
+				// LayoutParams.WRAP_CONTENT));
+				tv_del.setPadding(15, 0, 0, 0);
+				tv_del.setTextColor(Color.RED);
+				tv_del.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						// TODO Auto-generated method stub
+						TextView btn = (TextView) view;
+						Workcontent obj = (Workcontent) btn.getTag();
+						((TableLayout) view.getParent().getParent())
+								.removeAllViews();
+						GlobalConstants.remove_workcontent(obj);
+					}
+				});
+
+				tr1.addView(tv_del);
+
+				TextView tv_time = new TextView(this);
+				tv_time.setTextColor(Color.BLACK);
+				tv_time.setText("时间:" + wc.getStarttime() + "至"
+						+ wc.getEndtime());
+				tv_time.setTextSize(15);
+				tr1.addView(tv_time);
+
+				TextView tv_content = new TextView(this);
+				tv_content.setTextColor(Color.BLACK);
+				tv_content.setTextSize(15);
+				tv_content.setText("工作内容:" + wc.getType());
+				tr1.addView(tv_content);
+				tl.addView(tr1, new LayoutParams(LayoutParams.MATCH_PARENT, 50));
+
+				// 第二行
+				TableRow tr2 = new TableRow(this);
+				tr2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+						40));
+				if (wc.getUpleft() != 0) {
+					TextView tv_upleft = new TextView(this);
+					tv_upleft.setText("上余:" + wc.getUpleft());
+					tv_upleft.setPadding(15, 0, 0, 0);
+					tv_upleft.setTextColor(Color.BLACK);
+					tr2.addView(tv_upleft);
 				}
-			});
-			
-			tr1.addView(tv_del);
-			
-			TextView tv_time = new TextView(this);
-			tv_time.setTextColor(Color.BLACK);
-			tv_time.setText("时间:"+ wc.getStarttime() +"至" + wc.getEndtime());
-			tv_time.setTextSize(15);
-			tr1.addView(tv_time);
-			
-			TextView tv_content = new TextView(this);
-			tv_content.setTextColor(Color.BLACK);
-			tv_content.setTextSize(15);
-			tv_content.setText("工作内容:"+wc.getType());
-			tr1.addView(tv_content);
-			tl.addView(tr1,new LayoutParams(LayoutParams.MATCH_PARENT, 50));
-			
-			// 第二行
-			TableRow tr2 = new TableRow(this);
-			tr2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,40));
-			if(wc.getUpleft()!=0)
-			{
-				TextView tv_upleft = new TextView(this);
-				tv_upleft.setText("上余:" + wc.getUpleft());
-				tv_upleft.setPadding(15, 0, 0, 0);
-				tv_upleft.setTextColor(Color.BLACK);
-				tr2.addView(tv_upleft);
-			}
-			
-			if(wc.getDrillinglength()!=0)
-			{
-				TextView tv_drillinglength = new TextView(this);
-				tv_drillinglength.setTextColor(Color.BLACK);
-				tv_drillinglength.setText("进尺:"+ wc.getDrillinglength());
-				tr2.addView(tv_drillinglength);
-			}
-			
-			if(wc.getHoledeep()!=0)
-			{
-				TextView tv_holedeep = new TextView(this);
-				tv_holedeep.setTextColor(Color.BLACK);
-				tv_holedeep.setText("孔深:" + wc.getHoledeep());
-				tr2.addView(tv_holedeep);
-			}
-			
-			if(wc.getCorelength()!=0)
-			{
-				TextView tv_core = new TextView(this);
-				tv_core.setTextColor(Color.BLACK);
-				tv_core.setText("岩心长度:" + wc.getCorelength());
-				tr2.addView(tv_core);
-			}
-			tl.addView(tr2,new LayoutParams(LayoutParams.MATCH_PARENT, 50));
 
-			// 第三行
-			TableRow tr3 = new TableRow(this);
-			tr3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,40));
-			if(wc.getPressure()!=0)
-			{
-				TextView tv_pressure = new TextView(this);
-				tv_pressure.setText("钻压:"+wc.getPressure());
-				tv_pressure.setPadding(15, 0, 0, 0);
-				tr3.addView(tv_pressure);
+				if (wc.getDrillinglength() != 0) {
+					TextView tv_drillinglength = new TextView(this);
+					tv_drillinglength.setTextColor(Color.BLACK);
+					tv_drillinglength.setText("进尺:" + wc.getDrillinglength());
+					tr2.addView(tv_drillinglength);
+				}
+
+				if (wc.getHoledeep() != 0) {
+					TextView tv_holedeep = new TextView(this);
+					tv_holedeep.setTextColor(Color.BLACK);
+					tv_holedeep.setText("孔深:" + wc.getHoledeep());
+					tr2.addView(tv_holedeep);
+				}
+
+				if (wc.getCorelength() != 0) {
+					TextView tv_core = new TextView(this);
+					tv_core.setTextColor(Color.BLACK);
+					tv_core.setText("岩心长度:" + wc.getCorelength());
+					tr2.addView(tv_core);
+				}
+				tl.addView(tr2, new LayoutParams(LayoutParams.MATCH_PARENT, 50));
+
+				// 第三行
+				TableRow tr3 = new TableRow(this);
+				tr3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+						40));
+				if (wc.getPressure() != 0) {
+					TextView tv_pressure = new TextView(this);
+					tv_pressure.setText("钻压:" + wc.getPressure());
+					tv_pressure.setPadding(15, 0, 0, 0);
+					tr3.addView(tv_pressure);
+				}
+
+				if (wc.getRotatespeed() != 0) {
+					TextView tv_speed = new TextView(this);
+					tv_speed.setText("转速:" + wc.getRotatespeed());
+					tr3.addView(tv_speed);
+				}
+
+				if (wc.getPump() != 0) {
+					TextView tv_pump = new TextView(this);
+					tv_pump.setText("泵量:" + wc.getPump());
+					tr3.addView(tv_pump);
+				}
+				tl.addView(tr3);
+				linelayout.addView(tl);
 			}
-			
-			if(wc.getRotatespeed()!=0)
-			{
-				TextView tv_speed = new TextView(this);
-				tv_speed.setText("转速:"+ wc.getRotatespeed());
-				tr3.addView(tv_speed);
-			}
-			
-			if(wc.getPump()!=0)
-			{
-				TextView tv_pump = new TextView(this);
-				tv_pump.setText("泵量:"+ wc.getPump());
-				tr3.addView(tv_pump);
-			}
-			tl.addView(tr3);
-			linelayout.addView(tl);
-		}
-		
+
 	}
 
-	
-	private void building_takeover_content()
-	{
-		if(GlobalConstants.takeover!=null)
-		{
-			((TextView)findViewById(R.id.tourreport_takeover_value)).setText(GlobalConstants.takeover.getTakeover_desc());
-			((TextView)findViewById(R.id.tourreport_fangxie_value)).setText(GlobalConstants.takeover.getFangxie());
-			((TextView)findViewById(R.id.tourreport_fuzheng_value)).setText(GlobalConstants.takeover.getFuzheng());
-			((TextView)findViewById(R.id.tourreport_takeover_tools_value)).setText(GlobalConstants.takeover.getTakeovertools());
-			((TextView)findViewById(R.id.tourreport_onduty_value)).setText(GlobalConstants.takeover.getOnduty());
+	private void building_takeover_content() {
+		if (GlobalConstants.takeover != null) {
+			((TextView) findViewById(R.id.tourreport_takeover_value))
+					.setText(GlobalConstants.takeover.getTakeover_desc());
+			((TextView) findViewById(R.id.tourreport_fangxie_value))
+					.setText(GlobalConstants.takeover.getFangxie());
+			((TextView) findViewById(R.id.tourreport_fuzheng_value))
+					.setText(GlobalConstants.takeover.getFuzheng());
+			((TextView) findViewById(R.id.tourreport_takeover_tools_value))
+					.setText(GlobalConstants.takeover.getTakeovertools());
+			((TextView) findViewById(R.id.tourreport_onduty_value))
+					.setText(GlobalConstants.takeover.getOnduty());
 		}
 	}
-	
+
 	/**
 	 * 计算长度的方法
 	 * */
-	private void computelength()
-	{
-		float sum_drilling=0;
-		float sum_core=0;
-		float sum_holedeep =0;
-		for(Workcontent wc:GlobalConstants.list_workcontents)
-		{
-			if(wc.getHoledeep()>sum_holedeep)
-			{
+	private void computelength() {
+		float sum_drilling = 0;
+		float sum_core = 0;
+		float sum_holedeep = 0;
+		for (Workcontent wc : GlobalConstants.list_workcontents) {
+			if (wc.getHoledeep() > sum_holedeep) {
 				sum_holedeep = wc.getHoledeep();
 			}
 			sum_drilling += wc.getDrillinglength();
 			sum_core += wc.getCorelength();
 		}
-		
-		((TextView)findViewById(R.id.tourreport_core_length_value)).setText(sum_core+"");
-		((TextView)findViewById(R.id.tourreport_drillinglength_value)).setText(sum_drilling+"");
-		((TextView)findViewById(R.id.tourreport_holedeep_value)).setText(sum_holedeep+"");
-		
-		
+
+		((TextView) findViewById(R.id.tourreport_core_length_value))
+				.setText(sum_core + "");
+		((TextView) findViewById(R.id.tourreport_drillinglength_value))
+				.setText(sum_drilling + "");
+		((TextView) findViewById(R.id.tourreport_holedeep_value))
+				.setText(sum_holedeep + "");
+
 	}
-	
-	
+
 	/**
 	 * 计算几个时长的方法
 	 * */
-	private void computetime()
-	{
+	private void computetime() throws ParseException {
 		long drilltime = 0;
-		long auxtime =0;
+		long auxtime = 0;
 		long holeinner = 0;
 		long devicetime = 0;
 		long othertime = 0;
 		long totaltime = 0;
-		for(Workcontent wc:GlobalConstants.list_workcontents)
-		{
-			//if(wc.getStarttime())
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		for (Workcontent obj : GlobalConstants.list_workcontents) {
+			String start_str = obj.getStarttime();
+			String end_str = obj.getEndtime();
+
+			Date start_date = sdf.parse("2013-12-12 " + start_str);
+			Date end_date = sdf.parse("2013-12-12 " + end_str);
+			long computedtime = ((end_date.getTime() - start_date.getTime()) / (60 * 1000));
+			totaltime += computedtime;
+			
+			if(obj.getType().equalsIgnoreCase("钻进"))
+			{
+				drilltime += computedtime; 
+			}
+			else if(obj.getType().equalsIgnoreCase("起下钻取心") || obj.getType().equalsIgnoreCase("起钻取心")
+					|| obj.getType().equalsIgnoreCase("起钻")
+					|| obj.getType().equalsIgnoreCase("下钻")
+					|| obj.getType().equalsIgnoreCase("取心"))
+			{
+				auxtime +=computedtime; 
+			}
+			else if(obj.getType().equalsIgnoreCase("孔内事故"))
+			{
+				holeinner += computedtime; 
+			}
+			else if(obj.getType().equalsIgnoreCase("设备事故"))
+			{
+				devicetime += computedtime;
+			}
+			else
+			{
+				othertime += computedtime;
+			}
 		}
+
+		((TextView)findViewById(R.id.tourreport_drilling_time_value)).setText(GlobalConstants.formatTimespan(drilltime));
+		((TextView)findViewById(R.id.tourreport_auxiliary_time_value)).setText(GlobalConstants.formatTimespan(auxtime));
+		((TextView)findViewById(R.id.tourreport_holeinner_time_value)).setText(GlobalConstants.formatTimespan(holeinner));
+		((TextView)findViewById(R.id.tourreport_device_repair_value)).setText(GlobalConstants.formatTimespan(devicetime));
+		((TextView)findViewById(R.id.tourreport_other_time_value)).setText(GlobalConstants.formatTimespan(othertime));
+		((TextView)findViewById(R.id.tourreport_summary_time_value)).setText(GlobalConstants.formatTimespan(totaltime));
+		
 		
 	}
+
 	private TimePickerDialog.OnTimeSetListener tp_starttime_listener = new TimePickerDialog.OnTimeSetListener() {
 		@Override
 		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -460,24 +507,20 @@ public class MainActivity extends Activity implements OnClickListener {
 		startActivity(intent);
 
 	}
-	
-	
-	private void open_takeover()
-	{
+
+	private void open_takeover() {
 		Intent intent = new Intent(MainActivity.this, TakeoverActivity.class);
 		startActivity(intent);
 	}
-	
-	
-	private void open_add_tourreport_window()
-	{
-		Intent intent = new Intent(MainActivity.this,MainActivity.class);
+
+	private void open_add_tourreport_window() {
+		Intent intent = new Intent(MainActivity.this, MainActivity.class);
 		startActivity(intent);
 	}
-	
-	private void open_tourreport_list_window()
-	{
-		Intent intent = new Intent(MainActivity.this,WorkcontentListActivity.class);
+
+	private void open_tourreport_list_window() {
+		Intent intent = new Intent(MainActivity.this,
+				WorkcontentListActivity.class);
 		startActivity(intent);
 	}
 

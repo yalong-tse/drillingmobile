@@ -88,7 +88,7 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 				// TODO Auto-generated method stub
 				String str=parent.getItemAtPosition(position).toString();
 				currentselected = str;
-				if(str.equalsIgnoreCase("起下钻"))
+				if(str.equalsIgnoreCase("起钻") || str.equalsIgnoreCase("下钻"))
 				{
 					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
@@ -108,7 +108,7 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 					findViewById(R.id.linelayout_pump).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.VISIBLE);
 				}
-				else if(str.equalsIgnoreCase("起下小钻取心"))
+				else if(str.equalsIgnoreCase("起下钻取心") ||str.equalsIgnoreCase("起钻取心"))
 				{
 					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
@@ -130,6 +130,20 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
 					
 				}
+				else if(str.equalsIgnoreCase("孔内事故") || str.equalsIgnoreCase("设备事故") 
+						|| str.equalsIgnoreCase("停待") || str.equalsIgnoreCase("简易水文观测") ||str.equalsIgnoreCase("其他"))
+				{
+					findViewById(R.id.linelayout_corelength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_upleft).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_holedeep).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
+				}
+				
+	
+				
 				//Toast.makeText(WorkcontentActivity.this, "你点击的是:"+str, 2000).show();
 				
 			}
