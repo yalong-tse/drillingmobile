@@ -43,9 +43,10 @@ public class EntityTourreport {
 	private String projectmanager;
 	private String tourleader;
 
-	private Date tourdate;
-	private Date starttime;
-	private Date endtime;
+	// 采用字符串
+	private String tourdate;
+	private String starttime;
+	private String endtime;
 
 	private Float tourshift;
 	private Float tourcore;
@@ -111,27 +112,27 @@ public class EntityTourreport {
 		this.tourleader = tourleader;
 	}
 
-	public Date getTourdate() {
+	public String getTourdate() {
 		return tourdate;
 	}
 
-	public void setTourdate(Date tourdate) {
+	public void setTourdate(String tourdate) {
 		this.tourdate = tourdate;
 	}
 
-	public Date getStarttime() {
+	public String getStarttime() {
 		return starttime;
 	}
 
-	public void setStarttime(Date starttime) {
+	public void setStarttime(String starttime) {
 		this.starttime = starttime;
 	}
 
-	public Date getEndtime() {
+	public String getEndtime() {
 		return endtime;
 	}
 
-	public void setEndtime(Date endtime) {
+	public void setEndtime(String endtime) {
 		this.endtime = endtime;
 	}
 

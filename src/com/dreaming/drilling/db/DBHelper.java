@@ -68,13 +68,13 @@ public class DBHelper extends SQLiteOpenHelper
 
 	public static final String DB_CREATE_TOURREPORT = "CREATE TABLE IF NOT EXISTS  " +
 			"tourreport ( _id INTEGEREGER PRIMARY KEY, tourreportid integer, holenumber varchar(32),administrator VARCHAR(32),recorder varchar(32)," +
-			" projectmanager varchar(32),tourleader varchar(32), tourdate datetime,starttime datetime , endtime datetime," +
+			" projectmanager varchar(32),tourleader varchar(32), tourdate date,starttime time , endtime time," +
 			" tourshift double, tourcore double, status integer,lastdeep double,currentdeep double, tourdrillingtime varchar(32)," +
 			" tourauxiliarytime varchar(32),holeaccidenttime varchar(32),deviceaccidenttime varchar(32), othertime varchar(32),totaltime varchar(32)" +
 			" takeoverremark varchar(200),instrumenttakeover varchar(100),centralizer float,antideviation varchar(32));";
 	
 	public static final String DB_CREATE_WORKCONTENT = "create table if not exists workcontent(" +
-			" _id integereager primary key, id integer ,tourreportid integer, content varchar(30), starttime datetime,endtime datetime," +
+			" _id integereager primary key, id integer ,tourreportid integer, content varchar(30), starttime time,endtime time," +
 			" upmore float,corename varchar(32),coregrade varchar(10),corenumber varchar(32) corelength float, coreleftlength float," + 
 			" drillinglength float,drillbit varchar(20), rotatespeed float,pumpquantity float,pumppressure float,holedeep float);";
 	

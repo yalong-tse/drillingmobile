@@ -124,11 +124,13 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		findViewById(R.id.tourreport_add_takeover).setOnClickListener(this);
 		findViewById(R.id.tourreport_add_workcontent).setOnClickListener(this);
+		findViewById(R.id.tourreport_btn_submit).setOnClickListener(this);
 
 		findViewById(R.id.menu_add_tourreport).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_list).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_report).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_setting).setOnClickListener(this);
+		
 
 	}
 
@@ -307,13 +309,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		long devicetime = 0;
 		long othertime = 0;
 		long totaltime = 0;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		for (Workcontent obj : GlobalConstants.list_workcontents) {
 			String start_str = obj.getStarttime();
 			String end_str = obj.getEndtime();
 
-			Date start_date = sdf.parse("2013-12-12 " + start_str);
-			Date end_date = sdf.parse("2013-12-12 " + end_str);
+			Date start_date = sdf.parse(start_str);
+			Date end_date = sdf.parse(end_str);
 			long computedtime = ((end_date.getTime() - start_date.getTime()) / (60 * 1000));
 			totaltime += computedtime;
 			
@@ -489,7 +491,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.tourreport_add_workcontent:
 			open_workcontent();
 			break;
-
+		case R.id.tourreport_btn_submit:
+			save_tourreport();
+			break;
 		case R.id.menu_add_tourreport:
 			open_add_tourreport_window();
 			break;
@@ -503,6 +507,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	/**
+	 * 保存班报的方法
+	 * */
+	private void save_tourreport()
+	{
+		
+	}
+	
 	private void open_workcontent() {
 		Intent intent = new Intent(MainActivity.this, WorkcontentActivity.class);
 		startActivity(intent);

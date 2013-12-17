@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dreaming.drilling.bean.EntityTourreport;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,7 +29,7 @@ public class TourreportDBHelper extends DBOperation {
 	 * */
 	public List<EntityTourreport> getAllTourreports()
 	{
-		SQLiteDatabase  db= this.dbHelper.getReadableDatabase();
+		SQLiteDatabase db= this.dbHelper.getReadableDatabase();
 		
 		List<EntityTourreport> result = new ArrayList<EntityTourreport>();
 		
@@ -38,12 +39,61 @@ public class TourreportDBHelper extends DBOperation {
 		{
 			EntityTourreport entity = new EntityTourreport();
 			
-			
+			entity.setId(cursor.getInt(cursor.getColumnIndex("id")));
+			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
+			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
+			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
+			entity.setStarttime(cursor.getString(cursor.getColumnIndex("endtime")));
+			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
+			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
+			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
+			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
+			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
+			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
+			result.add(entity);
 		}
-		
-		
 		return result;
+	}
+	
+	
+	/**
+	 * 保存班报的方法
+	 * 
+	 * id 如何规定？  遗留一个问题
+	 * */
+	public void save(EntityTourreport entity)
+	{
+		SQLiteDatabase db= this.dbHelper.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		//cv.put("id", );
+		cv.put("holenumber", entity.getHolenumber());
+		cv.put("starttime", entity.getStarttime());
+		cv.put("endtime", entity.getEndtime());
+		cv.put("tourdate", entity.getTourdate());
+		cv.put("administrator", entity.getAdministrator());
+		cv.put("recorder", entity.getRecorder());
+		cv.put("projectmanager", entity.getProjectmanager());
+		cv.put("tourleader", entity.getTourleader());
+		cv.put("tourshift", entity.getTourshift());
+		cv.put("tourcore", entity.getTourcore());
+		cv.put("status", entity.getStatus());
+		cv.put("lastdeep", entity.getLastdeep());
+		cv.put("currentdeep", entity.getCurrentdeep());
+		cv.put("tourdrillingtime ", entity.getTourdrillingtime());
+		cv.put("tourauxiliarytime ", entity.getTourauxiliarytime());
+		cv.put("holeaccidenttime", entity.getHoleaccidenttime());
+		cv.put("deviceaccidenttime", entity.getDeviceaccidenttime());
+		cv.put("othertime ", entity.getOthertime());
+		cv.put("totaltime", entity.getTotaltime());
+		cv.put("takeoverremark ", entity.getTakeoverremark());
+		cv.put("instrumenttakeover", entity.getInstrumenttakeover());
+		cv.put("centralizer", entity.getCentralizer());
+		cv.put("antideviation",entity.getAntideviation());
+		
+		db.insert(this.dbHelper.TOURREPORT_TABLE_NAME, null, cv);
 		
 	}
+	
+	
 	
 }
