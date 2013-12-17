@@ -29,7 +29,7 @@ public class DBOperation {
 
 	public void clearDB() 
 	{
-		this.dbHelper.getWritableDatabase().delete("btc", null, null);
+		this.dbHelper.getWritableDatabase().delete(this.dbHelper.DB_NAME, null, null);
 	}
 
 	public void deleteTableData(String paramString) 
