@@ -8,6 +8,7 @@ import com.dreaming.drilling.R;
 import com.dreaming.drilling.R.layout;
 import com.dreaming.drilling.R.menu;
 import com.dreaming.drilling.bean.Workcontent;
+import com.dreaming.drilling.utils.BizUtils;
 import com.dreaming.drilling.utils.GlobalConstants;
 
 import android.os.Bundle;
@@ -156,7 +157,7 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 			
 		});
 		
-		float holedeep = GlobalConstants.getLastholedeep();
+		float holedeep = BizUtils.getLastholedeep();
 		EditText et_deep = ((EditText)findViewById(R.id.sub_workcontent_holedeep));
 		if(et_deep!=null) et_deep.setText(holedeep+"");
 		findViewById(R.id.workcontent_btn_save).setOnClickListener(this);

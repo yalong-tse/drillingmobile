@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.dreaming.drilling.bean.Workcontent;
+import com.dreaming.drilling.utils.BizUtils;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.R;
 
@@ -341,12 +342,12 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		}
 
-		((TextView)findViewById(R.id.tourreport_drilling_time_value)).setText(GlobalConstants.formatTimespan(drilltime));
-		((TextView)findViewById(R.id.tourreport_auxiliary_time_value)).setText(GlobalConstants.formatTimespan(auxtime));
-		((TextView)findViewById(R.id.tourreport_holeinner_time_value)).setText(GlobalConstants.formatTimespan(holeinner));
-		((TextView)findViewById(R.id.tourreport_device_repair_value)).setText(GlobalConstants.formatTimespan(devicetime));
-		((TextView)findViewById(R.id.tourreport_other_time_value)).setText(GlobalConstants.formatTimespan(othertime));
-		((TextView)findViewById(R.id.tourreport_summary_time_value)).setText(GlobalConstants.formatTimespan(totaltime));
+		((TextView)findViewById(R.id.tourreport_drilling_time_value)).setText(BizUtils.formatTimespan(drilltime));
+		((TextView)findViewById(R.id.tourreport_auxiliary_time_value)).setText(BizUtils.formatTimespan(auxtime));
+		((TextView)findViewById(R.id.tourreport_holeinner_time_value)).setText(BizUtils.formatTimespan(holeinner));
+		((TextView)findViewById(R.id.tourreport_device_repair_value)).setText(BizUtils.formatTimespan(devicetime));
+		((TextView)findViewById(R.id.tourreport_other_time_value)).setText(BizUtils.formatTimespan(othertime));
+		((TextView)findViewById(R.id.tourreport_summary_time_value)).setText(BizUtils.formatTimespan(totaltime));
 		
 		
 	}
