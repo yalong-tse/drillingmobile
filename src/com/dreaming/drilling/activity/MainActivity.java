@@ -9,7 +9,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.dreaming.drilling.bean.EntityTourreport;
 import com.dreaming.drilling.bean.Workcontent;
+import com.dreaming.drilling.db.TourreportDBHelper;
 import com.dreaming.drilling.utils.BizUtils;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.R;
@@ -38,6 +40,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 /**
  * 班报填报的界面，也是主界面
@@ -512,9 +515,42 @@ public class MainActivity extends Activity implements OnClickListener {
 	 * */
 	private void save_tourreport()
 	{
+		EntityTourreport tr = new EntityTourreport();
+		
+		tr.setHolenumber(((TextView)findViewById(R.id.tourreport_holenumber_value)).getText().toString());
+		tr.setTourdate(((TextView)findViewById(R.id.tourreport_date_value)).getText().toString());
+		tr.setStarttime(((TextView)findViewById(R.id.tourreport_starttime_value)).getText().toString());
+		tr.setEndtime(((TextView)findViewById(R.id.tourreport_endtime_value)).getText().toString());
+		tr.setTakeoverremark(((TextView)findViewById(R.id.tourreport_takeover_value)).getText().toString());
+		tr.setAntideviation(((TextView)findViewById(R.id.tourreport_fangxie_value)).getText().toString());
+		tr.setCentralizer(((TextView)findViewById(R.id.tourreport_fuzheng_value)).getText().toString());
+		tr.setInstrumenttakeover(((TextView)findViewById(R.id.tourreport_takeover_tools_value)).getText().toString());
+		
+		// 几个时间的统计
+		tr.setTourdrillingtime(((TextView)findViewById(R.id.tourreport_drilling_time_value)).getText().toString());
+		tr.setTourauxiliarytime(((TextView)findViewById(R.id.tourreport_auxiliary_time_value)).getText().toString());
+		tr.setHoleaccidenttime(((TextView)findViewById(R.id.tourreport_holeinner_time_value)).getText().toString());
+		tr.setDeviceaccidenttime(((TextView)findViewById(R.id.tourreport_device_repair_value)).getText().toString());
+		tr.setOthertime(((TextView)findViewById(R.id.tourreport_other_time_value)).getText().toString());
+		tr.setTotaltime(((TextView)findViewById(R.id.tourreport_summary_time_value)).getText().toString());
+		
+		// 进尺等工作量统计
+		tr.setTourshift(Float.parseFloat(((TextView)findViewById(R.id.tourreport_drillinglength_value)).getText().toString()));
+		tr.setTourcore(Float.parseFloat(((TextView)findViewById(R.id.tourreport_core_length_value)).getText().toString()));
+		tr.setCurrentdeep(Float.parseFloat(((TextView)findViewById(R.id.tourreport_holedeep_value)).getText().toString()));
+		
+
+		
+		TourreportDBHelper dbHelper = new TourreportDBHelper(this);
+		dbHelper.save(tr);
+		
+		Toast.makeText(this, "保存班报成功", Toast.LENGTH_LONG).show();
 		
 	}
 	
+	/**
+	 * 打开工作内容
+	 * */
 	private void open_workcontent() {
 		Intent intent = new Intent(MainActivity.this, WorkcontentActivity.class);
 		startActivity(intent);

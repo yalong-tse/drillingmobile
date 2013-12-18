@@ -9,15 +9,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * 班报的数据库操作类
  * */
 public class TourreportDBHelper extends DBOperation {
 
-	private String[] columns = {"id","holenumber","tourdate",
+	private String[] columns = {"tourreportid","holenumber","tourdate",
 			"starttime","endtime","tourshift","tourcore","lastdeep",
-			"currentdeep","tourdrillingtime","tourauxiliarytime"};
+			"currentdeep","tourdrillingtime","tourauxiliarytime",
+			"othertime","holeaccidenttime","deviceaccidenttime","totaltime"};
 	
 	
 	public TourreportDBHelper(Context context) {
@@ -33,13 +35,14 @@ public class TourreportDBHelper extends DBOperation {
 		
 		List<EntityTourreport> result = new ArrayList<EntityTourreport>();
 		
-		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, this.columns,null, null, null, null, "id asc");
+		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, this.columns,null, null, null, null, "tourreportid asc");
 		
+		Log.d("test", "111111111111111");
 		while (cursor.moveToNext())
 		{
 			EntityTourreport entity = new EntityTourreport();
 			
-			entity.setId(cursor.getInt(cursor.getColumnIndex("id")));
+			entity.setId(cursor.getInt(cursor.getColumnIndex("tourreportid")));
 			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
 			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
 			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
@@ -50,8 +53,14 @@ public class TourreportDBHelper extends DBOperation {
 			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
 			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
 			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
+			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
+			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
+			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
+			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
+			
 			result.add(entity);
 		}
+		Log.d("test", "22222222222222");
 		return result;
 	}
 	
@@ -65,7 +74,7 @@ public class TourreportDBHelper extends DBOperation {
 	{
 		SQLiteDatabase db= this.dbHelper.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		//cv.put("id", );
+		cv.put("tourreportid", System.currentTimeMillis());
 		cv.put("holenumber", entity.getHolenumber());
 		cv.put("starttime", entity.getStarttime());
 		cv.put("endtime", entity.getEndtime());

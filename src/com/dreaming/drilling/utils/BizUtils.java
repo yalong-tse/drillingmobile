@@ -48,11 +48,21 @@ public class BizUtils {
 			if (Math.round((minutes / 60)) < 10) {
 				hour = "0" + Math.round((minutes / 60));
 			}
+			else
+			{
+				hour =  Math.round((minutes / 60)) + "";
+			}
+			
 			if (Math.round(minutes % 60) < 10) {
 				minute = "0" + Math.round(minutes % 60);
 			}
+			else
+			{
+				minute =  Math.round(minutes % 60) +"";
+			}
+			
+			result = hour + ":" + minute;
 		}
-		result = hour + ":" + minute;
 
 		return result;
 	}
