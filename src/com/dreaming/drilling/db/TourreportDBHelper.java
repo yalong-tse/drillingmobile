@@ -46,7 +46,7 @@ public class TourreportDBHelper extends DBOperation {
 			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
 			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
 			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
-			entity.setStarttime(cursor.getString(cursor.getColumnIndex("endtime")));
+			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
 			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
 			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
 			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
