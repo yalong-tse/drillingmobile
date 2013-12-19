@@ -32,10 +32,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -60,9 +62,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	private SimpleDateFormat time_fmt = new SimpleDateFormat("HH:mm");
 
 	private TextView tv_date;
-	private TextView tv_starttime;
-	private TextView tv_endtime;
+	private Spinner spinner_starttime;
+	private Spinner spinner_endtime;
 
+	String[] tourtime = {"00:00","8:00","16:00","12:00"};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -114,16 +118,23 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		// 处理班报的日期和时间
 		tv_date = (TextView) findViewById(R.id.tourreport_date_value);
-		tv_starttime = (TextView) findViewById(R.id.tourreport_starttime_value);
-		tv_endtime = (TextView) findViewById(R.id.tourreport_endtime_value);
+		spinner_starttime = (Spinner) findViewById(R.id.tourreport_starttime_value);
+		spinner_endtime = (Spinner) findViewById(R.id.tourreport_endtime_value);
 
 		updateDate();
-		updateStarttime();
-		updateEndtime();
+		
+		ArrayAdapter<String> timeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,tourtime);
+		timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner_starttime.setAdapter(timeAdapter);
+		spinner_endtime.setAdapter(timeAdapter);
+		
+		//updateStarttime();
+		//updateEndtime();
 
+		
 		tv_date.setOnClickListener(dp_click);
-		tv_starttime.setOnClickListener(tp_starttime_click);
-		tv_endtime.setOnClickListener(tp_endtime_click);
+		//tv_starttime.setOnClickListener(tp_starttime_click);
+		//tv_endtime.setOnClickListener(tp_endtime_click);
 
 		findViewById(R.id.tourreport_add_takeover).setOnClickListener(this);
 		findViewById(R.id.tourreport_add_workcontent).setOnClickListener(this);
@@ -357,23 +368,23 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 	}
 
-	private TimePickerDialog.OnTimeSetListener tp_starttime_listener = new TimePickerDialog.OnTimeSetListener() {
-		@Override
-		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-			starttime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-			starttime.set(Calendar.MINUTE, minute);
-			updateStarttime();
-		}
-	};
-
-	private TimePickerDialog.OnTimeSetListener tp_endtime_listener = new TimePickerDialog.OnTimeSetListener() {
-		@Override
-		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-			endtime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-			endtime.set(Calendar.MINUTE, minute);
-			updateEndtime();
-		}
-	};
+//	private TimePickerDialog.OnTimeSetListener tp_starttime_listener = new TimePickerDialog.OnTimeSetListener() {
+//		@Override
+//		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//			starttime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+//			starttime.set(Calendar.MINUTE, minute);
+//			updateStarttime();
+//		}
+//	};
+//
+//	private TimePickerDialog.OnTimeSetListener tp_endtime_listener = new TimePickerDialog.OnTimeSetListener() {
+//		@Override
+//		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//			endtime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+//			endtime.set(Calendar.MINUTE, minute);
+//			updateEndtime();
+//		}
+//	};
 
 	// 当点击DatePickerDialog控件的设置按钮时，调用该方法
 	private DatePickerDialog.OnDateSetListener dp_listener = new DatePickerDialog.OnDateSetListener() {
@@ -400,23 +411,23 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	};
 
-	private View.OnClickListener tp_starttime_click = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			new TimePickerDialog(MainActivity.this, tp_starttime_listener,
-					starttime.get(Calendar.HOUR_OF_DAY),
-					starttime.get(Calendar.MINUTE), true).show();
-		}
-	};
-
-	private View.OnClickListener tp_endtime_click = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			new TimePickerDialog(MainActivity.this, tp_endtime_listener,
-					endtime.get(Calendar.HOUR_OF_DAY),
-					endtime.get(Calendar.MINUTE), true).show();
-		}
-	};
+//	private View.OnClickListener tp_starttime_click = new View.OnClickListener() {
+//		@Override
+//		public void onClick(View v) {
+//			new TimePickerDialog(MainActivity.this, tp_starttime_listener,
+//					starttime.get(Calendar.HOUR_OF_DAY),
+//					starttime.get(Calendar.MINUTE), true).show();
+//		}
+//	};
+//
+//	private View.OnClickListener tp_endtime_click = new View.OnClickListener() {
+//		@Override
+//		public void onClick(View v) {
+//			new TimePickerDialog(MainActivity.this, tp_endtime_listener,
+//					endtime.get(Calendar.HOUR_OF_DAY),
+//					endtime.get(Calendar.MINUTE), true).show();
+//		}
+//	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -459,29 +470,29 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	}
 
-	private void updateStarttime() {
-		if (tv_starttime != null) {
-			SpannableString msp_starttime = new SpannableString(
-					time_fmt.format(starttime.getTime()));
-			msp_starttime.setSpan(new UnderlineSpan(), 0,
-					time_fmt.format(starttime.getTime()).length(),
-					Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			tv_starttime.setText(msp_starttime);
-
-		}
-	}
-
-	private void updateEndtime() {
-		if (tv_endtime != null) {
-			SpannableString msp_endtime = new SpannableString(
-					time_fmt.format(endtime.getTime()));
-			msp_endtime.setSpan(new UnderlineSpan(), 0,
-					time_fmt.format(endtime.getTime()).length(),
-					Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			tv_endtime.setText(msp_endtime);
-		}
-
-	}
+//	private void updateStarttime() {
+//		if (tv_starttime != null) {
+//			SpannableString msp_starttime = new SpannableString(
+//					time_fmt.format(starttime.getTime()));
+//			msp_starttime.setSpan(new UnderlineSpan(), 0,
+//					time_fmt.format(starttime.getTime()).length(),
+//					Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//			tv_starttime.setText(msp_starttime);
+//
+//		}
+//	}
+//
+//	private void updateEndtime() {
+//		if (tv_endtime != null) {
+//			SpannableString msp_endtime = new SpannableString(
+//					time_fmt.format(endtime.getTime()));
+//			msp_endtime.setSpan(new UnderlineSpan(), 0,
+//					time_fmt.format(endtime.getTime()).length(),
+//					Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//			tv_endtime.setText(msp_endtime);
+//		}
+//
+//	}
 
 	@Override
 	public void onClick(View v) {
@@ -519,8 +530,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		tr.setHolenumber(((TextView)findViewById(R.id.tourreport_holenumber_value)).getText().toString());
 		tr.setTourdate(((TextView)findViewById(R.id.tourreport_date_value)).getText().toString());
-		tr.setStarttime(((TextView)findViewById(R.id.tourreport_starttime_value)).getText().toString());
-		tr.setEndtime(((TextView)findViewById(R.id.tourreport_endtime_value)).getText().toString());
+		//spinner_starttime.
+		
+//		tr.setStarttime(((Spinner)findViewById(R.id.tourreport_starttime_value)).getText().toString());
+//		tr.setEndtime(((Spinner)findViewById(R.id.tourreport_endtime_value)).getText().toString());
 		tr.setTakeoverremark(((TextView)findViewById(R.id.tourreport_takeover_value)).getText().toString());
 		tr.setAntideviation(((TextView)findViewById(R.id.tourreport_fangxie_value)).getText().toString());
 		tr.setCentralizer(((TextView)findViewById(R.id.tourreport_fuzheng_value)).getText().toString());

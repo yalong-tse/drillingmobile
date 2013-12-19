@@ -1,0 +1,15 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".TourreportViewActivity" >
+
+    <!-- 班报查看界面 -->
+    
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/title" />
+
+    
+</RelativeLayout>

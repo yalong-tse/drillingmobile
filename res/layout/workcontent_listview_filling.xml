@@ -6,7 +6,9 @@
 
     <!-- Listview  填充内容 -->
 
-	<!-- 班报日期和时间 -->
+
+    <!-- 班报日期和时间 -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +53,8 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <!-- 进尺，取心 和 孔深 -->
+    <!-- 纯钻时长 和 辅助时长 -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +63,139 @@
         android:gravity="center"
         android:orientation="horizontal" >
 
-        <!-- 进尺  -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/tourreport_drilling_time"
+            android:textColor="@color/black"
+            android:textSize="15sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tourreport_list_drilltime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/tourreport_auxiliary_time"
+            android:textColor="@color/black"
+            android:textSize="15sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tourreport_list_auxtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- 孔内事故  和  设备事故 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/tourreport_holeinner_time"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tourreport_list_holeinnertime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/tourreport_device_repair_time"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tourreport_list_devicerepairtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- 其他时长 和 总时长 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/tourreport_other_time"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tourreport_list_othertime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/tourreport_summary_time"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tourreport_list_alltime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- 进尺，取心 和 孔深 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <!-- 进尺 -->
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -79,6 +214,7 @@
             android:textSize="15sp" />
 
         <!-- 取心 -->
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -87,7 +223,7 @@
             android:textColor="@color/black"
             android:textSize="15sp" >
         </TextView>
-        
+
         <TextView
             android:id="@+id/tourreport_list_corelength"
             android:layout_width="0dp"
@@ -97,6 +233,7 @@
             android:textSize="15sp" />
 
         <!-- 孔深 -->
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -105,7 +242,7 @@
             android:textColor="@color/black"
             android:textSize="15sp" >
         </TextView>
-        
+
         <TextView
             android:id="@+id/tourreport_list_holedeep"
             android:layout_width="0dp"
@@ -114,139 +251,5 @@
             android:textColor="@color/red"
             android:textSize="15sp" />
     </LinearLayout>
-
-    <!-- 纯钻时长 和 辅助时长 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/tourreport_drilling_time"
-            android:textColor="@color/black"
-            android:textSize="15sp" >
-        </TextView>
-        
-        <TextView
-            android:id="@+id/tourreport_list_drilltime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textColor="@color/red"
-            android:textSize="15sp" />
-        
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/tourreport_auxiliary_time"
-            android:textColor="@color/black"
-            android:textSize="15sp" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/tourreport_list_auxtime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textColor="@color/red"
-            android:textSize="15sp" />
-
-        
-    </LinearLayout>
-
-    <!-- 孔内事故  和  设备事故 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/tourreport_holeinner_time"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-            
-        <TextView
-            android:id="@+id/tourreport_list_holeinnertime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textColor="@color/red"
-            android:textSize="15sp" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/tourreport_device_repair_time"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-        
-        <TextView
-            android:id="@+id/tourreport_list_devicerepairtime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textColor="@color/red"
-            android:textSize="15sp" />
-
-        
-    </LinearLayout>
-    
-    <!-- 其他时长 和 总时长 -->
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:gravity="center"
-        android:orientation="horizontal" >
-        
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/tourreport_other_time"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-        
-        <TextView
-            android:id="@+id/tourreport_list_othertime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textColor="@color/red"
-            android:textSize="15sp" />
-        
-         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/tourreport_summary_time"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-         
-        <TextView
-            android:id="@+id/tourreport_list_alltime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textColor="@color/red"
-            android:textSize="15sp" />
-        
-        </LinearLayout>
 
 </LinearLayout>

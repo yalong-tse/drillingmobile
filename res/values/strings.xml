@@ -55,8 +55,7 @@
     <string name="kilogram">kg</string>
     <string name="rotatespeed">r/min</string>
     <string name="L">L/min</string>
-    
-    
+
     <!-- 填写交接说明 -->
     <string name="takeover_title">交接说明\n或者记事</string>
     <string name="takeover_desc_hint">填写交接说明</string>
@@ -68,10 +67,7 @@
     <string name="takeover_tools_hint">1个单根，长：3.02m：①3.02②     ③  ；41个立根， 长：371.87m。</string>
     <string name="onduty_title">出勤\n人员</string>
     <string name="onduty_hint">输入出勤人员</string>
-    
-    
-    
-    
+
     <!-- 底部公共菜单模块 -->
     <string name="menu_bottom_1">班报填写</string>
     <string name="menu_bottom_2">班报查看</string>
@@ -82,5 +78,6 @@
     <string name="title_activity_workcontent">WorkcontentActivity</string>
     <string name="title_activity_workcontent_list">WorkcontentListActivity</string>
     <string name="title_activity_takeover">TakeoverActivity</string>
+    <string name="title_activity_tourreport_view">TourreportViewActivity</string>
 
 </resources>
