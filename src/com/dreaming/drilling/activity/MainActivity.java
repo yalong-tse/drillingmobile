@@ -144,6 +144,16 @@ public class MainActivity extends Activity implements OnClickListener {
 				// TODO Auto-generated method stub
 				 String value=parent.getItemAtPosition(position).toString();
 				 tourreport_starttime = value;
+				 if(position==tourtime.length-1)
+				 {
+					 String end_value = parent.getItemAtPosition(0).toString();
+					 spinner_endtime.setSelection(0);
+				 }
+				 else
+				 {
+					 String end_value = parent.getItemAtPosition(position+1).toString();
+					 spinner_endtime.setSelection(position+1);
+				 }
 			}
 
 			@Override
@@ -163,6 +173,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				// TODO Auto-generated method stub
 				 String value=parent.getItemAtPosition(position).toString();
 				 tourreport_endtime = value;
+				 
 			}
 
 			@Override
