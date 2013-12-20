@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * DB操作的基础类
- * 大盘信息存储到SQLITE DB 中
  * 
  * tourreport 表结构设计
  * id

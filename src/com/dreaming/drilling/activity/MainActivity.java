@@ -32,6 +32,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -65,6 +67,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Spinner spinner_starttime;
 	private Spinner spinner_endtime;
 
+	private String tourreport_starttime;
+	private String tourreport_endtime;
+	
 	String[] tourtime = {"00:00","8:00","16:00","12:00"};
 	
 	@Override
@@ -131,6 +136,43 @@ public class MainActivity extends Activity implements OnClickListener {
 		//updateStarttime();
 		//updateEndtime();
 
+		spinner_starttime.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				 String value=parent.getItemAtPosition(position).toString();
+				 tourreport_starttime = value;
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			
+		});
+		
+		spinner_endtime.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				 String value=parent.getItemAtPosition(position).toString();
+				 tourreport_endtime = value;
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			
+		});		
 		
 		tv_date.setOnClickListener(dp_click);
 		//tv_starttime.setOnClickListener(tp_starttime_click);
@@ -530,10 +572,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		tr.setHolenumber(((TextView)findViewById(R.id.tourreport_holenumber_value)).getText().toString());
 		tr.setTourdate(((TextView)findViewById(R.id.tourreport_date_value)).getText().toString());
-		//spinner_starttime.
 		
-//		tr.setStarttime(((Spinner)findViewById(R.id.tourreport_starttime_value)).getText().toString());
-//		tr.setEndtime(((Spinner)findViewById(R.id.tourreport_endtime_value)).getText().toString());
+		tr.setStarttime(this.tourreport_starttime);
+		tr.setEndtime(this.tourreport_endtime);
+		
 		tr.setTakeoverremark(((TextView)findViewById(R.id.tourreport_takeover_value)).getText().toString());
 		tr.setAntideviation(((TextView)findViewById(R.id.tourreport_fangxie_value)).getText().toString());
 		tr.setCentralizer(((TextView)findViewById(R.id.tourreport_fuzheng_value)).getText().toString());
