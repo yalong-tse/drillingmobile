@@ -66,4 +66,27 @@ public class BizUtils {
 
 		return result;
 	}
+
+	/**
+	 * 得到上一个工作内容的结束时间
+	 * */
+	public static String getLastTime()
+	{
+		String result = "00:00";
+		if(GlobalConstants.list_workcontents.size()>0)
+		{
+			Workcontent w = GlobalConstants.list_workcontents.get(GlobalConstants.list_workcontents.size()-1);
+			result = w.getEndtime();
+		}
+		else
+		{
+			if(GlobalConstants.tour_starttime!=null)
+				result = GlobalConstants.tour_starttime;
+			else
+				result = "00:00";
+		}
+		return result;
+	}
+	
+	
 }

@@ -21,6 +21,9 @@ public class GlobalConstants {
 	// 工作内容
 	public static List<Workcontent> list_workcontents = new ArrayList<Workcontent>();
 	
+	
+	public static String tour_starttime=null;
+	
 	// 交接说明
 	public static Takeovercontent takeover = new Takeovercontent();
 	

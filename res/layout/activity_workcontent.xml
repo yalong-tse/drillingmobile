@@ -49,6 +49,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/red"
+                    android:drawableLeft="@drawable/full_time"
+                    android:drawablePadding="5dp"
                     android:textSize="18sp" />
 
                 <TextView
@@ -67,6 +69,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_gravity="center_vertical"
+                    android:drawableLeft="@drawable/full_time"
+                    android:drawablePadding="5dp"
                     android:textColor="@color/red"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -330,6 +334,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/workcontent_save"
                     android:textColor="@color/blue"
+                    android:drawableLeft="@drawable/save"
+                    android:drawablePadding="5dp"
                     android:textSize="18sp" />
                 
                 <Button
@@ -342,6 +348,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:text="@string/workcontent_cancel"
+                    android:drawableLeft="@drawable/cancel"
+                    android:drawablePadding="5dp"
                     android:textColor="@color/blue"
                     android:textSize="18sp" />
             </RelativeLayout>

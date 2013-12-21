@@ -104,5 +104,14 @@ public class TourreportDBHelper extends DBOperation {
 	}
 	
 	
+	public boolean findIsExists()
+	{
+		boolean result = false;
+		
+		
+		return result;
+	}
+	
+	
 	
 }

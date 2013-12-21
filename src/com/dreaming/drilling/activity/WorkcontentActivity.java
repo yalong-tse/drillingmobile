@@ -1,5 +1,6 @@
 package com.dreaming.drilling.activity;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -70,6 +71,20 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 		tv_starttime = (TextView) findViewById(R.id.sub_starttime_value);
 		tv_endtime = (TextView) findViewById(R.id.sub_endtime_value);
 		spinner_workcontent = (Spinner) findViewById(R.id.sub_workcontent);
+		
+		String lasttime = BizUtils.getLastTime();
+//		starttime = Calendar.getInstance();
+//		endtime = Calendar.getInstance();
+		try 
+		{
+			starttime.setTime(time_fmt.parse(lasttime));
+			endtime.setTime(time_fmt.parse(lasttime));
+			endtime.add(Calendar.HOUR, 1);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		updateStarttime();
 		updateEndtime();
