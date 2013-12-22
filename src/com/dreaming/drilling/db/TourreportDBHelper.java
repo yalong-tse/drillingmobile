@@ -70,12 +70,15 @@ public class TourreportDBHelper extends DBOperation {
 	 * 保存班报的方法
 	 * 
 	 * id 如何规定？  遗留一个问题
+	 * 
+	 * id 采用时间戳定义，方法返回该班报的ID，方便后续使用
 	 * */
-	public void save(EntityTourreport entity)
+	public Long save(EntityTourreport entity)
 	{
 		SQLiteDatabase db= this.dbHelper.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		cv.put("tourreportid", System.currentTimeMillis());
+		Long result = System.currentTimeMillis();
+		cv.put("tourreportid", result);
 		cv.put("holenumber", entity.getHolenumber());
 		cv.put("starttime", entity.getStarttime());
 		cv.put("endtime", entity.getEndtime());
@@ -102,6 +105,7 @@ public class TourreportDBHelper extends DBOperation {
 		
 		db.insert(this.dbHelper.TOURREPORT_TABLE_NAME, null, cv);
 		
+		return result;
 	}
 	
 	

@@ -1,8 +1,11 @@
 package com.dreaming.drilling.utils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
+import com.dreaming.drilling.bean.EntityTourreport;
 import com.dreaming.drilling.bean.Takeovercontent;
 import com.dreaming.drilling.bean.Workcontent;
 
@@ -21,8 +24,10 @@ public class GlobalConstants {
 	// 工作内容
 	public static List<Workcontent> list_workcontents = new ArrayList<Workcontent>();
 	
-	
+	// 班报的开始时间，结束时间，以及班报日期
 	public static String tour_starttime=null;
+	public static String tour_endtime =null;
+	public static Calendar tourdate = Calendar.getInstance(Locale.CHINA);
 	
 	// 交接说明
 	public static Takeovercontent takeover = new Takeovercontent();

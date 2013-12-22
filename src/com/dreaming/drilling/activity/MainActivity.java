@@ -12,6 +12,7 @@ import java.util.Locale;
 import com.dreaming.drilling.bean.EntityTourreport;
 import com.dreaming.drilling.bean.Workcontent;
 import com.dreaming.drilling.db.TourreportDBHelper;
+import com.dreaming.drilling.db.WorkcontentDBHelper;
 import com.dreaming.drilling.utils.BizUtils;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.R;
@@ -56,9 +57,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected SharedPreferences sharedPrefs;
 
 	// 获取一个日历对象
-	private Calendar thedate = Calendar.getInstance(Locale.CHINA);
-	private Calendar starttime = Calendar.getInstance(Locale.CHINA);
-	private Calendar endtime = Calendar.getInstance(Locale.CHINA);
+	//private Calendar starttime = Calendar.getInstance(Locale.CHINA);
+	//private Calendar endtime = Calendar.getInstance(Locale.CHINA);
 
 	private SimpleDateFormat date_fmt = new SimpleDateFormat("yyyy-MM-dd");
 	private SimpleDateFormat time_fmt = new SimpleDateFormat("HH:mm");
@@ -67,9 +67,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Spinner spinner_starttime;
 	private Spinner spinner_endtime;
 
-	private String tourreport_starttime;
-	private String tourreport_endtime;
-	
 	String[] tourtime = {"00:00","8:00","16:00","12:00"};
 	
 	@Override
@@ -133,8 +130,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		spinner_starttime.setAdapter(timeAdapter);
 		spinner_endtime.setAdapter(timeAdapter);
 		
-		//updateStarttime();
-		//updateEndtime();
+		updateStarttime();
+		updateEndtime();
 
 		spinner_starttime.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -143,7 +140,6 @@ public class MainActivity extends Activity implements OnClickListener {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				 String value=parent.getItemAtPosition(position).toString();
-				 tourreport_starttime = value;
 				 GlobalConstants.tour_starttime = value;
 				 if(position==tourtime.length-1)
 				 {
@@ -173,7 +169,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				 String value=parent.getItemAtPosition(position).toString();
-				 tourreport_endtime = value;
+				 GlobalConstants.tour_endtime = value;
 				 
 			}
 
@@ -447,9 +443,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				int dayOfMonth) {
 			// 修改日历控件的年，月，日
 			// 这里的year,monthOfYear,dayOfMonth的值与DatePickerDialog控件设置的最新值一致
-			thedate.set(Calendar.YEAR, year);
-			thedate.set(Calendar.MONTH, monthOfYear);
-			thedate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+			GlobalConstants.tourdate.set(Calendar.YEAR, year);
+			GlobalConstants.tourdate.set(Calendar.MONTH, monthOfYear);
+			GlobalConstants.tourdate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 			// 将页面TextView的显示更新为最新时间
 			updateDate();
 		}
@@ -460,8 +456,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		public void onClick(View v) {
 			// 生成一个DatePickerDialog对象，并显示。显示的DatePickerDialog控件可以选择年月日，并设置
 			new DatePickerDialog(MainActivity.this, dp_listener,
-					thedate.get(Calendar.YEAR), thedate.get(Calendar.MONTH),
-					thedate.get(Calendar.DAY_OF_MONTH)).show();
+					GlobalConstants.tourdate.get(Calendar.YEAR), GlobalConstants.tourdate.get(Calendar.MONTH),
+					GlobalConstants.tourdate.get(Calendar.DAY_OF_MONTH)).show();
 		}
 	};
 
@@ -515,38 +511,45 @@ public class MainActivity extends Activity implements OnClickListener {
 	private void updateDate() {
 		if (tv_date != null) {
 			SpannableString msp_date = new SpannableString(
-					date_fmt.format(thedate.getTime()));
+					date_fmt.format(GlobalConstants.tourdate.getTime()));
 			msp_date.setSpan(new UnderlineSpan(), 0,
-					date_fmt.format(thedate.getTime()).length(),
+					date_fmt.format(GlobalConstants.tourdate.getTime()).length(),
 					Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			tv_date.setText(msp_date);
 		}
 
 	}
 
-//	private void updateStarttime() {
-//		if (tv_starttime != null) {
-//			SpannableString msp_starttime = new SpannableString(
-//					time_fmt.format(starttime.getTime()));
-//			msp_starttime.setSpan(new UnderlineSpan(), 0,
-//					time_fmt.format(starttime.getTime()).length(),
-//					Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//			tv_starttime.setText(msp_starttime);
-//
-//		}
-//	}
-//
-//	private void updateEndtime() {
-//		if (tv_endtime != null) {
-//			SpannableString msp_endtime = new SpannableString(
-//					time_fmt.format(endtime.getTime()));
-//			msp_endtime.setSpan(new UnderlineSpan(), 0,
-//					time_fmt.format(endtime.getTime()).length(),
-//					Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//			tv_endtime.setText(msp_endtime);
-//		}
-//
-//	}
+	private void updateStarttime() {
+		if (spinner_starttime != null) {
+			for(int i=0; i<tourtime.length;i++)
+			{
+				if(tourtime[i].equalsIgnoreCase(GlobalConstants.tour_starttime))
+				{
+					spinner_starttime.setSelection(i);
+					break;
+				}
+			}
+			
+			//spinner_starttime.setText(GlobalConstants.tour_starttime);
+
+		}
+	}
+
+	private void updateEndtime() {
+		if (spinner_endtime != null) {
+			for(int i=0; i<tourtime.length;i++)
+			{
+				if(tourtime[i].equalsIgnoreCase(GlobalConstants.tour_endtime))
+				{
+					spinner_endtime.setSelection(i);
+					break;
+				}
+			}
+			//spinner_endtime.setText(msp_endtime);
+		}
+
+	}
 
 	@Override
 	public void onClick(View v) {
@@ -586,8 +589,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		tr.setHolenumber(((TextView)findViewById(R.id.tourreport_holenumber_value)).getText().toString());
 		tr.setTourdate(((TextView)findViewById(R.id.tourreport_date_value)).getText().toString());
 		
-		tr.setStarttime(this.tourreport_starttime);
-		tr.setEndtime(this.tourreport_endtime);
+		tr.setStarttime(GlobalConstants.tour_starttime);
+		tr.setEndtime(GlobalConstants.tour_endtime);
 		
 		tr.setTakeoverremark(((TextView)findViewById(R.id.tourreport_takeover_value)).getText().toString());
 		tr.setAntideviation(((TextView)findViewById(R.id.tourreport_fangxie_value)).getText().toString());
@@ -609,15 +612,23 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 
 		
-		TourreportDBHelper dbHelper = new TourreportDBHelper(this);
+		TourreportDBHelper db_tourreportHelper = new TourreportDBHelper(this);
+		WorkcontentDBHelper db_workcontentHelper = new WorkcontentDBHelper(this);
 		
-		if(dbHelper.findIsExists(tr.getTourdate(),tr.getStarttime(), tr.getEndtime()))
+		if(db_tourreportHelper.findIsExists(tr.getTourdate(),tr.getStarttime(), tr.getEndtime()))
 		{
 			Toast.makeText(this, "该班报已经存在，请确认?", Toast.LENGTH_LONG).show();
 		}
 		else
 		{
-			dbHelper.save(tr);
+			Long tourreportid = db_tourreportHelper.save(tr);
+			
+			for(Workcontent wc:GlobalConstants.list_workcontents)
+			{
+				wc.setTourreportid(tourreportid);
+				db_workcontentHelper.save(wc);
+			}
+			
 			Toast.makeText(this, "保存班报成功", Toast.LENGTH_LONG).show();
 			open_tourreport_list_window();
 		}
