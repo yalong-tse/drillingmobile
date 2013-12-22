@@ -9,16 +9,24 @@ import android.os.Parcelable;
  * */
 public class Workcontent implements Parcelable {
 
+	private Long id;
 	private String starttime;
 	private String endtime;
 	private String type; 
 	private float drillinglength;
+	private String drillbit;
 	private float upleft;
+	private String corename;
+	private String coregrade;
+	private String corenumber;
+	
 	private float corelength;
+	private float coreleftlength;
 	private float holedeep;
 	private float pressure;
 	private float rotatespeed;
 	private float pump;
+	private Long tourreportid;
 	
 	public static final Parcelable.Creator<Workcontent> CREATOR = new Creator<Workcontent>()
 	{
@@ -126,5 +134,48 @@ public class Workcontent implements Parcelable {
 	public void setDrillinglength(float drillinglength) {
 		this.drillinglength = drillinglength;
 	}
+	public String getDrillbit() {
+		return drillbit;
+	}
+	public void setDrillbit(String drillbit) {
+		this.drillbit = drillbit;
+	}
+	public String getCorename() {
+		return corename;
+	}
+	public void setCorename(String corename) {
+		this.corename = corename;
+	}
+	public String getCoregrade() {
+		return coregrade;
+	}
+	public void setCoregrade(String coregrade) {
+		this.coregrade = coregrade;
+	}
+	public String getCorenumber() {
+		return corenumber;
+	}
+	public void setCorenumber(String corenumber) {
+		this.corenumber = corenumber;
+	}
+	public float getCoreleftlength() {
+		return coreleftlength;
+	}
+	public void setCoreleftlength(float coreleftlength) {
+		this.coreleftlength = coreleftlength;
+	}
+	public Long getTourreportid() {
+		return tourreportid;
+	}
+	public void setTourreportid(Long tourreportid) {
+		this.tourreportid = tourreportid;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	
 }

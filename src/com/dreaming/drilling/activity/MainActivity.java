@@ -577,6 +577,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	/**
 	 * 保存班报的方法
+	 * 
 	 * */
 	private void save_tourreport()
 	{
@@ -609,9 +610,19 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		
 		TourreportDBHelper dbHelper = new TourreportDBHelper(this);
-		dbHelper.save(tr);
 		
-		Toast.makeText(this, "保存班报成功", Toast.LENGTH_LONG).show();
+		if(dbHelper.findIsExists(tr.getTourdate(),tr.getStarttime(), tr.getEndtime()))
+		{
+			Toast.makeText(this, "该班报已经存在，请确认?", Toast.LENGTH_LONG).show();
+		}
+		else
+		{
+			dbHelper.save(tr);
+			Toast.makeText(this, "保存班报成功", Toast.LENGTH_LONG).show();
+			open_tourreport_list_window();
+		}
+		
+		
 		
 	}
 	

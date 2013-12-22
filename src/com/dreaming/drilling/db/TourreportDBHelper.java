@@ -35,7 +35,7 @@ public class TourreportDBHelper extends DBOperation {
 		
 		List<EntityTourreport> result = new ArrayList<EntityTourreport>();
 		
-		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, this.columns,null, null, null, null, "tourreportid asc");
+		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, this.columns,null, null, null, null, "tourreportid desc");
 		
 		Log.d("test", "111111111111111");
 		while (cursor.moveToNext())
@@ -61,6 +61,7 @@ public class TourreportDBHelper extends DBOperation {
 			result.add(entity);
 		}
 		Log.d("test", "22222222222222");
+		cursor.close();
 		return result;
 	}
 	
@@ -104,13 +105,76 @@ public class TourreportDBHelper extends DBOperation {
 	}
 	
 	
-	public boolean findIsExists()
+	/**
+	 * 
+	 * 判断是否已经存在该班报
+	 * 
+	 * */
+	public boolean findIsExists(String tourdate, String starttime,String endtime)
 	{
 		boolean result = false;
+	
+		SQLiteDatabase db= this.dbHelper.getReadableDatabase();
+		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, new String[]{"tourreportid","holenumber"}, 
+				"tourdate=strftime('%Y-%m-%d',?) and starttime=? and endtime=?", new String[]{tourdate,starttime,endtime},
+				null, null,null);
 		
+		if ((cursor != null) && (cursor.getCount() > 0))
+		{
+			result = true;
+		}
+		cursor.close();
 		
 		return result;
 	}
+	
+	
+	/**
+	 * 
+	 * 根据 tourdate, starttime, endtime
+	 * 查询出已经存在的班报列表
+	 * 
+	 * */
+	public List<EntityTourreport> getAllTourreports(String tourdate, String starttime,String endtime)
+	{
+	
+		SQLiteDatabase db= this.dbHelper.getReadableDatabase();
+		
+		List<EntityTourreport> result = new ArrayList<EntityTourreport>();
+		
+		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, this.columns,
+				"tourdate=strftime('%Y-%m-%d',?) and starttime=strftime('%H:%M',?) and endtime=strftime('%H:%M',?)", new String[]{tourdate,starttime,endtime},
+				null, null,"tourreportid desc");
+		
+		while (cursor.moveToNext())
+		{
+			EntityTourreport entity = new EntityTourreport();
+			
+			entity.setId(cursor.getInt(cursor.getColumnIndex("tourreportid")));
+			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
+			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
+			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
+			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
+			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
+			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
+			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
+			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
+			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
+			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
+			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
+			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
+			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
+			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
+			
+			result.add(entity);
+		}
+		
+		cursor.close();
+		
+		return result;
+		
+	}
+	
 	
 	
 	
