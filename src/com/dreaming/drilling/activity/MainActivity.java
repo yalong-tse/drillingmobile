@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.UnderlineSpan;
@@ -233,6 +234,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				// LayoutParams(LayoutParams.WRAP_CONTENT,
 				// LayoutParams.WRAP_CONTENT));
 				tv_del.setPadding(15, 0, 0, 0);
+				Drawable drawable_left = this.getResources().getDrawable(R.drawable.delete);
+				drawable_left.setBounds(0, 0, drawable_left.getMinimumWidth(), drawable_left.getMinimumHeight());//必须设置图片大小，否则不显示
+				tv_del.setCompoundDrawables(drawable_left, null, null, null);
 				tv_del.setTextColor(Color.RED);
 				tv_del.setOnClickListener(new OnClickListener() {
 					@Override
@@ -248,77 +252,95 @@ public class MainActivity extends Activity implements OnClickListener {
 
 				tr1.addView(tv_del);
 
+				TextView tv_modify = new TextView(this);
+				tv_modify.setTag(wc);
+				tv_modify.setText("编辑");
+				tv_modify.setTextSize(15);
+				tv_modify.setTextColor(Color.RED);
+				Drawable drawable_left2 = this.getResources().getDrawable(R.drawable.edit);
+				drawable_left2.setBounds(0, 0, drawable_left.getMinimumWidth(), drawable_left2.getMinimumHeight());//必须设置图片大小，否则不显示
+				tv_modify.setCompoundDrawables(drawable_left2, null, null, null);
+				
+				tr1.addView(tv_modify);
+				tl.addView(tr1, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
+				
+				
+				// 第二行
+				TableRow tr2 = new TableRow(this);
+				
 				TextView tv_time = new TextView(this);
+				tv_time.setPadding(15, 0, 0, 0);
 				tv_time.setTextColor(Color.BLACK);
 				tv_time.setText("时间:" + wc.getStarttime() + "至"
 						+ wc.getEndtime());
 				tv_time.setTextSize(15);
-				tr1.addView(tv_time);
+				tr2.addView(tv_time);
 
 				TextView tv_content = new TextView(this);
 				tv_content.setTextColor(Color.BLACK);
 				tv_content.setTextSize(15);
 				tv_content.setText("工作内容:" + wc.getType());
-				tr1.addView(tv_content);
-				tl.addView(tr1, new LayoutParams(LayoutParams.MATCH_PARENT, 50));
+				tr2.addView(tv_content);
+				tl.addView(tr2, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
+				
+				
 
-				// 第二行
-				TableRow tr2 = new TableRow(this);
-				tr2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-						40));
+				// 第三行
+				TableRow tr3 = new TableRow(this);
 				if (wc.getUpleft() != 0) {
 					TextView tv_upleft = new TextView(this);
 					tv_upleft.setText("上余:" + wc.getUpleft());
 					tv_upleft.setPadding(15, 0, 0, 0);
 					tv_upleft.setTextColor(Color.BLACK);
-					tr2.addView(tv_upleft);
+					tr3.addView(tv_upleft);
 				}
 
 				if (wc.getDrillinglength() != 0) {
 					TextView tv_drillinglength = new TextView(this);
 					tv_drillinglength.setTextColor(Color.BLACK);
 					tv_drillinglength.setText("进尺:" + wc.getDrillinglength());
-					tr2.addView(tv_drillinglength);
+					tr3.addView(tv_drillinglength);
 				}
 
 				if (wc.getHoledeep() != 0) {
 					TextView tv_holedeep = new TextView(this);
 					tv_holedeep.setTextColor(Color.BLACK);
 					tv_holedeep.setText("孔深:" + wc.getHoledeep());
-					tr2.addView(tv_holedeep);
+					tr3.addView(tv_holedeep);
 				}
 
 				if (wc.getCorelength() != 0) {
 					TextView tv_core = new TextView(this);
 					tv_core.setTextColor(Color.BLACK);
 					tv_core.setText("岩心长度:" + wc.getCorelength());
-					tr2.addView(tv_core);
+					tr3.addView(tv_core);
 				}
-				tl.addView(tr2, new LayoutParams(LayoutParams.MATCH_PARENT, 50));
+				tl.addView(tr3, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
 
-				// 第三行
-				TableRow tr3 = new TableRow(this);
-				tr3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-						40));
+				
+				// 第四行
+				TableRow tr4 = new TableRow(this);
+				
 				if (wc.getPressure() != 0) {
 					TextView tv_pressure = new TextView(this);
 					tv_pressure.setText("钻压:" + wc.getPressure());
 					tv_pressure.setPadding(15, 0, 0, 0);
-					tr3.addView(tv_pressure);
+					tr4.addView(tv_pressure);
 				}
 
 				if (wc.getRotatespeed() != 0) {
 					TextView tv_speed = new TextView(this);
 					tv_speed.setText("转速:" + wc.getRotatespeed());
-					tr3.addView(tv_speed);
+					tr4.addView(tv_speed);
 				}
 
 				if (wc.getPump() != 0) {
 					TextView tv_pump = new TextView(this);
 					tv_pump.setText("泵量:" + wc.getPump());
-					tr3.addView(tv_pump);
+					tr4.addView(tv_pump);
 				}
-				tl.addView(tr3);
+				tr4.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,50));
+				tl.addView(tr4);
 				linelayout.addView(tl);
 			}
 
