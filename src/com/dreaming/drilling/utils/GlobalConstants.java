@@ -24,6 +24,8 @@ public class GlobalConstants {
 	// 工作内容
 	public static List<Workcontent> list_workcontents = new ArrayList<Workcontent>();
 	
+	public static Workcontent the_workcontent = null;
+	
 	// 班报的开始时间，结束时间，以及班报日期
 	public static String tour_starttime=null;
 	public static String tour_endtime =null;

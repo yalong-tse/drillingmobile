@@ -208,13 +208,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			if (wc != null) {
 				// 列表中添加
 				// GlobalConstants.list_workcontents.add(wc);
-
-				LayoutParams LP_FW = new LayoutParams(LayoutParams.FILL_PARENT,
-						LayoutParams.WRAP_CONTENT);
 				TableLayout tl = new TableLayout(this);
 				tl.setBackgroundResource(R.drawable.bg_layerlist);
-				tl.setLayoutParams(LP_FW);
 				tl.setStretchAllColumns(true);
+				tl.setShrinkAllColumns(true);
 
 				// 第一行
 				TableRow tr1 = new TableRow(this);
@@ -233,7 +230,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				// tv_del.setLayoutParams(new
 				// LayoutParams(LayoutParams.WRAP_CONTENT,
 				// LayoutParams.WRAP_CONTENT));
-				tv_del.setPadding(15, 0, 0, 0);
+				tv_del.setPadding(15, 10, 0, 10);
 				Drawable drawable_left = this.getResources().getDrawable(R.drawable.delete);
 				drawable_left.setBounds(0, 0, drawable_left.getMinimumWidth(), drawable_left.getMinimumHeight());//必须设置图片大小，否则不显示
 				tv_del.setCompoundDrawables(drawable_left, null, null, null);
@@ -260,6 +257,18 @@ public class MainActivity extends Activity implements OnClickListener {
 				Drawable drawable_left2 = this.getResources().getDrawable(R.drawable.edit);
 				drawable_left2.setBounds(0, 0, drawable_left.getMinimumWidth(), drawable_left2.getMinimumHeight());//必须设置图片大小，否则不显示
 				tv_modify.setCompoundDrawables(drawable_left2, null, null, null);
+				tv_modify.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View view) {
+						// TODO Auto-generated method stub
+						TextView tv = (TextView) view;
+						Workcontent obj = (Workcontent) tv.getTag();
+						GlobalConstants.the_workcontent = obj;
+						Intent intent = new Intent(MainActivity.this, TakeoverActivity.class);
+						startActivity(intent);
+					}
+				});
 				
 				tr1.addView(tv_modify);
 				tl.addView(tr1, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
@@ -269,7 +278,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				TableRow tr2 = new TableRow(this);
 				
 				TextView tv_time = new TextView(this);
-				tv_time.setPadding(15, 0, 0, 0);
+				tv_time.setPadding(15, 0, 0, 10);
 				tv_time.setTextColor(Color.BLACK);
 				tv_time.setText("时间:" + wc.getStarttime() + "至"
 						+ wc.getEndtime());
@@ -279,7 +288,8 @@ public class MainActivity extends Activity implements OnClickListener {
 				TextView tv_content = new TextView(this);
 				tv_content.setTextColor(Color.BLACK);
 				tv_content.setTextSize(15);
-				tv_content.setText("工作内容:" + wc.getType());
+				tv_content.setText("内容:" + wc.getType());
+				//tv_content.
 				tr2.addView(tv_content);
 				tl.addView(tr2, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
 				
@@ -290,7 +300,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				if (wc.getUpleft() != 0) {
 					TextView tv_upleft = new TextView(this);
 					tv_upleft.setText("上余:" + wc.getUpleft());
-					tv_upleft.setPadding(15, 0, 0, 0);
+					tv_upleft.setPadding(15, 0, 0, 10);
 					tv_upleft.setTextColor(Color.BLACK);
 					tr3.addView(tv_upleft);
 				}
@@ -324,7 +334,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				if (wc.getPressure() != 0) {
 					TextView tv_pressure = new TextView(this);
 					tv_pressure.setText("钻压:" + wc.getPressure());
-					tv_pressure.setPadding(15, 0, 0, 0);
+					tv_pressure.setPadding(15, 0, 0, 10);
 					tr4.addView(tv_pressure);
 				}
 

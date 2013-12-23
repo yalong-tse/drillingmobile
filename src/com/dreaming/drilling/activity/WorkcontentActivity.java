@@ -72,19 +72,40 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 		tv_endtime = (TextView) findViewById(R.id.sub_endtime_value);
 		spinner_workcontent = (Spinner) findViewById(R.id.sub_workcontent);
 		
-		String lasttime = BizUtils.getLastTime();
-//		starttime = Calendar.getInstance();
-//		endtime = Calendar.getInstance();
-		try 
+		
+		// 如果是编辑模式的话
+		if(GlobalConstants.the_workcontent !=null)
 		{
-			starttime.setTime(time_fmt.parse(lasttime));
-			endtime.setTime(time_fmt.parse(lasttime));
-			endtime.add(Calendar.HOUR, 1);
 			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//lasttime = GlobalConstants.the_workcontent.
+			try
+			{
+				starttime.setTime(time_fmt.parse(GlobalConstants.the_workcontent.getStarttime()));
+				endtime.setTime(time_fmt.parse(GlobalConstants.the_workcontent.getEndtime()));
+				
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
+		
+		else
+		{
+			String lasttime = BizUtils.getLastTime();
+			try 
+			{
+				starttime.setTime(time_fmt.parse(lasttime));
+				endtime.setTime(time_fmt.parse(lasttime));
+				endtime.add(Calendar.HOUR, 1);
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
 		
 		updateStarttime();
 		updateEndtime();
