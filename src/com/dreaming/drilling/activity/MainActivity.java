@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.dreaming.drilling.bean.EntityTourreport;
+import com.dreaming.drilling.bean.Takeovercontent;
 import com.dreaming.drilling.bean.Workcontent;
 import com.dreaming.drilling.db.TourreportDBHelper;
 import com.dreaming.drilling.db.WorkcontentDBHelper;
@@ -703,7 +704,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	 * */
 	private void reset()
 	{
-		
+		GlobalConstants.list_workcontents.clear();
+		GlobalConstants.takeover = new Takeovercontent();
 	}
 	
 	
