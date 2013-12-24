@@ -249,6 +249,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 				tr1.addView(tv_del);
 
+				// 编辑按钮的操作
 				TextView tv_modify = new TextView(this);
 				tv_modify.setTag(wc);
 				tv_modify.setText("编辑");
@@ -265,7 +266,7 @@ public class MainActivity extends Activity implements OnClickListener {
 						TextView tv = (TextView) view;
 						Workcontent obj = (Workcontent) tv.getTag();
 						GlobalConstants.the_workcontent = obj;
-						Intent intent = new Intent(MainActivity.this, TakeoverActivity.class);
+						Intent intent = new Intent(MainActivity.this, WorkcontentActivity.class);
 						startActivity(intent);
 					}
 				});

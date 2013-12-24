@@ -83,6 +83,26 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 				starttime.setTime(time_fmt.parse(GlobalConstants.the_workcontent.getStarttime()));
 				endtime.setTime(time_fmt.parse(GlobalConstants.the_workcontent.getEndtime()));
 				
+				// 设置选项的方法
+				String type = GlobalConstants.the_workcontent.getType();
+				for(int i=0; i<workcontent_arr.length;i++)
+				{
+					if(workcontent_arr[i].equalsIgnoreCase(type))
+					{
+						spinner_workcontent.setSelection(i);
+						break;
+					}
+				}
+				
+				((TextView)findViewById(R.id.sub_workcontent_core_length)).setText(GlobalConstants.the_workcontent.getCorelength()+"");
+				((TextView)findViewById(R.id.sub_workcontent_upleft)).setText(GlobalConstants.the_workcontent.getUpleft()+"");
+				((TextView)findViewById(R.id.sub_workcontent_holedeep)).setText(GlobalConstants.the_workcontent.getHoledeep()+"");
+				((TextView)findViewById(R.id.sub_workcontent_drillinglength)).setText(GlobalConstants.the_workcontent.getDrillinglength()+"");
+				((TextView)findViewById(R.id.sub_workcontent_pressure)).setText(GlobalConstants.the_workcontent.getPressure()+"");
+				((TextView)findViewById(R.id.sub_workcontent_pump)).setText(GlobalConstants.the_workcontent.getPump()+"");
+				((TextView)findViewById(R.id.sub_workcontent_rotatespeed)).setText(GlobalConstants.the_workcontent.getRotatespeed()+"");
+				
+				GlobalConstants.the_workcontent=null;
 			}
 			catch(Exception e)
 			{
