@@ -102,7 +102,7 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 				((TextView)findViewById(R.id.sub_workcontent_pump)).setText(GlobalConstants.the_workcontent.getPump()+"");
 				((TextView)findViewById(R.id.sub_workcontent_rotatespeed)).setText(GlobalConstants.the_workcontent.getRotatespeed()+"");
 				
-				GlobalConstants.the_workcontent=null;
+				
 			}
 			catch(Exception e)
 			{
@@ -291,8 +291,41 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 	 * **/
 	private void btn_save()
 	{
-		Workcontent workcontent = new Workcontent();
+		Workcontent workcontent = null;
+		if(GlobalConstants.the_workcontent==null)
+		{
+			workcontent = new Workcontent();
+			updateContent(workcontent);
+			GlobalConstants.list_workcontents.add(workcontent);
+		}
+		else
+		{
+			workcontent = GlobalConstants.the_workcontent;
+			updateContent(workcontent);
+		}
 		
+		GlobalConstants.the_workcontent=null;
+		// 传递给主窗体
+		Intent mIntent = new Intent(this,MainActivity.class);
+		//Bundle mBundle = new Bundle();
+		//mBundle.putParcelable(GlobalConstants.WORKCONTENT, workcontent);
+		//mIntent.putExtras(mBundle);
+		startActivity(mIntent);
+		
+	}
+	private void btn_cancel()
+	{
+		GlobalConstants.the_workcontent=null;
+		Intent mIntent = new Intent(this,MainActivity.class);
+		startActivity(mIntent);
+		
+	}
+
+	/**
+	 * 更新workcontent
+	 * */
+	private void updateContent(Workcontent workcontent)
+	{
 		workcontent.setStarttime(((TextView) findViewById(R.id.sub_starttime_value)).getText().toString());
 		workcontent.setEndtime(((TextView) findViewById(R.id.sub_endtime_value)).getText().toString());
 		workcontent.setType(this.currentselected);
@@ -339,22 +372,8 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 		else
 			workcontent.setPump(Float.parseFloat(pump));
 		
-		GlobalConstants.list_workcontents.add(workcontent);
-		// 传递给主窗体
-		Intent mIntent = new Intent(this,MainActivity.class);
-		//Bundle mBundle = new Bundle();
-		//mBundle.putParcelable(GlobalConstants.WORKCONTENT, workcontent);
-		//mIntent.putExtras(mBundle);
-		startActivity(mIntent);
-		
 	}
-	private void btn_cancel()
-	{
-		Intent mIntent = new Intent(this,MainActivity.class);
-		startActivity(mIntent);
-		
-	}
-
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub

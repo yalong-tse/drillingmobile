@@ -608,6 +608,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.menu_tourreport_setting:
 			break;
+		case R.id.tourreport_btn_reset:
+			reset();
+			break;
 		}
 	}
 
@@ -695,4 +698,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		startActivity(intent);
 	}
 
+	/**
+	 * 重置操作的事件
+	 * */
+	private void reset()
+	{
+		
+	}
+	
+	
 }
