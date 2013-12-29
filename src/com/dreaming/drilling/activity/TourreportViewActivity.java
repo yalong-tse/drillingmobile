@@ -13,7 +13,10 @@ import com.dreaming.drilling.utils.GlobalConstants;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 /**
@@ -21,7 +24,7 @@ import android.widget.TextView;
  * 班报查看的方法
  * 
  * */
-public class TourreportViewActivity extends Activity {
+public class TourreportViewActivity extends Activity implements OnClickListener  {
 
 	private String title_name = "班报查看";
 	
@@ -56,83 +59,87 @@ public class TourreportViewActivity extends Activity {
 		EntityTourreport tourreport = db_tourreportHelper.getTourreportById(tourreportid);
 		List<Workcontent> workcontents = db_workcontentHelper.getWorkcontentByTourreportId(Long.parseLong(tourreportid));
 
-		// 矿区
-		TextView tv_minearea = (TextView) findViewById(R.id.view_tourreportminearea_value);
-		//tv_minearea.setText(tourreport.getMinearea());
+		if(tourreport!=null)
+		{
+			// 矿区
+			TextView tv_minearea = (TextView) findViewById(R.id.view_tourreportminearea_value);
+			//tv_minearea.setText(tourreport.getMinearea());
+			
+			// 班报日期
+			TextView tv_date = (TextView) findViewById(R.id.view_tourreport_date_value);
+			tv_date.setText(tourreport.getTourdate());
+			
+			// 开始时间
+			TextView tv_starttime = (TextView) findViewById(R.id.view_tourreport_starttime_value);
+			tv_starttime.setText(tourreport.getStarttime());
+			
+			// 结束时间
+			TextView tv_endtime = (TextView) findViewById(R.id.view_tourreport_endtime_value);
+			tv_endtime.setText(tourreport.getEndtime());
+	
+			// 钻孔编号
+			TextView tv_holenumber = (TextView) findViewById(R.id.view_tourreport_holenumber_value);
+			tv_holenumber.setText(tourreport.getHolenumber());
+			
+			// 钻机编号
+			TextView tv_rigmahine_number = (TextView) findViewById(R.id.view_tourreport_rigmachine_number_value);
+			tv_rigmahine_number.setText("");
+			
+			
+			
+			TextView tv_takeover = (TextView) findViewById(R.id.view_tourreport_takeover_value);
+			tv_takeover.setText(tourreport.getTakeoverremark());
+			
+			TextView tv_fangxie = (TextView) findViewById(R.id.view_tourreport_fangxie_value);
+			tv_takeover.setText(tourreport.getAntideviation());
+	
+			TextView tv_fuzheng = (TextView) findViewById(R.id.view_tourreport_fuzheng_value);
+			tv_fuzheng.setText(tourreport.getCentralizer());
+			
+			
+			TextView tv_takeover_tools = (TextView) findViewById(R.id.view_tourreport_takeover_tools_value);
+			tv_takeover_tools.setText(tourreport.getInstrumenttakeover());
+			
+			
+			TextView tv_onduty = (TextView) findViewById(R.id.view_tourreport_onduty_value);
+			tv_onduty.setText(tourreport.getAdministrator() + "," + tourreport.getProjectmanager() +"," + tourreport.getRecorder() +","+ tourreport.getTourleader());
+			
+			
+			TextView tv_drillingtime = (TextView) findViewById(R.id.view_tourreport_drilling_time_value);
+			tv_drillingtime.setText(tourreport.getTourdrillingtime());
+			
+			TextView tv_auxtime = (TextView) findViewById(R.id.view_tourreport_auxiliary_time_value);
+			tv_auxtime.setText(tourreport.getTourauxiliarytime());
+			
+			TextView tv_holetime = (TextView) findViewById(R.id.view_tourreport_holeinner_time_value);
+			tv_holetime.setText(tourreport.getHoleaccidenttime());
+			
+			TextView tv_devicetime = (TextView) findViewById(R.id.view_tourreport_device_repair_value);
+			tv_devicetime.setText(tourreport.getDeviceaccidenttime());
+			
+			TextView tv_othertime = (TextView) findViewById(R.id.view_tourreport_other_time_value);
+			tv_othertime.setText(tourreport.getOthertime());
+			
+			
+			TextView tv_totaltime = (TextView) findViewById(R.id.view_tourreport_summary_time_value);
+			tv_totaltime.setText(tourreport.getTotaltime());
+			
+			TextView tv_drilllength = (TextView) findViewById(R.id.view_tourreport_drillinglength_value);
+			tv_drilllength.setText(tourreport.getTourshift() +"");
+			
+			
+			TextView tv_core = (TextView) findViewById(R.id.view_tourreport_core_length_value);
+			tv_core.setText(tourreport.getTourcore() +"");
+			
+			
+			TextView tv_lastdeep = (TextView) findViewById(R.id.view_tourreport_lastholedeep_value);
+			tv_lastdeep.setText(tourreport.getLastdeep() +"");
+			
+			
+			TextView tv_currentdeep = (TextView) findViewById(R.id.view_tourreport_currentholedeep_value);
+			tv_currentdeep.setText(tourreport.getCurrentdeep() +"");
+		}
 		
-		// 班报日期
-		TextView tv_date = (TextView) findViewById(R.id.view_tourreport_date_value);
-		tv_date.setText(tourreport.getTourdate());
-		
-		// 开始时间
-		TextView tv_starttime = (TextView) findViewById(R.id.view_tourreport_starttime_value);
-		tv_starttime.setText(tourreport.getStarttime());
-		
-		// 结束时间
-		TextView tv_endtime = (TextView) findViewById(R.id.view_tourreport_endtime_value);
-		tv_endtime.setText(tourreport.getEndtime());
-
-		// 钻孔编号
-		TextView tv_holenumber = (TextView) findViewById(R.id.view_tourreport_holenumber_value);
-		tv_holenumber.setText(tourreport.getHolenumber());
-		
-		// 钻机编号
-		TextView tv_rigmahine_number = (TextView) findViewById(R.id.view_tourreport_rigmachine_number_value);
-		tv_rigmahine_number.setText("");
-		
-		
-		
-		TextView tv_takeover = (TextView) findViewById(R.id.view_tourreport_takeover_value);
-		tv_takeover.setText(tourreport.getTakeoverremark());
-		
-		TextView tv_fangxie = (TextView) findViewById(R.id.view_tourreport_fangxie_value);
-		tv_takeover.setText(tourreport.getAntideviation());
-
-		TextView tv_fuzheng = (TextView) findViewById(R.id.view_tourreport_fuzheng_value);
-		tv_fuzheng.setText(tourreport.getCentralizer());
-		
-		
-		TextView tv_takeover_tools = (TextView) findViewById(R.id.view_tourreport_takeover_tools_value);
-		tv_takeover_tools.setText(tourreport.getInstrumenttakeover());
-		
-		
-		TextView tv_onduty = (TextView) findViewById(R.id.view_tourreport_onduty_value);
-		tv_onduty.setText(tourreport.getAdministrator() + "," + tourreport.getProjectmanager() +"," + tourreport.getRecorder());
-		
-		
-		TextView tv_drillingtime = (TextView) findViewById(R.id.view_tourreport_drilling_time_value);
-		tv_drillingtime.setText(tourreport.getTourdrillingtime());
-		
-		TextView tv_auxtime = (TextView) findViewById(R.id.view_tourreport_auxiliary_time_value);
-		tv_auxtime.setText(tourreport.getTourauxiliarytime());
-		
-		TextView tv_holetime = (TextView) findViewById(R.id.view_tourreport_holeinner_time_value);
-		tv_holetime.setText(tourreport.getHoleaccidenttime());
-		
-		TextView tv_devicetime = (TextView) findViewById(R.id.view_tourreport_device_repair_value);
-		tv_devicetime.setText(tourreport.getDeviceaccidenttime());
-		
-		TextView tv_othertime = (TextView) findViewById(R.id.view_tourreport_other_time_value);
-		tv_othertime.setText(tourreport.getOthertime());
-		
-		
-		TextView tv_totaltime = (TextView) findViewById(R.id.view_tourreport_summary_time_value);
-		tv_totaltime.setText(tourreport.getTotaltime());
-		
-		TextView tv_drilllength = (TextView) findViewById(R.id.view_tourreport_drillinglength_value);
-		tv_drilllength.setText(tourreport.getTourshift() +"");
-		
-		
-		TextView tv_core = (TextView) findViewById(R.id.view_tourreport_core_length_value);
-		tv_core.setText(tourreport.getTourcore() +"");
-		
-		
-		TextView tv_lastdeep = (TextView) findViewById(R.id.view_tourreport_lastholedeep_value);
-		tv_lastdeep.setText(tourreport.getLastdeep() +"");
-		
-		
-		TextView tv_currentdeep = (TextView) findViewById(R.id.view_tourreport_currentholedeep_value);
-		tv_currentdeep.setText(tourreport.getCurrentdeep() +"");
 		
 		
 	}
@@ -145,4 +152,34 @@ public class TourreportViewActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	public void onClick(View view) {
+		// TODO Auto-generated method stub
+		switch (view.getId()) {
+		case R.id.menu_add_tourreport:
+			open_add_tourreport_window();
+			break;
+		case R.id.menu_tourreport_list:
+			open_tourreport_list_window();
+			break;
+		case R.id.menu_tourreport_report:
+			break;
+		case R.id.menu_tourreport_setting:
+			break;
+		}
+	}
+	
+	
+	private void open_add_tourreport_window() {
+		Intent intent = new Intent(TourreportViewActivity.this, MainActivity.class);
+		startActivity(intent);
+	}
+
+	private void open_tourreport_list_window() {
+		Intent intent = new Intent(TourreportViewActivity.this,
+				WorkcontentListActivity.class);
+		startActivity(intent);
+	}
+
+	
 }

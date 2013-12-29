@@ -114,7 +114,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 				
 				TextView tv_id = (TextView) ll.findViewById(R.id.tourreport_list_id_tag);
 				
-				Toast.makeText(WorkcontentListActivity.this, "the tv_id is :" + tv_id.getTag().toString(), 3000).show();
+				//Toast.makeText(WorkcontentListActivity.this, "the tv_id is :" + tv_id.getTag().toString(), 3000).show();
 				
 				//Toast.makeText(this, "保存班报成功", Toast.LENGTH_LONG).show();
 				

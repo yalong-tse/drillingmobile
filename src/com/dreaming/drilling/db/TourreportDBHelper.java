@@ -19,7 +19,9 @@ public class TourreportDBHelper extends DBOperation {
 	private String[] columns = {"tourreportid","holenumber","tourdate",
 			"starttime","endtime","tourshift","tourcore","lastdeep",
 			"currentdeep","tourdrillingtime","tourauxiliarytime",
-			"othertime","holeaccidenttime","deviceaccidenttime","totaltime"};
+			"othertime","holeaccidenttime","deviceaccidenttime","totaltime",
+			"administrator","recorder","projectmanager","tourleader","status",
+			"takeoverremark","instrumenttakeover","centralizer","antideviation"};
 	
 	
 	public TourreportDBHelper(Context context) {
@@ -57,6 +59,16 @@ public class TourreportDBHelper extends DBOperation {
 			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
 			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
 			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
+			
+			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
+			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
+			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
+			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
+			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
+			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
+			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
+			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
+			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
 			
 			result.add(entity);
 		}
@@ -174,6 +186,16 @@ public class TourreportDBHelper extends DBOperation {
 			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
 			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
 			
+			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
+			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
+			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
+			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
+			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
+			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
+			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
+			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
+			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
+			
 			result.add(entity);
 		}
 		
@@ -222,6 +244,16 @@ public class TourreportDBHelper extends DBOperation {
 			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
 			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
 			
+			
+			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
+			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
+			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
+			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
+			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
+			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
+			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
+			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
+			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
 			result = entity;
 		}
 		
