@@ -36,7 +36,7 @@ import java.sql.Date;
  * 
  * */
 public class EntityTourreport {
-	private Integer id;
+	private String id;
 	private String holenumber;
 	private String administrator;
 	private String recorder;
@@ -67,11 +67,11 @@ public class EntityTourreport {
 	private String centralizer;
 	private String antideviation;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

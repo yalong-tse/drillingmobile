@@ -42,7 +42,7 @@ public class TourreportDBHelper extends DBOperation {
 		{
 			EntityTourreport entity = new EntityTourreport();
 			
-			entity.setId(cursor.getInt(cursor.getColumnIndex("tourreportid")));
+			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
 			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
 			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
 			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
@@ -158,7 +158,7 @@ public class TourreportDBHelper extends DBOperation {
 		{
 			EntityTourreport entity = new EntityTourreport();
 			
-			entity.setId(cursor.getInt(cursor.getColumnIndex("tourreportid")));
+			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
 			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
 			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
 			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
@@ -206,7 +206,7 @@ public class TourreportDBHelper extends DBOperation {
 		{
 			EntityTourreport entity = new EntityTourreport();
 			
-			entity.setId(cursor.getInt(cursor.getColumnIndex("tourreportid")));
+			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
 			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
 			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
 			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));

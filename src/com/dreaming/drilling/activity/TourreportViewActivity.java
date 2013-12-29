@@ -58,7 +58,7 @@ public class TourreportViewActivity extends Activity {
 
 		// 矿区
 		TextView tv_minearea = (TextView) findViewById(R.id.view_tourreportminearea_value);
-		tv_minearea.setText(tourreport.getMinearea());
+		//tv_minearea.setText(tourreport.getMinearea());
 		
 		// 班报日期
 		TextView tv_date = (TextView) findViewById(R.id.view_tourreport_date_value);
