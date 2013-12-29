@@ -21,6 +21,8 @@ public class GlobalConstants {
 	
 	public static final String WORKCONTENT = "com.dreaming.drilling.workcontent.parcel";
 	
+	public static final String TOURREPORTID = "tourreport_id";
+	
 	// 工作内容
 	public static List<Workcontent> list_workcontents = new ArrayList<Workcontent>();
 	

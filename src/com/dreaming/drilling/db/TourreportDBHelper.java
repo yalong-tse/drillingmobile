@@ -137,9 +137,13 @@ public class TourreportDBHelper extends DBOperation {
 	 * 
 	 * 根据 tourdate, starttime, endtime
 	 * 查询出已经存在的班报列表
+	 * @param String tourdate
+	 * @param String starttime
+	 * @param String endtime
+	 * @return List<EntityTourreport>
 	 * 
 	 * */
-	public List<EntityTourreport> getAllTourreports(String tourdate, String starttime,String endtime)
+	public List<EntityTourreport> getAllTourreportsByTourdateAndTime(String tourdate, String starttime,String endtime)
 	{
 	
 		SQLiteDatabase db= this.dbHelper.getReadableDatabase();
@@ -179,6 +183,53 @@ public class TourreportDBHelper extends DBOperation {
 		
 	}
 	
+	
+	/**
+	 * 根据id 获取相应的班报
+	 * 
+	 * @param String tourreportid
+	 * @return EntityTourreport entity
+	 * 
+	 * */
+	public EntityTourreport getTourreportById(String tourreportid)
+	{
+	
+		SQLiteDatabase db= this.dbHelper.getReadableDatabase();
+		
+		EntityTourreport result = null;
+		
+		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, this.columns,
+				"tourreportid=?", new String[]{tourreportid},
+				null, null,null);
+		
+		while (cursor.moveToNext())
+		{
+			EntityTourreport entity = new EntityTourreport();
+			
+			entity.setId(cursor.getInt(cursor.getColumnIndex("tourreportid")));
+			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
+			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
+			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
+			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
+			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
+			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
+			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
+			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
+			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
+			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
+			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
+			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
+			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
+			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
+			
+			result = entity;
+		}
+		
+		cursor.close();
+		
+		return result;
+		
+	}
 	
 	
 	

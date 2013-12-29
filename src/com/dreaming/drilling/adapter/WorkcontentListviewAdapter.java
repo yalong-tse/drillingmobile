@@ -32,6 +32,7 @@ public class WorkcontentListviewAdapter extends BaseAdapter {
 	 * */
 	public class ListItemView
 	{
+		TextView tv_id_tag;
 		TextView tv_date;
 		TextView tv_time ;
 		TextView tv_drillinglength ;
@@ -88,6 +89,7 @@ public class WorkcontentListviewAdapter extends BaseAdapter {
 			itemviews = new ListItemView();
 			convertview =  this.listContainer.inflate(R.layout.workcontent_listview_filling, null);
 		
+			itemviews.tv_id_tag = (TextView) convertview.findViewById(R.id.tourreport_list_id_tag);
 			itemviews.tv_date = (TextView) convertview.findViewById(R.id.tourreport_list_date);
 			itemviews.tv_time = (TextView) convertview.findViewById(R.id.tourreport_list_time);
 			itemviews.tv_drillinglength = (TextView) convertview.findViewById(R.id.tourreport_list_drillinglength);
@@ -120,8 +122,9 @@ public class WorkcontentListviewAdapter extends BaseAdapter {
 		itemviews.tv_devicetime = (TextView) convertview.findViewById(R.id.tourreport_list_devicerepairtime);
 		Texttv_totaltime = (TextView) convertview.findViewById(R.id.tourreport_list_alltime);
 		*/
-		
-		
+
+		// 增加一个 tag 用来存储Id,其余的使用text 显示相关的信息
+		itemviews.tv_id_tag.setTag(listItems.get(position).get("tourreportid").toString());
 		itemviews.tv_date.setText(listItems.get(position).get("tourdate").toString());
 		itemviews.tv_time.setText(listItems.get(position).get("tourtime").toString());
 		itemviews.tv_drillinglength.setText(listItems.get(position).get("tourshift").toString());

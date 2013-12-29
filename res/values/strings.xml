@@ -40,6 +40,8 @@
     <string name="tourreport_total_drillinglength">进尺</string>
     <string name="tourreport_total_corelength">取心</string>
     <string name="tourreport_total_holedeep">孔深</string>
+    <string name="tourreport_total_lastholedeep">上一班孔深</string>
+    <string name="tourreport_total_currentholedeep">当前孔深</string>
     <string name="tourreport_onduty">出勤人员</string>
     <string name="tourreport_time_to">至</string>
 

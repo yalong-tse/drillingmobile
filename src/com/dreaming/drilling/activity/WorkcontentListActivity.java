@@ -11,15 +11,21 @@ import com.dreaming.drilling.R.menu;
 import com.dreaming.drilling.adapter.WorkcontentListviewAdapter;
 import com.dreaming.drilling.bean.EntityTourreport;
 import com.dreaming.drilling.db.TourreportDBHelper;
+import com.dreaming.drilling.utils.GlobalConstants;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -60,6 +66,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		for(EntityTourreport entity:list)
 		{
 			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("tourreportid", entity.getId());
 			map.put("tourdate", entity.getTourdate());
 			map.put("tourtime", entity.getStarttime() +"-" +entity.getEndtime());
 			map.put("holenumber", entity.getHolenumber());
@@ -95,6 +102,33 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		listview = (ListView) findViewById(R.id.workcontent_list);
 		WorkcontentListviewAdapter adapter = new WorkcontentListviewAdapter(this,getListItems());
 		listview.setAdapter(adapter);
+		
+		listview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				
+				LinearLayout ll = (LinearLayout) view;
+				
+				TextView tv_id = (TextView) ll.findViewById(R.id.tourreport_list_id_tag);
+				
+				Toast.makeText(WorkcontentListActivity.this, "the tv_id is :" + tv_id.getTag().toString(), 3000).show();
+				
+				//Toast.makeText(this, "保存班报成功", Toast.LENGTH_LONG).show();
+				
+				//Log.d("workcontent", tv_id.getText().toString());
+				
+				Bundle item_bundle = new Bundle();
+				item_bundle.putString("tourreportid", tv_id.getTag().toString());
+				Intent intent = new Intent(WorkcontentListActivity.this, TourreportViewActivity.class);
+				intent.putExtra(GlobalConstants.TOURREPORTID, item_bundle);
+				startActivity(intent);
+				
+				
+			}
+		});
 		
 		findViewById(R.id.menu_add_tourreport).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_list).setOnClickListener(this);

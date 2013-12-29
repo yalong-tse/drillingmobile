@@ -42,6 +42,9 @@ public class EntityTourreport {
 	private String recorder;
 	private String projectmanager;
 	private String tourleader;
+	
+	// 矿区
+	private String minearea;
 
 	// 采用字符串
 	private String tourdate;
@@ -256,4 +259,14 @@ public class EntityTourreport {
 		this.antideviation = antideviation;
 	}
 
+	public String getMinearea() {
+		return minearea;
+	}
+
+	public void setMinearea(String minearea) {
+		this.minearea = minearea;
+	}
+
+	
+	
 }
