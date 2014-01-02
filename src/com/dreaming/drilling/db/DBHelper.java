@@ -9,7 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  * 
  * tourreport 表结构设计
  * id
- * holenumber
+ * holenumber 孔号可能重复
+ * holeid  孔id
  * administrator 机长
  * recorder 记录员
  * projectmanager 项目经理
@@ -63,10 +64,10 @@ public class DBHelper extends SQLiteOpenHelper
 
 	// 数据库名称
 	public static final String DB_NAME = "drilling";
-	public static final int VERSION = 5;
+	public static final int VERSION = 6;
 
 	public static final String DB_CREATE_TOURREPORT = "CREATE TABLE IF NOT EXISTS  " +
-			"tourreport ( _id INTEGEREGER PRIMARY KEY, tourreportid integer, holenumber varchar(32),administrator VARCHAR(32),recorder varchar(32)," +
+			"tourreport ( _id INTEGEREGER PRIMARY KEY, tourreportid integer, holeid varchar(32), holenumber varchar(32),administrator VARCHAR(32),recorder varchar(32)," +
 			" projectmanager varchar(32),tourleader varchar(32), tourdate date,starttime varchar(10) ,endtime varchar(10)," +
 			" tourshift double, tourcore double, status integer,lastdeep double,currentdeep double, tourdrillingtime varchar(32)," +
 			" tourauxiliarytime varchar(32),holeaccidenttime varchar(32),deviceaccidenttime varchar(32), othertime varchar(32),totaltime varchar(32)," +
