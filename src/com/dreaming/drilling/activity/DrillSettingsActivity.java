@@ -204,12 +204,12 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		public void onItemSelected(AdapterView<?> parent, View view,
 				int position, long id) {
 			
-			SpinnerData data = adapter_contract.getItem(position);
-			Log.d(DEBUG_TAG, "钻孔id："+data.getId()+";钻孔holenumber："+data.getName());
+			SpinnerData data1 = adapter_hole.getItem(position);
+			Log.d(DEBUG_TAG, "钻孔id："+data1.getId()+";钻孔holenumber："+data1.getName());
 			
 			editor = getPreference();
-			editor.putString("holeid", data.getId());
-			editor.putString("holenumber", data.getName());
+			editor.putString("holeid", data1.getId());
+			editor.putString("holenumber", data1.getName());
 			editor.commit();
 		}
 

@@ -77,6 +77,54 @@ public class TourreportDBHelper extends DBOperation {
 		return result;
 	}
 	
+	/**
+	 * 获取所有的未同步的班报
+	 * */
+	public List<EntityTourreport> getAllTourreportsNoSync()
+	{
+		SQLiteDatabase db= this.dbHelper.getReadableDatabase();
+		
+		List<EntityTourreport> result = new ArrayList<EntityTourreport>();
+		
+		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, this.columns,"syncflag=?", new String[]{"0"}, null, null, "tourreportid desc");
+		
+		Log.d("test", "111111111111111");
+		while (cursor.moveToNext())
+		{
+			EntityTourreport entity = new EntityTourreport();
+			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
+			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
+			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
+			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
+			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
+			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
+			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
+			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
+			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
+			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
+			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
+			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
+			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
+			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
+			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
+			
+			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
+			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
+			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
+			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
+			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
+			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
+			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
+			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
+			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
+			
+			result.add(entity);
+		}
+		Log.d("test", "22222222222222");
+		cursor.close();
+		return result;
+	}
+	
 	
 	/**
 	 * 保存班报的方法
@@ -114,6 +162,7 @@ public class TourreportDBHelper extends DBOperation {
 		cv.put("instrumenttakeover", entity.getInstrumenttakeover());
 		cv.put("centralizer", entity.getCentralizer());
 		cv.put("antideviation",entity.getAntideviation());
+		cv.put("syncflag", 0); // 同步标识，0标识未与云端同步；1表示已经于云端同步
 		
 		db.insert(this.dbHelper.TOURREPORT_TABLE_NAME, null, cv);
 		

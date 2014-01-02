@@ -36,8 +36,10 @@ import java.sql.Date;
  * 
  * */
 public class EntityTourreport {
+	
 	private String id;
 	private String holenumber;
+	private String holeid;
 	private String administrator;
 	private String recorder;
 	private String projectmanager;
@@ -267,6 +269,12 @@ public class EntityTourreport {
 		this.minearea = minearea;
 	}
 
-	
+	public String getHoleid() {
+		return holeid;
+	}
+
+	public void setHoleid(String holeid) {
+		this.holeid = holeid;
+	}
 	
 }

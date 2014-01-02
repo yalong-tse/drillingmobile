@@ -71,7 +71,7 @@ public class DBHelper extends SQLiteOpenHelper
 			" projectmanager varchar(32),tourleader varchar(32), tourdate date,starttime varchar(10) ,endtime varchar(10)," +
 			" tourshift double, tourcore double, status integer,lastdeep double,currentdeep double, tourdrillingtime varchar(32)," +
 			" tourauxiliarytime varchar(32),holeaccidenttime varchar(32),deviceaccidenttime varchar(32), othertime varchar(32),totaltime varchar(32)," +
-			" takeoverremark varchar(200),instrumenttakeover varchar(100),centralizer float,antideviation varchar(32));";
+			" takeoverremark varchar(200),instrumenttakeover varchar(100),centralizer float,antideviation varchar(32), syncflag integer);";
 	
 	public static final String DB_CREATE_WORKCONTENT = "create table if not exists workcontent(" +
 			" _id integereager primary key, id integer ,tourreportid integer, content varchar(30), starttime varchar(10), endtime varchar(10)," +

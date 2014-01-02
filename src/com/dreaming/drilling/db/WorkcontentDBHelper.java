@@ -46,7 +46,7 @@ public class WorkcontentDBHelper extends DBOperation{
 		cv.put("drillbit",content.getDrillbit());
 		cv.put("rotatespeed", content.getRotatespeed());
 		cv.put("pumpquantity",content.getPump());
-		cv.put("pumppressure", content.getPump());
+		cv.put("pumppressure", content.getPressure());
 		cv.put("holedeep", content.getHoledeep());
 		db.insert(this.dbHelper.WORKCONTENT_TABLE_NAME, null, cv);
 		
