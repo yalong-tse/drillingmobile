@@ -73,4 +73,7 @@
     
     <color name="listview_border">#BDBBB7</color>
     <color name="layout_bg_pressed">#FF8800</color>
+    
+    <!-- 个人设置 -->
+    <color name="server_ip">#a3a3a3</color>
 </resources>

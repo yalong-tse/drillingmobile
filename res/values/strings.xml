@@ -83,5 +83,7 @@
     <string name="title_activity_workcontent_list">WorkcontentListActivity</string>
     <string name="title_activity_takeover">TakeoverActivity</string>
     <string name="title_activity_tourreport_view">TourreportViewActivity</string>
+    <string name="title_activity_drilling">DrillingActivity</string>
+    <string name="title_activity_drillsettings">DrillSettingsActivity</string>
 
 </resources>

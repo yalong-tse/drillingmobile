@@ -3,6 +3,9 @@
     package="com.dreaming.drilling"
     android:versionCode="1"
     android:versionName="1.0" >
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -37,6 +40,18 @@
         <activity
             android:name="com.dreaming.drilling.activity.TourreportViewActivity"
             android:label="@string/title_activity_tourreport_view" >
+        </activity>
+        <activity
+            android:name="com.dreaming.drilling.activity.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity 
+            android:name="com.dreaming.drilling.activity.DrillSettingsActivity"
+            android:label="@string/title_activity_drillsettings">
+        </activity>
+        <activity
+            android:name="com.dreaming.drilling.DrillingActivity"
+            android:label="@string/title_activity_drilling" >
         </activity>
     </application>
 

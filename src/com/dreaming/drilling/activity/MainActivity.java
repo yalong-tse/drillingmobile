@@ -608,6 +608,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.menu_tourreport_report:
 			break;
 		case R.id.menu_tourreport_setting:
+			Intent intent = new Intent(MainActivity.this, DrillSettingsActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.tourreport_btn_reset:
 			reset();
