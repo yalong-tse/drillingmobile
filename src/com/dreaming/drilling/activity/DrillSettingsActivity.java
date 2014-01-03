@@ -35,7 +35,7 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	protected SharedPreferences sharedPrefs;
 	private SharedPreferences.Editor editor;
 	
-	private String server = "http://192.168.1.115:5000";
+	private String server = "http://192.168.2.126:5000";
 	private String contracturl = "/mobile/contracts.json";
 	private String holeurl = "/mobile/contractholes.json?contractid=";
 	private String peopleurl = "/mobile/getdeployments.json?holeid=";
