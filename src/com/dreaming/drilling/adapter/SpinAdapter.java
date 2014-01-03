@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -39,6 +40,8 @@ public class SpinAdapter extends ArrayAdapter<SpinnerData> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		TextView label = new TextView(context);
 		
+		label.setTextSize(20);
+		label.setGravity(Gravity.CENTER);
 		label.setTextColor(Color.BLACK);
 		
 		label.setText(getItem(position).getName());
@@ -50,6 +53,8 @@ public class SpinAdapter extends ArrayAdapter<SpinnerData> {
 	public View getDropDownView(int position, View convertView, ViewGroup parent) {
 		TextView label = new TextView(context);
 		
+		label.setGravity(Gravity.CENTER);
+		label.setTextSize(20);
 		label.setTextColor(Color.BLACK);
 		
 		label.setText(getItem(position).getName());
