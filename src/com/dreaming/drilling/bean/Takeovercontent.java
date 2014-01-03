@@ -9,6 +9,8 @@ public class Takeovercontent {
 	private String fuzheng;
 	private String takeovertools;
 	private String onduty;
+	private String tourleader_id;  // 班长id
+	private String tourleader_name; // 班长姓名
 	public String getTakeover_desc() {
 		return takeover_desc;
 	}
@@ -39,6 +41,17 @@ public class Takeovercontent {
 	public void setOnduty(String onduty) {
 		this.onduty = onduty;
 	}
-	
+	public String getTourleader_id() {
+		return tourleader_id;
+	}
+	public void setTourleader_id(String tourleader_id) {
+		this.tourleader_id = tourleader_id;
+	}
+	public String getTourleader_name() {
+		return tourleader_name;
+	}
+	public void setTourleader_name(String tourleader_name) {
+		this.tourleader_name = tourleader_name;
+	}
 
 }

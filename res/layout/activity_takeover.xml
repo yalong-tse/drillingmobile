@@ -144,7 +144,35 @@
                     android:text="@string/takeover_tools_hint" />
             </LinearLayout>
 
-            <!-- 出勤人员 -->
+            <!-- 班长 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_layerlist"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="right|center"
+                    android:text="@string/tourleader_title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <Spinner 
+                    android:id="@+id/tourleader_id"
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"/>
+            </LinearLayout>
+            
+            
+            <!-- 记录员 -->
 
             <LinearLayout
                 android:layout_width="match_parent"

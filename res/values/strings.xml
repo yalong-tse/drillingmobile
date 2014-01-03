@@ -69,8 +69,9 @@
     <string name="fuzheng_hint">输入扶正器长</string>
     <string name="takeover_tools_title">钻具交接</string>
     <string name="takeover_tools_hint">1个单根，长：3.02m：①3.02②     ③  ；41个立根， 长：371.87m。</string>
-    <string name="onduty_title">出勤人员</string>
-    <string name="onduty_hint">输入出勤人员</string>
+    <string name="tourleader_title">班长</string>
+    <string name="onduty_title">记录员</string>
+    <string name="onduty_hint">输入记录员</string>
 
     <!-- 底部公共菜单模块 -->
     <string name="menu_bottom_1">班报填写</string>

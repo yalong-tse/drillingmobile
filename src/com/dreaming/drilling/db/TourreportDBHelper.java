@@ -140,8 +140,8 @@ public class TourreportDBHelper extends DBOperation {
 		Long result = System.currentTimeMillis();
 		cv.put("tourreportid", result);
 		cv.put("holenumber", entity.getHolenumber());
-		cv.put("starttime", entity.getStarttime());
 		cv.put("endtime", entity.getEndtime());
+		cv.put("starttime", entity.getStarttime());
 		cv.put("tourdate", entity.getTourdate());
 		cv.put("administrator", entity.getAdministrator());
 		cv.put("recorder", entity.getRecorder());
