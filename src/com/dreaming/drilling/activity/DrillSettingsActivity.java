@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.dreaming.drilling.R;
 import com.dreaming.drilling.adapter.SpinAdapter;
+import com.dreaming.drilling.bean.HoleDeployments;
 import com.dreaming.drilling.bean.SpinnerData;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.utils.RestClient;
@@ -35,7 +36,7 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	protected SharedPreferences sharedPrefs;
 	private SharedPreferences.Editor editor;
 	
-	private String server = "http://192.168.1.115:5000";
+	private String server = "http://192.168.2.126:5000";
 	private String contracturl = "/mobile/contracts.json";
 	private String holeurl = "/mobile/contractholes.json?contractid=";
 	private String peopleurl = "/mobile/getdeployments.json?holeid=";
@@ -45,6 +46,12 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	private SpinAdapter adapter_hole; 
 	private Spinner spinner_contract;  // 合同spinner
 	private Spinner spinner_hole;          // 钻孔spinner
+	
+	private TextView projectmanager;  // 项目经理
+	private TextView holeleader;           // 机长
+	private TextView tourleader1;         // 班长1
+	private TextView tourleader2;         // 班长2
+	private TextView tourleader3;         // 班长3
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +126,7 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		ip = (TextView) findViewById(R.id.text_server_ip_value);
 		ip.setText(editText);
 		server = editText;
+//		Log.d("-------------------------------------------------", server);
 		
 		editor = getPreference();
 		editor.putString("serverip", server);
@@ -167,7 +175,10 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 					editor.putString("contractname", data.getName());
 					editor.commit();
 					
-					// 填充钻孔列表
+					
+					new FetchHoleDataTask().execute(server+holeurl+data.getId());
+					
+					/*// 填充钻孔列表
 					spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
 					ArrayList<SpinnerData> holelist = RestClient.populate(server+holeurl+data.getId(), "id", "holenumber");
 					
@@ -179,7 +190,8 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 					// Apply the adapter to the spinner
 					spinner_hole.setAdapter(adapter_hole);
 					
-					spinner_hole.setOnItemSelectedListener(spinnerhole_listener);
+					spinner_hole.setOnItemSelectedListener(spinnerhole_listener);*/
+					
 				}
 
 				@Override
@@ -188,6 +200,102 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 					
 				}
 			});
+		}
+		
+	}
+	
+	private class FetchHoleDataTask extends AsyncTask<String, Void, List<SpinnerData>> {
+
+		@Override
+		protected List<SpinnerData> doInBackground(String... urls) {
+			ArrayList<SpinnerData> list = RestClient.populate(urls[0], "id", "holenumber");
+			return list;
+		}
+		
+		@Override
+		protected void onPostExecute(List<SpinnerData> result) {
+			// 填充钻孔列表
+			spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
+
+			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, android.R.layout.simple_spinner_item, result);
+			
+			// Specify the layout to use when the list of choices appears
+			adapter_hole.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			
+			// Apply the adapter to the spinner
+			spinner_hole.setAdapter(adapter_hole);
+			
+			spinner_hole.setOnItemSelectedListener(spinnerhole_listener);
+		}
+	}
+	
+	private class FetchPeopleDataTask extends AsyncTask<String, Void, List<HoleDeployments>> {
+
+		@Override
+		protected List<HoleDeployments> doInBackground(String... urls) {
+			List<HoleDeployments> list = RestClient.populate(urls[0]);
+			return list;
+		}
+		
+		@Override
+		protected void onPostExecute(List<HoleDeployments> result) {
+			editor = getPreference();
+			
+			// 获取该钻孔的人员配组，填充UI
+			projectmanager = (TextView) findViewById(R.id.settings_projectmanager); 
+			holeleader = (TextView) findViewById(R.id.settings_holeleader); 
+			tourleader1 = (TextView) findViewById(R.id.settings_tourleader1); 
+			tourleader2 = (TextView) findViewById(R.id.settings_tourleader2); 
+			tourleader3 = (TextView) findViewById(R.id.settings_tourleader3); 
+			
+			projectmanager.setText(""); 
+			holeleader.setText(""); 
+			tourleader1.setText(""); 
+			tourleader2.setText(""); 
+			tourleader3.setText(""); 
+			
+			editor.remove("projectmanager_id"); editor.remove("projectmanager_name");
+			editor.remove("holeleader_id"); editor.remove("holeleader_name");
+			editor.remove("tourleader1_id"); editor.remove("tourleader1_name");
+			editor.remove("tourleader2_id"); editor.remove("tourleader2_name");
+			editor.remove("tourleader3_id"); editor.remove("tourleader3_name");
+			
+			int i = 1;
+			for(HoleDeployments h : result) {
+				PeopleType p = PeopleType.valueOf(h.getType().toUpperCase());
+				switch(p) {
+				case PROJECTMANAGER:
+					projectmanager.setText(h.getName());
+					editor.putString("projectmanager_id", h.getId());
+					editor.putString("projectmanager_name", h.getName());
+					break;
+				case HOLELEADER:
+					holeleader.setText(h.getName());
+					editor.putString("holeleader_id", h.getId());
+					editor.putString("holeleader_name", h.getName());
+					break;
+				case TOURLEADER:
+					if(i == 1) {
+						tourleader1.setText(h.getName());
+						editor.putString("tourleader1_id", h.getId());
+						editor.putString("tourleader1_name", h.getName());
+					} else if ( i == 2) {
+						tourleader2.setText(h.getName());
+						editor.putString("tourleader2_id", h.getId());
+						editor.putString("tourleader2_name", h.getName());
+					} else if (i == 3) {
+						tourleader3.setText(h.getName());
+						editor.putString("tourleader3_id", h.getId());
+						editor.putString("tourleader3_name", h.getName());
+					}
+					i++;
+					break;
+				}
+			}
+			
+			// 保存到sharedpreference
+			
+			editor.commit();
 		}
 		
 	}
@@ -207,10 +315,70 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			SpinnerData data1 = adapter_hole.getItem(position);
 			Log.d(DEBUG_TAG, "钻孔id："+data1.getId()+";钻孔holenumber："+data1.getName());
 			
+			new FetchPeopleDataTask().execute(server+peopleurl+data1.getId());  // 获取项目经理、机长、班长
+			
 			editor = getPreference();
+			// 保存到sharedpreference
 			editor.putString("holeid", data1.getId());
 			editor.putString("holenumber", data1.getName());
+						
 			editor.commit();
+			/*
+			// 获取该钻孔的人员配组，填充UI
+			List<HoleDeployments> holelist = RestClient.populate(server+peopleurl+data1.getId());
+			projectmanager = (TextView) findViewById(R.id.settings_projectmanager); 
+			holeleader = (TextView) findViewById(R.id.settings_holeleader); 
+			tourleader1 = (TextView) findViewById(R.id.settings_tourleader1); 
+			tourleader2 = (TextView) findViewById(R.id.settings_tourleader2); 
+			tourleader3 = (TextView) findViewById(R.id.settings_tourleader3); 
+			
+			projectmanager.setText(""); 
+			holeleader.setText(""); 
+			tourleader1.setText(""); 
+			tourleader2.setText(""); 
+			tourleader3.setText(""); 
+			
+			editor.remove("projectmanager_id"); editor.remove("projectmanager_name");
+			editor.remove("holeleader_id"); editor.remove("holeleader_name");
+			editor.remove("tourleader1_id"); editor.remove("tourleader1_name");
+			editor.remove("tourleader2_id"); editor.remove("tourleader2_name");
+			editor.remove("tourleader3_id"); editor.remove("tourleader3_name");
+			
+			int i = 1;
+			for(HoleDeployments h : holelist) {
+				PeopleType p = PeopleType.valueOf(h.getType().toUpperCase());
+				switch(p) {
+				case PROJECTMANAGER:
+					projectmanager.setText(h.getName());
+					editor.putString("projectmanager_id", h.getId());
+					editor.putString("projectmanager_name", h.getName());
+					break;
+				case HOLELEADER:
+					holeleader.setText(h.getName());
+					editor.putString("holeleader_id", h.getId());
+					editor.putString("holeleader_name", h.getName());
+					break;
+				case TOURLEADER:
+					if(i == 1) {
+						tourleader1.setText(h.getName());
+						editor.putString("tourleader1_id", h.getId());
+						editor.putString("tourleader1_name", h.getName());
+					} else if ( i == 2) {
+						tourleader2.setText(h.getName());
+						editor.putString("tourleader2_id", h.getId());
+						editor.putString("tourleader2_name", h.getName());
+					} else if (i == 3) {
+						tourleader3.setText(h.getName());
+						editor.putString("tourleader3_id", h.getId());
+						editor.putString("tourleader3_name", h.getName());
+					}
+					i++;
+					break;
+				}
+			}
+			*/
+			
+			
 		}
 
 		@Override
@@ -238,4 +406,10 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		localEditor.commit();*/
 
 	}
+}
+
+enum PeopleType {
+	PROJECTMANAGER,
+	HOLELEADER,
+	TOURLEADER
 }

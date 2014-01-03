@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -21,6 +22,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.dreaming.drilling.bean.HoleDeployments;
 import com.dreaming.drilling.bean.SpinnerData;
 
 public class RestClient {
@@ -156,6 +158,44 @@ public class RestClient {
         return items;
     }
     
-    
+    public static List<HoleDeployments> populate(String httpurl) {
+    	Log.d("RestClient-HoleDeployments", "url: "+httpurl);
+    	
+    	List<HoleDeployments> items = new ArrayList<HoleDeployments>();
+    	HoleDeployments data;
+    	
+    	 try {
+             URL url = new URL(httpurl);
+             HttpURLConnection urlConnection = 
+                 (HttpURLConnection) url.openConnection();
+             urlConnection.setReadTimeout(10000 /* milliseconds */);
+             urlConnection.setConnectTimeout(15000 /* milliseconds */);
+             urlConnection.setRequestMethod("GET");
+             urlConnection.connect();
+             // gets the server json data
+             BufferedReader bufferedReader = 
+                 new BufferedReader(new InputStreamReader(
+                         urlConnection.getInputStream()));
+             String next;
+             while ((next = bufferedReader.readLine()) != null){
+                 JSONArray ja = new JSONArray(next);
+  
+                 for (int i = 0; i < ja.length(); i++) {
+                     JSONObject jo = (JSONObject) ja.get(i);
+                     data = new HoleDeployments(jo.getString("id"), jo.getString("name"), jo.getString("type"));
+                     Log.i("RestClient-[id:", jo.getString("id")+";name-:" + jo.getString("name") + ";type:"+jo.getString("type")+"]");
+                     items.add(data);
+                 }
+             }
+         } catch (MalformedURLException e) {
+             e.printStackTrace();
+         } catch (IOException e) {
+             e.printStackTrace();
+         } catch (JSONException e) {
+             e.printStackTrace();
+         }
+    	
+    	return items;
+    }
     
 }

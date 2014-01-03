@@ -370,6 +370,8 @@ public class MainActivity extends Activity implements OnClickListener {
 					.setText(GlobalConstants.takeover.getTakeovertools());
 			((TextView) findViewById(R.id.tourreport_onduty_value))
 					.setText(GlobalConstants.takeover.getOnduty());
+			((TextView) findViewById(R.id.tourreport_tourleader_value))
+					.setText(GlobalConstants.takeover.getTourleader_name());
 		}
 	}
 
@@ -649,6 +651,15 @@ public class MainActivity extends Activity implements OnClickListener {
 		tr.setTourcore(Float.parseFloat(((TextView)findViewById(R.id.tourreport_core_length_value)).getText().toString()));
 		tr.setCurrentdeep(Float.parseFloat(((TextView)findViewById(R.id.tourreport_holedeep_value)).getText().toString()));
 		
+		// 保存项目经理、班长、记录员
+		String projectmanager_id = this.sharedPrefs.getString("projectmanager_id", "");
+		if(null != projectmanager_id && !"".equals(projectmanager_id)) {
+			tr.setProjectmanager(projectmanager_id);
+		}
+		tr.setRecorder(((TextView)findViewById(R.id.tourreport_onduty_value)).getText().toString());
+		if (GlobalConstants.takeover != null) {
+			tr.setTourleader(GlobalConstants.takeover.getTourleader_id());
+		}
 
 		
 		TourreportDBHelper db_tourreportHelper = new TourreportDBHelper(this);
