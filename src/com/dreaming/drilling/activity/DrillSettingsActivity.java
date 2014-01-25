@@ -36,7 +36,7 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	protected SharedPreferences sharedPrefs;
 	private SharedPreferences.Editor editor;
 	
-	private String server = "http://192.168.2.126:5000";
+	private String server = "http://192.168.1.101:5000";
 	private String contracturl = "/mobile/contracts.json";
 	private String holeurl = "/mobile/contractholes.json?contractid=";
 	private String peopleurl = "/mobile/getdeployments.json?holeid=";
@@ -151,10 +151,10 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		protected void onPostExecute(List<SpinnerData> result) {
 			
 			spinner_contract = (Spinner)findViewById(R.id.setting_spinner_contract);
-			adapter_contract = new SpinAdapter(DrillSettingsActivity.this, android.R.layout.simple_spinner_item, result);
+			adapter_contract = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, result);
 			
 			// Specify the layout to use when the list of choices appears
-			adapter_contract.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			adapter_contract.setDropDownViewResource(R.drawable.custom_spinner);
 			
 			// Apply the adapter to the spinner
 			spinner_contract.setAdapter(adapter_contract);
@@ -168,8 +168,10 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			        // parent.getItemAtPosition(position)
 					
 					SpinnerData data = adapter_contract.getItem(position);
-					Log.d(DEBUG_TAG, "合同id："+data.getId()+";合同名称："+data.getName());
-					
+					//Log.d(DEBUG_TAG, "合同id："+data.getId()+";合同名称："+data.getName());
+					TextView tv = (TextView)view;  
+	                tv.setTextColor(getResources().getColor(R.color.black));    //设置颜色  
+	                tv.setTextSize(15.0f);    //设置大小  
 					editor = getPreference();
 					editor.putString("contractid", data.getId());
 					editor.putString("contractname", data.getName());
@@ -217,10 +219,10 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			// 填充钻孔列表
 			spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
 
-			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, android.R.layout.simple_spinner_item, result);
+			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, result);
 			
 			// Specify the layout to use when the list of choices appears
-			adapter_hole.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			adapter_hole.setDropDownViewResource(R.drawable.custom_spinner);
 			
 			// Apply the adapter to the spinner
 			spinner_hole.setAdapter(adapter_hole);
@@ -317,6 +319,10 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			
 			new FetchPeopleDataTask().execute(server+peopleurl+data1.getId());  // 获取项目经理、机长、班长
 			
+			TextView tv = (TextView)view;  
+            tv.setTextColor(getResources().getColor(R.color.black));    //设置颜色  
+            tv.setTextSize(15.0f);    //设置大小  
+            
 			editor = getPreference();
 			// 保存到sharedpreference
 			editor.putString("holeid", data1.getId());
