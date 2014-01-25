@@ -331,7 +331,6 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 	private void open_workcontent() {
 		Intent intent = new Intent(WorkcontentListActivity.this, WorkcontentActivity.class);
 		startActivity(intent);
-
 	}
 	
 	
@@ -347,7 +346,13 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		startActivity(intent);
 	}
 	
+	private void open_setting_window()
+	{
+		Intent intent = new Intent(WorkcontentListActivity.this, DrillSettingsActivity.class);
+		startActivity(intent);
+	}
 
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -361,6 +366,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		case R.id.menu_tourreport_report:
 			break;
 		case R.id.menu_tourreport_setting:
+			open_setting_window();
 			break;
 		}
 		

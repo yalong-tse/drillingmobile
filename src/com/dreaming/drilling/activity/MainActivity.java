@@ -610,8 +610,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.menu_tourreport_report:
 			break;
 		case R.id.menu_tourreport_setting:
-			Intent intent = new Intent(MainActivity.this, DrillSettingsActivity.class);
-			startActivity(intent);
+			open_setting_window();
 			break;
 		case R.id.tourreport_btn_reset:
 			reset();
@@ -712,6 +711,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		startActivity(intent);
 	}
 
+	private void open_setting_window()
+	{
+		Intent intent = new Intent(MainActivity.this, DrillSettingsActivity.class);
+		startActivity(intent);
+	}
+	
+	
 	/**
 	 * 重置操作的事件
 	 * */

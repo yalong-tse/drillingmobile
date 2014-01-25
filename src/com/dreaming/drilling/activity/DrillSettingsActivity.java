@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -30,7 +31,7 @@ import com.dreaming.drilling.bean.SpinnerData;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.utils.RestClient;
 
-public class DrillSettingsActivity extends FragmentActivity implements ServerDialogFragment.ServerDialogListener{
+public class DrillSettingsActivity extends FragmentActivity implements ServerDialogFragment.ServerDialogListener , OnClickListener{
 	
 	private static String DEBUG_TAG = "DrillSettingsActivity";
 	protected SharedPreferences sharedPrefs;
@@ -70,6 +71,11 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		Button btn_getContract = (Button) findViewById(R.id.btn_getcontract);
 		server_ip_layout.setOnClickListener(server_ip_listener);
 		btn_getContract.setOnClickListener(contract_listener);
+		
+		findViewById(R.id.menu_add_tourreport).setOnClickListener(this);
+		findViewById(R.id.menu_tourreport_list).setOnClickListener(this);
+		findViewById(R.id.menu_tourreport_report).setOnClickListener(this);
+		findViewById(R.id.menu_tourreport_setting).setOnClickListener(this);
 	}
 	
 	private OnClickListener server_ip_listener = new OnClickListener() {
@@ -412,7 +418,34 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		localEditor.commit();*/
 
 	}
+	
+	private void open_add_tourreport_window() {
+		Intent intent = new Intent(DrillSettingsActivity.this, MainActivity.class);
+		startActivity(intent);
+	}
+
+	private void open_tourreport_list_window() {
+		Intent intent = new Intent(DrillSettingsActivity.this,
+				WorkcontentListActivity.class);
+		startActivity(intent);
+	}
+	
+	@Override
+	public void onClick(View v) {
+
+		switch (v.getId()) {
+		case R.id.menu_add_tourreport:
+			open_add_tourreport_window();
+			break;
+		case R.id.menu_tourreport_list:
+			open_tourreport_list_window();
+			break;
+		case R.id.menu_tourreport_report:
+			break;
+		}
+	}
 }
+
 
 enum PeopleType {
 	PROJECTMANAGER,
