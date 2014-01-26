@@ -86,5 +86,8 @@
     <string name="title_activity_tourreport_view">TourreportViewActivity</string>
     <string name="title_activity_drilling">DrillingActivity</string>
     <string name="title_activity_drillsettings">DrillSettingsActivity</string>
+    
+    <string name="title_btn_syn">同步</string>
+    
 
 </resources>
