@@ -194,7 +194,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		findViewById(R.id.menu_add_tourreport).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_list).setOnClickListener(this);
-		findViewById(R.id.menu_tourreport_report).setOnClickListener(this);
+		//findViewById(R.id.menu_tourreport_report).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_setting).setOnClickListener(this);
 		
 
@@ -607,8 +607,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.menu_tourreport_list:
 			open_tourreport_list_window();
 			break;
-		case R.id.menu_tourreport_report:
-			break;
+		//case R.id.menu_tourreport_report:
+		//	break;
 		case R.id.menu_tourreport_setting:
 			open_setting_window();
 			break;

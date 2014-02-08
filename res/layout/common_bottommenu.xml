@@ -70,7 +70,7 @@
 
         <!-- menu3:统计分析 -->
 
-        <LinearLayout
+        <!--  LinearLayout
             android:id="@+id/menu_tourreport_report"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                 android:text="@string/menu_bottom_3"
                 android:textColor="@color/bottom_menu_text"
                 android:textSize="12sp" />
-        </LinearLayout>
+        </LinearLayout-->
 
         <!-- menu4:个人设置 -->
 
