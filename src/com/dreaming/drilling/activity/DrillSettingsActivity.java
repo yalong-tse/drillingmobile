@@ -3,6 +3,7 @@ package com.dreaming.drilling.activity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import android.content.Context;
 import android.content.Intent;
@@ -64,8 +65,42 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		textView_title.setText("个人设置");
 		TextView serverip = (TextView) findViewById(R.id.text_server_ip_value);
 //		this.sharedPrefs = this.getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
-		serverip.setText(this.sharedPrefs.getString("serverip","http://192.168.1.116:5000"));
+		serverip.setText(this.sharedPrefs.getString("serverip",server));
 		
+		initview();
+		
+	}
+	
+	
+	// 
+	private void initview()
+	{
+		
+		
+		//Log.d("the contractslist size is ",GlobalConstants.contractslist.size() +"");
+		//Log.d("the hostslist size is ",GlobalConstants.holelist.size() +"");
+		
+		//Toast.makeText(this, "111111111", Toast.LENGTH_SHORT).show();
+		if(GlobalConstants.contractslist!=null)
+		{
+			//Toast.makeText(this, "the size is:" + GlobalConstants.contractslist.size(), Toast.LENGTH_SHORT).show();
+			spinner_contract = (Spinner)findViewById(R.id.setting_spinner_contract);
+			adapter_contract = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, GlobalConstants.contractslist);
+			adapter_contract.setDropDownViewResource(R.drawable.custom_spinner);
+			spinner_contract.setAdapter(adapter_contract);
+		}
+		
+		if(GlobalConstants.holelist!=null)
+		{
+			spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
+			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, GlobalConstants.holelist);
+			adapter_hole.setDropDownViewResource(R.drawable.custom_spinner);
+			spinner_hole.setAdapter(adapter_hole);
+		}
+		
+		
+		ip = (TextView) findViewById(R.id.text_server_ip_value);
+		ip.setText(server);
 		
 		LinearLayout server_ip_layout = (LinearLayout)findViewById(R.id.layout_server_ip);
 		Button btn_getContract = (Button) findViewById(R.id.btn_getcontract);
@@ -76,7 +111,9 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		findViewById(R.id.menu_tourreport_list).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_report).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_setting).setOnClickListener(this);
+		
 	}
+	
 	
 	private OnClickListener server_ip_listener = new OnClickListener() {
 		
@@ -96,7 +133,9 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 
 	
 	private void showAlertDialog() {
-		ip = (TextView) findViewById(R.id.text_server_ip_value);
+		
+		if(ip==null)
+			ip = (TextView) findViewById(R.id.text_server_ip_value);
 		
 		DialogFragment dialog = ServerDialogFragment.newInstance(ip.getText().toString());
 		
@@ -127,12 +166,14 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	// The dialog fragment receives a reference to this Activity through the
     // Fragment.onAttach() callback, which it uses to call the following methods
     // defined by the ServerDialogFragment.ServerDialogListener interface
+	// 
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog, String editText) {
 		ip = (TextView) findViewById(R.id.text_server_ip_value);
 		ip.setText(editText);
 		server = editText;
 //		Log.d("-------------------------------------------------", server);
+		//GlobalConstants.fetchurl = server;
 		
 		editor = getPreference();
 		editor.putString("serverip", server);
@@ -156,8 +197,11 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		@Override
 		protected void onPostExecute(List<SpinnerData> result) {
 			
-			spinner_contract = (Spinner)findViewById(R.id.setting_spinner_contract);
+			if(spinner_contract==null)
+				spinner_contract = (Spinner)findViewById(R.id.setting_spinner_contract);
 			adapter_contract = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, result);
+			
+			GlobalConstants.contractslist = result;
 			
 			// Specify the layout to use when the list of choices appears
 			adapter_contract.setDropDownViewResource(R.drawable.custom_spinner);
@@ -223,9 +267,11 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		@Override
 		protected void onPostExecute(List<SpinnerData> result) {
 			// 填充钻孔列表
-			spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
-
+			if(spinner_hole==null)
+				spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
 			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, result);
+			
+			GlobalConstants.holelist = result;
 			
 			// Specify the layout to use when the list of choices appears
 			adapter_hole.setDropDownViewResource(R.drawable.custom_spinner);
@@ -335,6 +381,7 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			editor.putString("holenumber", data1.getName());
 						
 			editor.commit();
+			
 			/*
 			// 获取该钻孔的人员配组，填充UI
 			List<HoleDeployments> holelist = RestClient.populate(server+peopleurl+data1.getId());
@@ -404,9 +451,16 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		this.sharedPrefs = this.getSharedPreferences(
 				GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
 
+		server = this.sharedPrefs.getString("serverip",server);
+		
+		//Log.d("the server is ","the server is :" + server);
+		//Log.d("test","test");
+		
 		if (!this.sharedPrefs.getBoolean("first2", true))
 			return;
 
+		
+		
 		/*SharedPreferences.Editor localEditor = this.sharedPrefs.edit();
 
 		// 系统所需的基本配置

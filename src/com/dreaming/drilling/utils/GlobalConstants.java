@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import com.dreaming.drilling.bean.SpinnerData;
 import com.dreaming.drilling.bean.Takeovercontent;
 import com.dreaming.drilling.bean.Workcontent;
 
@@ -41,5 +42,12 @@ public class GlobalConstants {
 	{
 		list_workcontents.remove(wc);
 	}
+	
+	
+	public static List<SpinnerData> contractslist;
+	
+	public static List<SpinnerData> holelist;
+	
+	//public static String fetchurl; 
 	
 }
