@@ -150,6 +150,9 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_mudamount).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_coreleft).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_corenumber).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
@@ -164,27 +167,37 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 					findViewById(R.id.linelayout_pressure).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_pump).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_mudamount).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_coreleft).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_corenumber).setVisibility(View.GONE);
 				}
 				else if(str.equalsIgnoreCase("起下钻取心") ||str.equalsIgnoreCase("起钻取心"))
 				{
 					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_coreleft).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_corenumber).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_mudamount).setVisibility(View.VISIBLE);
+					
 					
 				}
 				else if(str.equalsIgnoreCase("取心"))
 				{
 					findViewById(R.id.linelayout_corelength).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_coreleft).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_corenumber).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_mudamount).setVisibility(View.VISIBLE);
 					
 				}
 				else if(str.equalsIgnoreCase("孔内事故") || str.equalsIgnoreCase("设备事故") 
@@ -197,6 +210,7 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_mudamount).setVisibility(View.VISIBLE);
 				}
 				
 	

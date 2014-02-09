@@ -19,6 +19,9 @@
     <string name="tourreport_workcontent_title">工作内容</string>
     <string name="tourreport_btn_submit_title">提交</string>
     <string name="tourreport_btn_reset_title">重置</string>
+    <string name="tourreport_core_number">岩心编号</string>
+    <string name="tourreport_core_left">岩心残留</string>
+    <string name="tourreport_mudamount">泥浆消耗量</string>
     <string name="tourreport_upleft_title">上余(m)</string>
     <string name="tourreport_drilllength_title">进尺(m)</string>
     <string name="tourreport_holedeep_title">孔深(m)</string>
@@ -47,12 +50,15 @@
 
     <!-- 填写工作内容的界面 -->
     <string name="workcontent_upleft_hint">填写上余数量</string>
+    <string name="workcontent_corenumber_hint">填写岩心编号</string>
+    <string name="workcontent_coreleft_hint">填写残留岩心长度</string>
     <string name="workcontent_drillinglength_hint">填写进尺数量</string>
     <string name="workcontent_holedeep_hint">填写当前孔深</string>
     <string name="workcontent_corelength_hint">填写岩心长度</string>
     <string name="workcontent_pressure_hint">填写钻压数量</string>
     <string name="workcontent_rotatespeed_hint">填写钻机转速</string>
     <string name="workcontent_pump_hint">填写泵量</string>
+    <string name="workcontent_mudamount_hint">填写泥浆消耗量</string>
     <string name="workcontent_save">保存</string>
     <string name="workcontent_cancel">取消</string>
     <string name="mile">m</string>

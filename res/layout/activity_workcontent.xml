@@ -6,7 +6,8 @@
     android:background="@drawable/android_layout_bg"
     tools:context=".WorkcontentActivity" >
 
-    <!-- 班报填写的工作内容界面 -->
+    <!-- 班报填写的工作内容界面 , 增加泥浆消耗量， 岩心长度和编号，岩心残留
+    -->
 
     <include
         android:id="@+id/title_bar"
@@ -99,6 +100,10 @@
                     android:layout_marginRight="10dp" />
             </LinearLayout>
 
+            
+
+            
+            
             <!-- 上余 -->
 
             <LinearLayout
@@ -191,6 +196,38 @@
 
                 </LinearLayout>
 
+            
+             <!-- 岩心编号-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_layerlist"
+                android:id="@+id/linelayout_corenumber"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center"
+                    android:layout_width="100.0dip"
+                    style="@style/form_row_label"
+                    android:text="@string/tourreport_core_number"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/sub_workcontent_corenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:hint="@string/workcontent_corenumber_hint"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/red"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            
+            
             <!-- 岩心长度 -->
 
             <LinearLayout
@@ -222,6 +259,37 @@
 
             </LinearLayout>
 
+            
+            <!-- 残留岩心-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_layerlist"
+                android:id="@+id/linelayout_coreleft"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center"
+                    android:layout_width="100.0dip"
+                    style="@style/form_row_label"
+                    android:text="@string/tourreport_core_left"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/sub_workcontent_coreleft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:hint="@string/workcontent_coreleft_hint"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/red"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            
             <!-- 钻压 -->
 
             <LinearLayout
@@ -308,6 +376,37 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:hint="@string/workcontent_pump_hint"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/red"
+                    android:layout_marginRight="10dp"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+            
+            <!-- 泥浆消耗量 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_layerlist"
+                android:id="@+id/linelayout_mudamount"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="100.0dip"
+                    android:gravity="right|center"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/tourreport_mudamount"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/sub_workcontent_mudamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:hint="@string/workcontent_mudamount_hint"
                     android:inputType="numberDecimal"
                     android:textColor="@color/red"
                     android:layout_marginRight="10dp"

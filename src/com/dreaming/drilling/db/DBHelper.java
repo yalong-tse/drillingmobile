@@ -55,6 +55,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * pumpquantity  泵量
  * pumppressure  泵压
  * holedeep  孔深
+ * mudamount 泥浆消耗量 ，郑州意见增加该字段
  * 
  * 
  * 
@@ -64,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper
 
 	// 数据库名称
 	public static final String DB_NAME = "drilling";
-	public static final int VERSION = 6;
+	public static final int VERSION = 7;
 
 	public static final String DB_CREATE_TOURREPORT = "CREATE TABLE IF NOT EXISTS  " +
 			"tourreport ( _id INTEGEREGER PRIMARY KEY, tourreportid integer, holeid varchar(32), holenumber varchar(32),administrator VARCHAR(32),recorder varchar(32)," +
@@ -76,7 +77,7 @@ public class DBHelper extends SQLiteOpenHelper
 	public static final String DB_CREATE_WORKCONTENT = "create table if not exists workcontent(" +
 			" _id integereager primary key, id integer ,tourreportid integer, content varchar(30), starttime varchar(10), endtime varchar(10)," +
 			" upmore float,corename varchar(32),coregrade varchar(10),corenumber varchar(32),corelength float, coreleftlength float," + 
-			" drillinglength float,drillbit varchar(20), rotatespeed float,pumpquantity float,pumppressure float,holedeep float);";
+			" drillinglength float,drillbit varchar(20), rotatespeed float,pumpquantity float,pumppressure float,holedeep float,mudamount varchar(10));";
 	
 	public static final String DB_DROP_TOURREPORT = "DROP TABLE IF EXISTS tourreport";
 	public static final String DB_DROP_WORKCONTENT = "Drop table if exists workcontent";
@@ -116,4 +117,6 @@ public class DBHelper extends SQLiteOpenHelper
 		paramSQLiteDatabase.execSQL(DB_DROP_TOURREPORT);
 		onCreate(paramSQLiteDatabase);
 	}
+	
+	
 }
