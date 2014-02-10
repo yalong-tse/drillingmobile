@@ -1,7 +1,7 @@
 package com.dreaming.drilling.bean;
 
 /**
- * 
+ *  for 配置界面使用  合同列表  和  钻孔列表的信息
  */
 public class SpinnerData {
 	private String id;

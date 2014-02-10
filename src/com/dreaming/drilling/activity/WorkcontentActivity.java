@@ -213,7 +213,6 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 					findViewById(R.id.linelayout_mudamount).setVisibility(View.VISIBLE);
 				}
 				
-	
 				
 				//Toast.makeText(WorkcontentActivity.this, "你点击的是:"+str, 2000).show();
 				

@@ -21,8 +21,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
+import android.widget.Toast;
 
+import com.dreaming.drilling.activity.DrillSettingsActivity;
 import com.dreaming.drilling.bean.HoleDeployments;
+import com.dreaming.drilling.bean.HoleDetail;
 import com.dreaming.drilling.bean.SpinnerData;
 
 public class RestClient {
@@ -118,6 +121,7 @@ public class RestClient {
         }
     }
     
+    // 配置界面 返回 合同列表  和 钻孔列表的方法
     public static ArrayList<SpinnerData> populate(String httpurl, String id, String name) {
     	Log.d("RestClient", "url: "+httpurl);
         ArrayList<SpinnerData> items = new ArrayList<SpinnerData>();
@@ -158,6 +162,7 @@ public class RestClient {
         return items;
     }
     
+    // 返回钻孔配置的请求
     public static List<HoleDeployments> populate(String httpurl) {
     	Log.d("RestClient-HoleDeployments", "url: "+httpurl);
     	
@@ -198,4 +203,48 @@ public class RestClient {
     	return items;
     }
     
+    // 返回钻孔详细信息的restclient request
+    public static HoleDetail populateHoleDetail(String httpurl) {
+    	//Log.d("RestClient-HoleDetail", "url: "+httpurl);
+    	
+    	HoleDetail result = new HoleDetail();
+    	
+    	 try {
+             URL url = new URL(httpurl);
+             HttpURLConnection urlConnection = 
+                 (HttpURLConnection) url.openConnection();
+             urlConnection.setReadTimeout(10000 /* milliseconds */);
+             urlConnection.setConnectTimeout(15000 /* milliseconds */);
+             urlConnection.setRequestMethod("GET");
+             urlConnection.connect();
+             // gets the server json data
+             BufferedReader bufferedReader = 
+                 new BufferedReader(new InputStreamReader(
+                         urlConnection.getInputStream()));
+             String next;
+             while ((next = bufferedReader.readLine()) != null){
+            	 
+            	 //Log.d("the json ", next);
+                 //JSONArray ja = new JSONArray(next);
+                 JSONObject jo = new JSONObject(next);
+                 Log.d("minearea",jo.getString("minearea"));
+                 result = new HoleDetail(jo.getString("minearea"),jo.getString("actualdeep"),jo.getString("holenumber"),jo.getString("geologysituation"));
+                 //for (int i = 0; i < ja.length(); i++) {
+                 //    JSONObject jo = (JSONObject) ja.get(i);
+                 //    data = new HoleDeployments(jo.getString("id"), jo.getString("name"), jo.getString("type"));
+                 //    Log.i("RestClient-[id:", jo.getString("id")+";name-:" + jo.getString("name") + ";type:"+jo.getString("type")+"]");
+                 //   items.add(data);
+                // }
+                 
+             }
+         } catch (MalformedURLException e) {
+             e.printStackTrace();
+         } catch (IOException e) {
+             e.printStackTrace();
+         } catch (JSONException e) {
+             e.printStackTrace();
+         }
+    	
+    	return result;
+    }
 }

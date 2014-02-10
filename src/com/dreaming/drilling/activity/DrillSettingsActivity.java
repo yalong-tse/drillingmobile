@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.dreaming.drilling.R;
 import com.dreaming.drilling.adapter.SpinAdapter;
 import com.dreaming.drilling.bean.HoleDeployments;
+import com.dreaming.drilling.bean.HoleDetail;
 import com.dreaming.drilling.bean.SpinnerData;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.utils.RestClient;
@@ -42,6 +43,7 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	private String contracturl = "/mobile/contracts.json";
 	private String holeurl = "/mobile/contractholes.json?contractid=";
 	private String peopleurl = "/mobile/getdeployments.json?holeid=";
+	private String detailurl = "/mobile/holedetail.json?holeid=";
 	
 	private TextView ip;
 	private SpinAdapter adapter_contract;
@@ -54,6 +56,8 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	private TextView tourleader1;         // 班长1
 	private TextView tourleader2;         // 班长2
 	private TextView tourleader3;         // 班长3
+	private TextView tv_minearea;  // 矿区
+	private TextView tv_geologysituation; // 地层情况
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -283,6 +287,40 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		}
 	}
 	
+	private class FetchHoleDetail extends AsyncTask<String,Void, HoleDetail>{
+
+		@Override
+		protected HoleDetail doInBackground(String... urls) {
+
+			HoleDetail detail = RestClient.populateHoleDetail(urls[0]);
+			
+			return detail;
+		}
+		
+		@Override
+		protected void onPostExecute(HoleDetail result)
+		{
+			//Toast.makeText(DrillSettingsActivity.this, "result is:" +result.getMinearea(), Toast.LENGTH_LONG).show();
+			
+			editor = getPreference();
+			editor.remove("minearea");
+			editor.remove("geologysituation");
+			editor.putString("minearea", result.getMinearea());
+			editor.putString("geologysituation", result.getGeologysituation());
+			editor.commit();
+			
+			tv_minearea = (TextView) findViewById(R.id.settings_minearea);
+			tv_geologysituation = (TextView) findViewById(R.id.settings_geologysituation);
+			
+			tv_minearea.setText(result.getMinearea());
+			tv_geologysituation.setText(result.getGeologysituation());
+			
+		}
+		
+
+		
+	}
+	
 	private class FetchPeopleDataTask extends AsyncTask<String, Void, List<HoleDeployments>> {
 
 		@Override
@@ -370,6 +408,9 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			Log.d(DEBUG_TAG, "钻孔id："+data1.getId()+";钻孔holenumber："+data1.getName());
 			
 			new FetchPeopleDataTask().execute(server+peopleurl+data1.getId());  // 获取项目经理、机长、班长
+			
+			//Toast.makeText(DrillSettingsActivity.this, "url is:" +server+detailurl+data1.getId(), Toast.LENGTH_LONG).show();
+			new FetchHoleDetail().execute(server+detailurl+data1.getId());  // 获取钻孔的详细情况
 			
 			TextView tv = (TextView)view;  
             tv.setTextColor(getResources().getColor(R.color.black));    //设置颜色  
@@ -496,7 +537,6 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			break;
 		//case R.id.menu_tourreport_report:
 		//	break;
-			
 		}
 	}
 }

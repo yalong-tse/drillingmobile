@@ -49,7 +49,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="服务器ip"
+                        android:text="@string/title_setting_server_ip"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -82,7 +82,7 @@
                 android:drawablePadding="5dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:text="获取" />
+                android:text="@string/title_setting_request_btn" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:text="合同:"
+                    android:text="@string/title_setting_contract"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:text="钻孔:"
+                    android:text="@string/title_setting_hole"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
@@ -143,7 +143,68 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1" />
             </LinearLayout>
+            
+            <!-- 矿区 -->
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@string/title_setting_minearea"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/settings_minearea"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            
+            <!-- 地层情况 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@string/title_setting_geologysituation"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/settings_geologysituation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            
             <!-- 项目经理 -->
 
             <LinearLayout
@@ -162,7 +223,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="项目经理"
+                    android:text="@string/title_setting_projectmanager"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
@@ -192,7 +253,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="机长"
+                    android:text="@string/title_setting_administrator"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
@@ -222,7 +283,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="班长"
+                    android:text="@string/title_setting_tourleader"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
@@ -252,7 +313,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="班长"
+                    android:text="@string/title_setting_tourleader"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
@@ -282,7 +343,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="班长"
+                    android:text="@string/title_setting_tourleader"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 

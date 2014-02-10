@@ -95,5 +95,15 @@
     
     <string name="title_btn_syn">同步</string>
     
+    <!--  配置界面  -->
+    <string name="title_setting_minearea">矿区</string>
+    <string name="title_setting_geologysituation">地层情况</string>
+    <string name="title_setting_hole">钻孔</string>
+    <string name="title_setting_contract">合同</string>
+    <string name="title_setting_projectmanager">项目经理</string>
+    <string name="title_setting_administrator">机长</string>
+    <string name="title_setting_tourleader">班长</string>
+    <string name="title_setting_server_ip">服务器IP</string>
+    <string name="title_setting_request_btn">获取</string>
 
 </resources>
