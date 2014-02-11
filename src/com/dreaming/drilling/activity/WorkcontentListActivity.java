@@ -36,6 +36,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -70,6 +73,8 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 	protected SharedPreferences sharedPrefs;
 	private String holeid;
 	
+	private AlphaAnimation animation;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,6 +83,33 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		btn_sync = (Button) findViewById(R.id.btn_syn);
 //		btn_sync.setOnClickListener(cloudsync_listener);
 		btn_sync.setOnClickListener(cloudsync_listener);
+		
+		animation = new AlphaAnimation(0.5f,0.5f);
+		animation.setDuration(80000);
+		animation.setRepeatCount(1);
+		animation.setAnimationListener(new AnimationListener(){
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onAnimationStart(Animation animation) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			
+		});
+		
 	}
 	
 	private OnClickListener cloudsync_listener = new OnClickListener() {
@@ -88,7 +120,9 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 			if(networkInfo != null && networkInfo.isConnected()) {
 				// post data
-				
+				btn_sync.setAnimation(animation);
+				animation.startNow();
+				btn_sync.invalidate();
 				new PostDataTask().execute(serverip + sync_post_url);
 			} else {
 				// display error

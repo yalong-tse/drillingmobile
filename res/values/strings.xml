@@ -108,5 +108,9 @@
     <string name="title_setting_pump">泥浆泵</string>
     <string name="title_setting_server_ip">服务器IP</string>
     <string name="title_setting_request_btn">获取</string>
+    
+    
+    <!--  班报列表界面 -->
+    <string name="title_tourreport_image_flag">班报状态的标识图片</string>
 
 </resources>

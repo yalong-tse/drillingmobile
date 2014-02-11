@@ -71,6 +71,9 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	String[] tourtime = {"00:00","8:00","16:00","12:00"};
 	
+	private TextView tv_minearea;
+	private TextView tv_geologysituation;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -97,7 +100,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		// 孔号
 		TextView textview_holenumber = (TextView) findViewById(R.id.tourreport_holenumber_value);
-		String holenumber = this.sharedPrefs.getString("holenumber", "zk001");
+		String holenumber = this.sharedPrefs.getString("holenumber", "");
 		Log.d("holenumber", holenumber);
 		// 设置字体样式
 		SpannableString msp = new SpannableString(holenumber);
@@ -107,10 +110,20 @@ public class MainActivity extends Activity implements OnClickListener {
 				Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		textview_holenumber.setText(msp);
 
+		// 矿区
+		String minearea = this.sharedPrefs.getString("minearea", "");
+		tv_minearea = (TextView) findViewById(R.id.tourreport_minearea_value);
+		tv_minearea.setText(minearea);
+		
+		// 地层情况
+		String geologysituation = this.sharedPrefs.getString("geologysituation", "");
+		tv_geologysituation = (TextView) findViewById(R.id.tourreport_geologysituation_value);
+		tv_geologysituation.setText(geologysituation);
+		
 		// 钻机编号
 		TextView textview_rigmachine_number = (TextView) findViewById(R.id.tourreport_rigmachine_number_value);
 
-		String rignumber = this.sharedPrefs.getString("rignumber",
+		String rignumber = this.sharedPrefs.getString("rigmachine_devicenumber",
 				"rigmachine001");
 		// 设置字体样式
 		SpannableString msp_rig = new SpannableString(rignumber);
@@ -537,8 +550,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		// 系统所需的基本配置
 		localEditor.putBoolean("first2", false);
 
-		localEditor.putString("holenumber", "zk002");
-		localEditor.putString("rignumber", "rigmachine002");
+		//localEditor.putString("holenumber", "zk002");
+		//localEditor.putString("rignumber", "rigmachine002");
 
 		localEditor.commit();
 

@@ -17,47 +17,80 @@
         android:gravity="center"
         android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/tourreport_list_id_tag"
+        <LinearLayout
             android:layout_width="0dp"
+            android:layout_weight="7"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/tourreport_date_title"
-            android:textColor="@color/black"
-            android:textSize="15sp" >
-        </TextView>
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/tourreport_list_date"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tourreport_list_id_tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/tourreport_date_title"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tourreport_list_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:textColor="@color/red"
+                    android:textSize="15sp" >
+                </TextView>
+            </LinearLayout>
+
+            <!-- 班报时间 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/tourreport_time_title"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tourreport_list_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/red"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/tourreport_image_flag"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:textColor="@color/red"
-            android:textSize="15sp" >
-        </TextView>
-
-        <TextView
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/tourreport_time_title"
-            android:textColor="@color/black"
-            android:textSize="15sp" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/tourreport_list_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textColor="@color/red"
-            android:drawableRight="@drawable/refresh"
-            android:drawablePadding="5dp"
-            android:textSize="15sp" />
-        
+            android:contentDescription="@string/title_tourreport_image_flag"
+            android:src="@drawable/refresh" />
         
     </LinearLayout>
-
     <!-- 纯钻时长 和 辅助时长 -->
 
     <LinearLayout
