@@ -58,6 +58,9 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	private TextView tourleader3;         // 班长3
 	private TextView tv_minearea;  // 矿区
 	private TextView tv_geologysituation; // 地层情况
+	private TextView tv_rigmachine;  // 钻机
+	private TextView tv_drilltower;  // 钻塔
+	private TextView tv_pump;  // 泥浆泵
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -321,7 +324,7 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		
 	}
 	
-	private class FetchPeopleDataTask extends AsyncTask<String, Void, List<HoleDeployments>> {
+	private class FetchDeploymentDataTask extends AsyncTask<String, Void, List<HoleDeployments>> {
 
 		@Override
 		protected List<HoleDeployments> doInBackground(String... urls) {
@@ -339,6 +342,10 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			tourleader1 = (TextView) findViewById(R.id.settings_tourleader1); 
 			tourleader2 = (TextView) findViewById(R.id.settings_tourleader2); 
 			tourleader3 = (TextView) findViewById(R.id.settings_tourleader3); 
+			tv_rigmachine = (TextView) findViewById(R.id.settings_rigmachine);
+			tv_drilltower = (TextView) findViewById(R.id.settings_drilltower);
+			tv_pump = (TextView) findViewById(R.id.settings_pump);
+			
 			
 			projectmanager.setText(""); 
 			holeleader.setText(""); 
@@ -351,10 +358,13 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			editor.remove("tourleader1_id"); editor.remove("tourleader1_name");
 			editor.remove("tourleader2_id"); editor.remove("tourleader2_name");
 			editor.remove("tourleader3_id"); editor.remove("tourleader3_name");
+			editor.remove("rigmachine_id");editor.remove("rigmachine_devicenumber");
+			editor.remove("drilltower_id");editor.remove("drilltower_devicenumber");
+			editor.remove("pump_id");editor.remove("pump_devicenumber");
 			
 			int i = 1;
 			for(HoleDeployments h : result) {
-				PeopleType p = PeopleType.valueOf(h.getType().toUpperCase());
+				DeploymentType p = DeploymentType.valueOf(h.getType().toUpperCase());
 				switch(p) {
 				case PROJECTMANAGER:
 					projectmanager.setText(h.getName());
@@ -366,6 +376,25 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 					editor.putString("holeleader_id", h.getId());
 					editor.putString("holeleader_name", h.getName());
 					break;
+					
+				case RIGMACHINE:
+					tv_rigmachine.setText(h.getName());
+					editor.putString("rigmachine_id", h.getId());
+					editor.putString("rigmachine_devicenumber", h.getName());
+					break;
+					
+				case DRILLTOWER:
+					tv_drilltower.setText(h.getName());
+					editor.putString("drilltower_id", h.getId());
+					editor.putString("drilltower_devicenumber", h.getName());
+					break;
+					
+				case PUMP:
+					tv_pump.setText(h.getName());
+					editor.putString("pump_id", h.getId());
+					editor.putString("pump_devicenumber", h.getName());
+					break;
+					
 				case TOURLEADER:
 					if(i == 1) {
 						tourleader1.setText(h.getName());
@@ -407,7 +436,7 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 			SpinnerData data1 = adapter_hole.getItem(position);
 			Log.d(DEBUG_TAG, "钻孔id："+data1.getId()+";钻孔holenumber："+data1.getName());
 			
-			new FetchPeopleDataTask().execute(server+peopleurl+data1.getId());  // 获取项目经理、机长、班长
+			new FetchDeploymentDataTask().execute(server+peopleurl+data1.getId());  // 获取项目经理、机长、班长
 			
 			//Toast.makeText(DrillSettingsActivity.this, "url is:" +server+detailurl+data1.getId(), Toast.LENGTH_LONG).show();
 			new FetchHoleDetail().execute(server+detailurl+data1.getId());  // 获取钻孔的详细情况
@@ -542,8 +571,11 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 }
 
 
-enum PeopleType {
+enum DeploymentType {
 	PROJECTMANAGER,
 	HOLELEADER,
-	TOURLEADER
+	TOURLEADER,
+	RIGMACHINE,
+	DRILLTOWER,
+	PUMP
 }

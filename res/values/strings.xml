@@ -103,6 +103,9 @@
     <string name="title_setting_projectmanager">项目经理</string>
     <string name="title_setting_administrator">机长</string>
     <string name="title_setting_tourleader">班长</string>
+    <string name="title_setting_rigmachine">钻机</string>
+    <string name="title_setting_drilltower">钻塔</string>
+    <string name="title_setting_pump">泥浆泵</string>
     <string name="title_setting_server_ip">服务器IP</string>
     <string name="title_setting_request_btn">获取</string>
 

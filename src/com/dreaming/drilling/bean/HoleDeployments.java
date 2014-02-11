@@ -5,8 +5,8 @@ package com.dreaming.drilling.bean;
  */
 public class HoleDeployments {
 	private String id;         // 云端人员id
-	private String name;   // 云端人员姓名
-	private String type;    // 云端人员类型：项目经理/机长/班长
+	private String name;   // 云端人员姓名, 或者设备编号
+	private String type;    // 云端人员类型：项目经理/机长/班长, /钻机/钻塔/泥浆泵
 	
 	public HoleDeployments() {}
 
