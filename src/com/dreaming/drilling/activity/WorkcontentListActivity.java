@@ -38,6 +38,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -73,7 +74,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 	protected SharedPreferences sharedPrefs;
 	private String holeid;
 	
-	private AlphaAnimation animation;
+	private Animation animation;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +82,13 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		setContentView(R.layout.activity_workcontent_list);
 		initview();
 		btn_sync = (Button) findViewById(R.id.btn_syn);
+		animation = AnimationUtils.loadAnimation(this, R.drawable.round_loading);
+		
+		//btn_sync.startAnimation(animation);
 //		btn_sync.setOnClickListener(cloudsync_listener);
 		btn_sync.setOnClickListener(cloudsync_listener);
-		
-		animation = new AlphaAnimation(0.5f,0.5f);
+
+		/*animation = new AlphaAnimation(0.5f,0.5f);
 		animation.setDuration(80000);
 		animation.setRepeatCount(1);
 		animation.setAnimationListener(new AnimationListener(){
@@ -108,7 +112,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 			}
 			
 			
-		});
+		});*/
 		
 	}
 	
@@ -120,9 +124,11 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 			if(networkInfo != null && networkInfo.isConnected()) {
 				// post data
-				btn_sync.setAnimation(animation);
-				animation.startNow();
-				btn_sync.invalidate();
+				//btn_sync.setAnimation(animation);
+				//animation.startNow();
+				//btn_sync.invalidate();
+				animation.start();
+				btn_sync.startAnimation(animation);
 				new PostDataTask().execute(serverip + sync_post_url);
 			} else {
 				// display error
@@ -255,6 +261,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		            httppost.setEntity(entity);
 					HttpResponse response = client.execute(httppost);
 					
+					animation.cancel();
 				}
 				
 			} catch (JSONException e) {

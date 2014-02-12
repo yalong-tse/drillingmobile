@@ -30,9 +30,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawableLeft="@drawable/cloud_sync"
-                android:drawablePadding="5dp"
-                android:text="@string/title_btn_syn" />
+                android:background="@drawable/refresh_normal"
+                android:drawablePadding="5dp" />
             
     </RelativeLayout>
 
