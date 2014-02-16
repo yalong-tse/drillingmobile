@@ -249,6 +249,8 @@ public class MainActivity extends Activity implements OnClickListener {
 				drawable_left.setBounds(0, 0, drawable_left.getMinimumWidth(), drawable_left.getMinimumHeight());//必须设置图片大小，否则不显示
 				tv_del.setCompoundDrawables(drawable_left, null, null, null);
 				tv_del.setTextColor(Color.RED);
+				//tv_del.set
+				
 				tv_del.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View view) {
@@ -262,6 +264,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				});
 
 				tr1.addView(tv_del);
+				
 
 				// 编辑按钮的操作
 				TextView tv_modify = new TextView(this);
@@ -286,7 +289,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				});
 				
 				tr1.addView(tv_modify);
-				tl.addView(tr1, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
+				tl.addView(tr1, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 150));
 				
 				
 				// 第二行
@@ -299,73 +302,78 @@ public class MainActivity extends Activity implements OnClickListener {
 						+ wc.getEndtime());
 				tv_time.setTextSize(15);
 				tr2.addView(tv_time);
-
-				TextView tv_content = new TextView(this);
-				tv_content.setTextColor(Color.BLACK);
-				tv_content.setTextSize(15);
-				tv_content.setText("内容:" + wc.getType());
-				//tv_content.
-				tr2.addView(tv_content);
 				tl.addView(tr2, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
-				
-				
 
+				
 				// 第三行
 				TableRow tr3 = new TableRow(this);
+				TextView tv_content = new TextView(this);
+				tv_content.setPadding(15, 0, 0, 10);
+				tv_content.setTextColor(Color.BLACK);
+				tv_content.setTextSize(15);
+				tv_content.setText("工作内容:" + wc.getType());
+				//tv_content.
+				tr3.addView(tv_content);
+				tl.addView(tr3, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
+				
+
+				// 第四行
+				TableRow tr4 = new TableRow(this);
 				if (wc.getUpleft() != 0) {
 					TextView tv_upleft = new TextView(this);
 					tv_upleft.setText("上余:" + wc.getUpleft());
 					tv_upleft.setPadding(15, 0, 0, 10);
 					tv_upleft.setTextColor(Color.BLACK);
-					tr3.addView(tv_upleft);
+					tr4.addView(tv_upleft);
 				}
 
 				if (wc.getDrillinglength() != 0) {
 					TextView tv_drillinglength = new TextView(this);
 					tv_drillinglength.setTextColor(Color.BLACK);
 					tv_drillinglength.setText("进尺:" + wc.getDrillinglength());
-					tr3.addView(tv_drillinglength);
+					tr4.addView(tv_drillinglength);
 				}
+				
 
 				if (wc.getHoledeep() != 0) {
 					TextView tv_holedeep = new TextView(this);
 					tv_holedeep.setTextColor(Color.BLACK);
 					tv_holedeep.setText("孔深:" + wc.getHoledeep());
-					tr3.addView(tv_holedeep);
+					tr4.addView(tv_holedeep);
 				}
 
 				if (wc.getCorelength() != 0) {
 					TextView tv_core = new TextView(this);
 					tv_core.setTextColor(Color.BLACK);
 					tv_core.setText("岩心长度:" + wc.getCorelength());
-					tr3.addView(tv_core);
+					tr4.addView(tv_core);
 				}
-				tl.addView(tr3, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
+				tl.addView(tr4, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
 
 				
-				// 第四行
-				TableRow tr4 = new TableRow(this);
+				// 第五行
+				TableRow tr5 = new TableRow(this);
 				
 				if (wc.getPressure() != 0) {
 					TextView tv_pressure = new TextView(this);
 					tv_pressure.setText("钻压:" + wc.getPressure());
 					tv_pressure.setPadding(15, 0, 0, 10);
-					tr4.addView(tv_pressure);
+					tr5.addView(tv_pressure);
 				}
 
 				if (wc.getRotatespeed() != 0) {
 					TextView tv_speed = new TextView(this);
 					tv_speed.setText("转速:" + wc.getRotatespeed());
-					tr4.addView(tv_speed);
+					tr5.addView(tv_speed);
 				}
 
 				if (wc.getPump() != 0) {
 					TextView tv_pump = new TextView(this);
 					tv_pump.setText("泵量:" + wc.getPump());
-					tr4.addView(tv_pump);
+					tr5.addView(tv_pump);
 				}
-				tr4.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,50));
-				tl.addView(tr4);
+				tr5.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,50));
+				tl.addView(tr5);
 				linelayout.addView(tl);
 			}
 

@@ -68,6 +68,7 @@ public class EntityTourreport {
 	private String instrumenttakeover;
 	private String centralizer;
 	private String antideviation;
+	private Integer syncflag;
 
 	public String getId() {
 		return id;
@@ -276,5 +277,15 @@ public class EntityTourreport {
 	public void setHoleid(String holeid) {
 		this.holeid = holeid;
 	}
+
+	public Integer getSyncflag() {
+		return syncflag;
+	}
+
+	public void setSyncflag(Integer syncflag) {
+		this.syncflag = syncflag;
+	}
+	
+	
 	
 }

@@ -21,7 +21,7 @@ public class TourreportDBHelper extends DBOperation {
 			"currentdeep","tourdrillingtime","tourauxiliarytime",
 			"othertime","holeaccidenttime","deviceaccidenttime","totaltime",
 			"administrator","recorder","projectmanager","tourleader","status",
-			"takeoverremark","instrumenttakeover","centralizer","antideviation"};
+			"takeoverremark","instrumenttakeover","centralizer","antideviation","syncflag"};
 	
 	
 	public TourreportDBHelper(Context context) {
@@ -39,40 +39,11 @@ public class TourreportDBHelper extends DBOperation {
 		
 		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, this.columns,null, null, null, null, "tourreportid desc");
 		
-		Log.d("test", "111111111111111");
 		while (cursor.moveToNext())
 		{
-			EntityTourreport entity = new EntityTourreport();
-			
-			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
-			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
-			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
-			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
-			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
-			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
-			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
-			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
-			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
-			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
-			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
-			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
-			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
-			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
-			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
-			
-			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
-			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
-			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
-			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
-			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
-			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
-			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
-			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
-			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
-			
+			EntityTourreport entity = CursorToEntity(cursor);
 			result.add(entity);
 		}
-		Log.d("test", "22222222222222");
 		cursor.close();
 		return result;
 	}
@@ -94,34 +65,7 @@ public class TourreportDBHelper extends DBOperation {
 		
 		while (cursor.moveToNext())
 		{
-			EntityTourreport entity = new EntityTourreport();
-			
-			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
-			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
-			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
-			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
-			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
-			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
-			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
-			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
-			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
-			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
-			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
-			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
-			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
-			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
-			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
-			
-			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
-			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
-			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
-			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
-			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
-			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
-			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
-			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
-			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
-			
+			EntityTourreport entity = CursorToEntity(cursor);
 			result.add(entity);
 		}
 		//Log.d("test", "22222222222222");
@@ -144,33 +88,7 @@ public class TourreportDBHelper extends DBOperation {
 		Log.d("test", "111111111111111");
 		while (cursor.moveToNext())
 		{
-			EntityTourreport entity = new EntityTourreport();
-			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
-			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
-			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
-			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
-			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
-			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
-			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
-			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
-			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
-			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
-			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
-			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
-			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
-			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
-			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
-			
-			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
-			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
-			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
-			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
-			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
-			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
-			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
-			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
-			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
-			
+			EntityTourreport entity = CursorToEntity(cursor);
 			result.add(entity);
 		}
 		Log.d("test", "22222222222222");
@@ -270,34 +188,7 @@ public class TourreportDBHelper extends DBOperation {
 		
 		while (cursor.moveToNext())
 		{
-			EntityTourreport entity = new EntityTourreport();
-			
-			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
-			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
-			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
-			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
-			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
-			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
-			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
-			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
-			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
-			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
-			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
-			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
-			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
-			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
-			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
-			
-			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
-			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
-			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
-			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
-			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
-			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
-			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
-			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
-			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
-			
+			EntityTourreport entity = CursorToEntity(cursor);
 			result.add(entity);
 		}
 		
@@ -328,35 +219,7 @@ public class TourreportDBHelper extends DBOperation {
 		
 		while (cursor.moveToNext())
 		{
-			EntityTourreport entity = new EntityTourreport();
-			
-			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
-			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
-			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
-			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
-			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
-			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
-			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
-			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
-			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
-			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
-			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
-			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
-			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
-			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
-			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
-			
-			
-			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
-			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
-			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
-			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
-			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
-			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
-			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
-			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
-			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
-			result = entity;
+			result = CursorToEntity(cursor);
 		}
 		
 		cursor.close();
@@ -365,6 +228,51 @@ public class TourreportDBHelper extends DBOperation {
 		
 	}
 
+	/**
+	 * 处理 从 Cursor 到  Entity 的转换问题
+	 * */
+	private EntityTourreport CursorToEntity(Cursor cursor)
+	{
+		
+		EntityTourreport entity = new EntityTourreport();
+		
+		entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
+		entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
+		entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
+		entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
+		entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
+		entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
+		entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
+		entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
+		entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
+		entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
+		entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
+		entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
+		entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
+		entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
+		entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
+		
+		
+		entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
+		entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
+		entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
+		entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
+		entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
+		entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
+		entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
+		entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
+		entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
+		if(cursor.getString(cursor.getColumnIndex("syncflag")).equalsIgnoreCase("1"))
+		{
+			entity.setSyncflag(1);
+		}
+		else
+		{
+			entity.setSyncflag(0);
+		}
+		
+		return entity;
+	}
 	
 	/**
 	 * 
@@ -387,6 +295,21 @@ public class TourreportDBHelper extends DBOperation {
 		return db.rawQuery(sb.toString(), args);
 	}
 
+	/**
+	 * 更新同步标识的方法
+	 * */
+	public int updateSyncflag(String tourreportid,int flag)
+	{
+		SQLiteDatabase db = this.dbHelper.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("syncflag", flag);
+		
+		String[] args = {tourreportid};
+		
+		return db.update(DBHelper.TOURREPORT_TABLE_NAME, cv, "tourreportid=?", args);
+		
+	}
+	
 	
 	/**
 	 * 另外一种形式的分页

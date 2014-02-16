@@ -225,7 +225,8 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 			
 			try {
 				
-				List<EntityTourreport> list = new TourreportDBHelper(WorkcontentListActivity.this).getAllTourreportsNoSync();
+				TourreportDBHelper tourreportDB = new TourreportDBHelper(WorkcontentListActivity.this);
+				List<EntityTourreport> list = tourreportDB.getAllTourreportsNoSync();
 				List<Workcontent> list_workcontent;
 				JSONObject json, workcontent; 
 				JSONArray workcontents = new JSONArray();
@@ -289,6 +290,10 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		            httppost.setEntity(entity);
 					HttpResponse response = client.execute(httppost);
 					
+					// 更新同步标识
+					Log.d("test ----------", "the tour id is:" + tour.getId());
+					tourreportDB.updateSyncflag(tour.getId(), 1);
+					
 					animation.cancel();
 				}
 				
@@ -337,6 +342,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 			map.put("tourshift", entity.getTourshift());
 			map.put("tourcore", entity.getTourcore());
 			map.put("currentdeep", entity.getCurrentdeep());
+			map.put("syncflag", entity.getSyncflag());
 			result.add(map);
 		}
 		
@@ -501,7 +507,14 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
-		
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				//addNewItems();
+				adapter.notifyDataSetChanged();
+				onLoad();
+			}
+		}, 2000);
 	}
 
 

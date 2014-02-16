@@ -19,10 +19,10 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="7"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
+            android:layout_weight="7"
             android:gravity="center"
             android:orientation="vertical" >
 
@@ -82,14 +82,20 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/tourreport_image_flag"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="3"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/title_tourreport_image_flag"
-            android:src="@drawable/refresh" />
-        
+            android:layout_gravity="center_vertical"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/tourreport_image_flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/title_tourreport_image_flag" />
+        </LinearLayout>
     </LinearLayout>
     <!-- 纯钻时长 和 辅助时长 -->
 

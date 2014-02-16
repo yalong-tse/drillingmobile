@@ -7,11 +7,13 @@ import com.dreaming.drilling.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -44,6 +46,7 @@ public class WorkcontentListviewAdapter extends BaseAdapter {
 		TextView tv_holeinnertime ;
 		TextView tv_devicetime ;
 		TextView tv_totaltime ;
+		ImageView iv_syncflag;
 	}
 	
 	
@@ -101,6 +104,7 @@ public class WorkcontentListviewAdapter extends BaseAdapter {
 			itemviews.tv_holeinnertime = (TextView) convertview.findViewById(R.id.tourreport_list_holeinnertime);
 			itemviews.tv_devicetime = (TextView) convertview.findViewById(R.id.tourreport_list_devicerepairtime);
 			itemviews.tv_totaltime = (TextView) convertview.findViewById(R.id.tourreport_list_alltime);
+			itemviews.iv_syncflag = (ImageView) convertview.findViewById(R.id.tourreport_image_flag);
 			convertview.setTag(itemviews);
 			
 		}
@@ -136,6 +140,19 @@ public class WorkcontentListviewAdapter extends BaseAdapter {
 		itemviews.tv_holeinnertime.setText(listItems.get(position).get("holetime").toString());
 		itemviews.tv_devicetime.setText(listItems.get(position).get("devicetime").toString());
 		itemviews.tv_totaltime.setText(listItems.get(position).get("totaltime").toString());
+		
+		if(listItems.get(position).get("syncflag").toString().equalsIgnoreCase("0"))
+		{
+			Drawable drawable_refresh = context.getResources().getDrawable(R.drawable.refresh);
+			drawable_refresh.setBounds(0, 0, drawable_refresh.getMinimumWidth(), drawable_refresh.getMinimumHeight());//必须设置图片大小，否则不显示
+			itemviews.iv_syncflag.setBackgroundDrawable(drawable_refresh);
+		}
+		else if(listItems.get(position).get("syncflag").toString().equalsIgnoreCase("1"))
+		{
+			Drawable drawable_ok = context.getResources().getDrawable(R.drawable.ok2);
+			drawable_ok.setBounds(0, 0, drawable_ok.getMinimumWidth(), drawable_ok.getMinimumHeight());//必须设置图片大小，否则不显示
+			itemviews.iv_syncflag.setBackgroundDrawable(drawable_ok);
+		}
 		
 		return convertview;
 	}
