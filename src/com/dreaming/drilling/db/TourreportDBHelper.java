@@ -77,6 +77,59 @@ public class TourreportDBHelper extends DBOperation {
 		return result;
 	}
 	
+	
+	/**
+	 * 分页获取班报，每页获取5条即可。
+	 * */
+	public List<EntityTourreport> getPagedTourreports(long currentpage, long pagesize)
+	{
+		SQLiteDatabase db= this.dbHelper.getReadableDatabase();
+		List<EntityTourreport> result = new ArrayList<EntityTourreport>();
+		
+		
+		String sql = "select * from tourreport order by tourreportid desc";
+		Cursor cursor = getSQLListPaged(sql, null, currentpage, pagesize);
+		
+		//Cursor cursor = getCursorListPaged(DBHelper.TOURREPORT_TABLE_NAME, this.columns, null, null, "tourreportid desc", currentpage, pagesize);
+		
+		while (cursor.moveToNext())
+		{
+			EntityTourreport entity = new EntityTourreport();
+			
+			entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
+			entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
+			entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
+			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
+			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
+			entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
+			entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
+			entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
+			entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
+			entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
+			entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
+			entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));
+			entity.setOthertime(cursor.getString(cursor.getColumnIndex("othertime")));
+			entity.setDeviceaccidenttime(cursor.getString(cursor.getColumnIndex("deviceaccidenttime")));
+			entity.setTotaltime(cursor.getString(cursor.getColumnIndex("totaltime")));
+			
+			entity.setAdministrator(cursor.getString(cursor.getColumnIndex("administrator")));
+			entity.setRecorder(cursor.getString(cursor.getColumnIndex("recorder")));
+			entity.setProjectmanager(cursor.getString(cursor.getColumnIndex("projectmanager")));
+			entity.setTourleader(cursor.getString(cursor.getColumnIndex("tourleader")));
+			entity.setStatus(cursor.getInt(cursor.getColumnIndex("status")));
+			entity.setTakeoverremark(cursor.getString(cursor.getColumnIndex("takeoverremark")));
+			entity.setInstrumenttakeover(cursor.getString(cursor.getColumnIndex("instrumenttakeover")));
+			entity.setCentralizer(cursor.getString(cursor.getColumnIndex("centralizer")));
+			entity.setAntideviation(cursor.getString(cursor.getColumnIndex("antideviation")));
+			
+			result.add(entity);
+		}
+		//Log.d("test", "22222222222222");
+		cursor.close();
+		return result;
+	}
+	
+	
 	/**
 	 * 获取所有的未同步的班报
 	 * */
@@ -311,6 +364,52 @@ public class TourreportDBHelper extends DBOperation {
 		return result;
 		
 	}
+
+	
+	/**
+	 * 
+	 * 分页的基本方法
+	 * 基于SQL语句的分页
+	 * */
+	public Cursor getSQLListPaged(String sql, String[] args, long currentpage,long pagesize) 
+	{
+		long first_result = (currentpage -1)* pagesize;
+		long max_result = currentpage * pagesize;
+		
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		StringBuilder sb = new StringBuilder(120);
+		sb.append(sql);
+		sb.append(" limit ");
+		sb.append(first_result);
+		sb.append(",");
+		sb.append(max_result);
+		
+		return db.rawQuery(sb.toString(), args);
+	}
+
+	
+	/**
+	 * 另外一种形式的分页
+	 * */
+/*	public Cursor getCursorListPaged(String tablename, String[] columns,String sql,String[] args, String orderby,long currentpage,long pagesize) 
+	{
+		
+		long first_result = (currentpage -1)* pagesize;
+		long max_result = currentpage * pagesize;
+		
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		StringBuilder sb = new StringBuilder(120);
+		if(sql !=null)
+			sb.append(sql);
+		else
+			sb.append("1=1");
+		sb.append(" limit ");
+		sb.append(first_result);
+		sb.append(",");
+		sb.append(max_result);
+		return  db.query(tablename, columns,sb.toString(),args,
+				null, null,orderby);
+	}*/
 	
 	
 	

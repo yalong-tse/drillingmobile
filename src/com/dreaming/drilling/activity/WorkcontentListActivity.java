@@ -30,7 +30,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,12 +42,16 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,37 +61,59 @@ import com.dreaming.drilling.bean.EntityTourreport;
 import com.dreaming.drilling.bean.Workcontent;
 import com.dreaming.drilling.db.TourreportDBHelper;
 import com.dreaming.drilling.db.WorkcontentDBHelper;
+import com.dreaming.drilling.listview.XListView;
+import com.dreaming.drilling.listview.XListView.IXListViewListener;
 import com.dreaming.drilling.utils.GlobalConstants;
 
 
 
 /**
- * 班报列表的控制类
+ * 班报列表的控制类  ， 
+ * 
+ * 修改为 分页展示班报的功能呢
+ * 
  * */
 
-public class WorkcontentListActivity extends Activity implements OnClickListener{
+public class WorkcontentListActivity extends Activity implements OnClickListener,IXListViewListener {
 
 	private static String DEBUG_TAG = "WorkcontentListActivity";
 	private String title_name = "班报列表";
-	private ListView listview = null;
+	private XListView listview = null;
 	private Button btn_sync;
 	private String serverip;
 	private String sync_post_url = "/mobile/savetourreport.json";
 	protected SharedPreferences sharedPrefs;
 	private String holeid;
+	private WorkcontentListviewAdapter adapter;
 	
+	//private ArrayList<String> items = new ArrayList<String>();
+	private List<Map<String, Object>> items;
+	
+	private long currentpage = 1;
+	private long pagesize = 5;
+	
+	// 动画特性
 	private Animation animation;
+	
+	private Handler mHandler;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_workcontent_list);
 		initview();
+		initAnimation();
+		
+	}
+	
+
+	private void initAnimation()
+	{
 		btn_sync = (Button) findViewById(R.id.btn_syn);
 		animation = AnimationUtils.loadAnimation(this, R.drawable.round_loading);
 		
 		//btn_sync.startAnimation(animation);
-//		btn_sync.setOnClickListener(cloudsync_listener);
+		//btn_sync.setOnClickListener(cloudsync_listener);
 		btn_sync.setOnClickListener(cloudsync_listener);
 
 		/*animation = new AlphaAnimation(0.5f,0.5f);
@@ -287,11 +315,11 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 	/**
 	 * 
 	 * */
-	private List<Map<String,Object>> getListItems()
+	private List<Map<String,Object>> getListItems(long currentpage, long pagesize)
 	{
 		List<Map<String,Object>> result = new ArrayList<Map<String,Object>>();
 		TourreportDBHelper tourreportDB = new TourreportDBHelper(this);
-		List<EntityTourreport> list = tourreportDB.getAllTourreports();
+		List<EntityTourreport> list = tourreportDB.getPagedTourreports(currentpage, pagesize);
 		
 		for(EntityTourreport entity:list)
 		{
@@ -325,9 +353,25 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		textView_title.setText(title_name);
 		
 		// 填充 listview 的内容
-		listview = (ListView) findViewById(R.id.workcontent_list);
-		WorkcontentListviewAdapter adapter = new WorkcontentListviewAdapter(this,getListItems());
+		listview = (XListView) findViewById(R.id.workcontent_list);
+		listview.setPullLoadEnable(true);
+		listview.setXListViewListener(this);
+		
+		items = getListItems(currentpage,pagesize);
+		
+		if (items.size() < 20) 
+		{
+			listview.setPullLoadEnable(false);
+		} 
+		else 
+		{
+			listview.setPullLoadEnable(true);
+		}
+		
+		this.currentpage++;
+		adapter = new WorkcontentListviewAdapter(this,items);
 		listview.setAdapter(adapter);
+		
 		
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -365,6 +409,11 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		this.sharedPrefs = this.getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
 		serverip = this.sharedPrefs.getString("serverip","http://192.168.1.115:5000");
 		holeid = this.sharedPrefs.getString("holeid", "3");
+		
+		mHandler = new Handler();
+		
+		
+		
 	}
 
 	
@@ -413,5 +462,67 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		}
 		
 	}
+	
+	/**
+	 * 加载新的数据
+	 * */
+	private void addNewItems() {
+		List<Map<String, Object>> newitems = getListItems(currentpage,pagesize);
+		if(newitems!=null)
+		{
+			items.addAll(newitems);
+			currentpage ++;
+			if(newitems.size()<5)
+			{
+				listview.setPullLoadEnable(false);
+			}
+			else
+			{
+				listview.setPullLoadEnable(true);
+			}
+			
+		}
+		else
+		{
+			listview.setPullLoadEnable(false);
+		}
+	}
+	
+	private void onLoad() {
+		listview.stopRefresh();
+		listview.stopLoadMore();
+		listview.setRefreshTime("刚刚");
+	}
+
+
+	/**
+	 * 上拉刷新 
+	 * */
+	@Override
+	public void onRefresh() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	/**
+	 *  下拉加载更多, 
+	 *  先从数据库中获取几条记录，
+	 *  然后从网络上来获取
+	 * */
+	@Override
+	public void onLoadMore() {
+		// TODO Auto-generated method stub
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				addNewItems();
+				adapter.notifyDataSetChanged();
+				onLoad();
+			}
+		}, 2000);
+	}
+
+	
 	
 }
