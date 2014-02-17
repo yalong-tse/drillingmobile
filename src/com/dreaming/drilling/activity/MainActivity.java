@@ -209,6 +209,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		findViewById(R.id.menu_tourreport_list).setOnClickListener(this);
 		//findViewById(R.id.menu_tourreport_report).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_setting).setOnClickListener(this);
+		findViewById(R.id.tourreport_btn_reset).setOnClickListener(this);
 		
 
 	}
@@ -744,8 +745,33 @@ public class MainActivity extends Activity implements OnClickListener {
 	 * */
 	private void reset()
 	{
-		GlobalConstants.list_workcontents.clear();
+		
 		GlobalConstants.takeover = new Takeovercontent();
+		clearWorkconent();
+		initView();
+		buildingWorkcontent();
+		building_takeover_content();
+		computelength();
+		try
+		{
+			computetime();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 * 清除已有的
+	 * 
+	 * */
+	private void clearWorkconent()
+	{
+		GlobalConstants.list_workcontents.clear();
+		LinearLayout linelayout = (LinearLayout) findViewById(R.id.main_workcontent_container);
+		linelayout.removeAllViews();
 	}
 	
 	

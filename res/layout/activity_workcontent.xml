@@ -222,8 +222,8 @@
                     android:layout_marginRight="10dp"
                     android:layout_gravity="center_vertical"
                     android:hint="@string/workcontent_corenumber_hint"
-                    android:inputType="numberDecimal"
                     android:textColor="@color/red"
+                    android:inputType="text"
                     android:textSize="18sp" />
             </LinearLayout>
             
