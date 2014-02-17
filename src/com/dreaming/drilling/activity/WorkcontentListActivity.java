@@ -364,17 +364,8 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		listview.setXListViewListener(this);
 		
 		items = getListItems(currentpage,pagesize);
-		
-		if (items.size() < 20) 
-		{
-			listview.setPullLoadEnable(false);
-		} 
-		else 
-		{
-			listview.setPullLoadEnable(true);
-		}
-		
 		this.currentpage++;
+		
 		adapter = new WorkcontentListviewAdapter(this,items);
 		listview.setAdapter(adapter);
 		
@@ -474,23 +465,24 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 	 * */
 	private void addNewItems() {
 		List<Map<String, Object>> newitems = getListItems(currentpage,pagesize);
+		//Toast.makeText(this, "the currentpage is :" + currentpage +",the pagesize is:" + pagesize, Toast.LENGTH_LONG).show();
 		if(newitems!=null)
 		{
 			items.addAll(newitems);
 			currentpage ++;
-			if(newitems.size()<5)
-			{
-				listview.setPullLoadEnable(false);
-			}
-			else
-			{
-				listview.setPullLoadEnable(true);
-			}
+//			if(newitems.size()<5)
+//			{
+//				listview.setPullLoadEnable(false);
+//			}
+//			else
+//			{
+//				listview.setPullLoadEnable(true);
+//			}
 			
 		}
 		else
 		{
-			listview.setPullLoadEnable(false);
+			//listview.setPullLoadEnable(false);
 		}
 	}
 	
@@ -526,6 +518,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 	@Override
 	public void onLoadMore() {
 		// TODO Auto-generated method stub
+		//Toast.makeText(this, "on Load more function", Toast.LENGTH_LONG).show();
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {

@@ -701,6 +701,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 			
 			Toast.makeText(this, "保存班报成功", Toast.LENGTH_LONG).show();
+			reset();
 			open_tourreport_list_window();
 		}
 		
