@@ -1,6 +1,7 @@
 package com.dreaming.drilling.utils;
 
 import com.dreaming.drilling.bean.Workcontent;
+import com.dreaming.drilling.db.TourreportDBHelper;
 
 /**
  * 
@@ -15,9 +16,11 @@ public class BizUtils {
 	public static float getLastholedeep() {
 		float result = 0;
 		for (Workcontent c : GlobalConstants.list_workcontents) {
-			if (c.getHoledeep() != 0)
-				result = c.getHoledeep();
+			if (Float.parseFloat(c.getHoledeep()) != 0)
+				result = Float.parseFloat(c.getHoledeep());
 		}
+
+		
 		return result;
 	}
 
@@ -27,8 +30,8 @@ public class BizUtils {
 	public static float getMaxholedeep() {
 		float result = 0;
 		for (Workcontent c : GlobalConstants.list_workcontents) {
-			if (c.getHoledeep() > result)
-				result = c.getHoledeep();
+			if (Float.parseFloat(c.getHoledeep()) > result)
+				result = Float.parseFloat(c.getHoledeep());
 		}
 		return result;
 	}

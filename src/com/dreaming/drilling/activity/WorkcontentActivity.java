@@ -9,6 +9,7 @@ import com.dreaming.drilling.R;
 import com.dreaming.drilling.R.layout;
 import com.dreaming.drilling.R.menu;
 import com.dreaming.drilling.bean.Workcontent;
+import com.dreaming.drilling.db.TourreportDBHelper;
 import com.dreaming.drilling.utils.BizUtils;
 import com.dreaming.drilling.utils.GlobalConstants;
 
@@ -226,7 +227,15 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 			
 		});
 		
+		// 处理最新的孔深
 		float holedeep = BizUtils.getLastholedeep();
+		if(holedeep ==0 )
+		{
+			TourreportDBHelper db_tourreportHelper = new TourreportDBHelper(this);
+			holedeep = db_tourreportHelper.getLastHoleDeep();
+		}
+
+		
 		EditText et_deep = ((EditText)findViewById(R.id.sub_workcontent_holedeep));
 		if(et_deep!=null) et_deep.setText(holedeep+"");
 		findViewById(R.id.workcontent_btn_save).setOnClickListener(this);
@@ -345,45 +354,45 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 		
 		String upleft = ((TextView) findViewById(R.id.sub_workcontent_upleft)).getText().toString();
 		if(upleft==null || upleft.equalsIgnoreCase(""))
-			workcontent.setUpleft(0);
+			workcontent.setUpleft("0");
 		else
-			workcontent.setUpleft(Float.parseFloat(upleft));
+			workcontent.setUpleft(upleft);
 		
 		String drillinglength = ((TextView) findViewById(R.id.sub_workcontent_drillinglength)).getText().toString();
 		if(drillinglength==null || drillinglength.equalsIgnoreCase(""))
-			workcontent.setDrillinglength(0);
+			workcontent.setDrillinglength("0");
 		else
-			workcontent.setDrillinglength(Float.parseFloat(drillinglength));
+			workcontent.setDrillinglength(drillinglength);
 		
 		String holedeep = ((TextView) findViewById(R.id.sub_workcontent_holedeep)).getText().toString();
 		if(holedeep==null || holedeep.equalsIgnoreCase(""))
-			workcontent.setHoledeep(0);
+			workcontent.setHoledeep("0");
 		else
-			workcontent.setHoledeep(Float.parseFloat(holedeep));
+			workcontent.setHoledeep(holedeep);
 		
 		String corelength = ((TextView) findViewById(R.id.sub_workcontent_core_length)).getText().toString();
 		if(corelength==null || corelength.equalsIgnoreCase(""))
-			workcontent.setCorelength(0);
+			workcontent.setCorelength("0");
 		else
-			workcontent.setCorelength(Float.parseFloat(corelength));
+			workcontent.setCorelength(corelength);
 				
 		String pressure = ((TextView) findViewById(R.id.sub_workcontent_pressure)).getText().toString();
 		if(pressure==null || pressure.equalsIgnoreCase(""))
-			workcontent.setPressure(0);
+			workcontent.setPressure("0");
 		else
-			workcontent.setPressure(Float.parseFloat(pressure));
+			workcontent.setPressure(pressure);
 		
 		String rotatespeed = ((TextView) findViewById(R.id.sub_workcontent_rotatespeed)).getText().toString();
 		if(rotatespeed==null || rotatespeed.equalsIgnoreCase(""))
-			workcontent.setRotatespeed(0);
+			workcontent.setRotatespeed("0");
 		else
-			workcontent.setRotatespeed(Float.parseFloat(rotatespeed));
+			workcontent.setRotatespeed(rotatespeed);
 		
 		String pump = ((TextView) findViewById(R.id.sub_workcontent_pump)).getText().toString();
 		if(pump==null || pump.equalsIgnoreCase(""))
-			workcontent.setPump(0);
+			workcontent.setPump("0");
 		else
-			workcontent.setPump(Float.parseFloat(pump));
+			workcontent.setPump(pump);
 		
 	}
 	

@@ -73,18 +73,18 @@ public class WorkcontentDBHelper extends DBOperation{
 			entity.setType(cursor.getString(cursor.getColumnIndex("content")));
 			entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
 			entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
-			entity.setUpleft(cursor.getFloat(cursor.getColumnIndex("upmore")));
+			entity.setUpleft(cursor.getString(cursor.getColumnIndex("upmore")));
 			entity.setCorename(cursor.getString(cursor.getColumnIndex("corename")));
 			entity.setCoregrade(cursor.getString(cursor.getColumnIndex("coregrade")));
 			entity.setCorenumber(cursor.getString(cursor.getColumnIndex("corenumber")));
-			entity.setCorelength(cursor.getFloat(cursor.getColumnIndex("corelength")));
-			entity.setCoreleftlength(cursor.getFloat(cursor.getColumnIndex("coreleftlength")));
-			entity.setDrillinglength(cursor.getFloat(cursor.getColumnIndex("drillinglength")));
+			entity.setCorelength(cursor.getString(cursor.getColumnIndex("corelength")));
+			entity.setCoreleftlength(cursor.getString(cursor.getColumnIndex("coreleftlength")));
+			entity.setDrillinglength(cursor.getString(cursor.getColumnIndex("drillinglength")));
 			entity.setDrillbit(cursor.getString(cursor.getColumnIndex("drillbit")));
-			entity.setRotatespeed(cursor.getFloat(cursor.getColumnIndex("rotatespeed")));
-			entity.setPump(cursor.getFloat(cursor.getColumnIndex("pumpquantity")));
-			entity.setPressure(cursor.getFloat(cursor.getColumnIndex("pumppressure")));
-			entity.setHoledeep(cursor.getFloat(cursor.getColumnIndex("holedeep")));
+			entity.setRotatespeed(cursor.getString(cursor.getColumnIndex("rotatespeed")));
+			entity.setPump(cursor.getString(cursor.getColumnIndex("pumpquantity")));
+			entity.setPressure(cursor.getString(cursor.getColumnIndex("pumppressure")));
+			entity.setHoledeep(cursor.getString(cursor.getColumnIndex("holedeep")));
 			result.add(entity);
 		}
 		

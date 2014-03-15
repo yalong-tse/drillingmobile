@@ -13,19 +13,19 @@ public class Workcontent implements Parcelable {
 	private String starttime;
 	private String endtime;
 	private String type; 
-	private float drillinglength;
+	private String drillinglength;
 	private String drillbit;
-	private float upleft;
+	private String upleft;
 	private String corename;
 	private String coregrade;
 	private String corenumber;
 	
-	private float corelength;
-	private float coreleftlength;
-	private float holedeep;
-	private float pressure;
-	private float rotatespeed;
-	private float pump;
+	private String corelength;
+	private String coreleftlength;
+	private String holedeep;
+	private String pressure;
+	private String rotatespeed;
+	private String pump;
 	private Long tourreportid;
 	
 	public static final Parcelable.Creator<Workcontent> CREATOR = new Creator<Workcontent>()
@@ -37,13 +37,13 @@ public class Workcontent implements Parcelable {
 			workcontent.starttime = source.readString();
 			workcontent.endtime = source.readString();
 			workcontent.type = source.readString();
-			workcontent.drillinglength = source.readFloat();
-			workcontent.upleft = source.readFloat();
-			workcontent.corelength = source.readFloat();
-			workcontent.holedeep = source.readFloat();
-			workcontent.pressure = source.readFloat();
-			workcontent.rotatespeed = source.readFloat();
-			workcontent.pump = source.readFloat();
+			workcontent.drillinglength = source.readString();
+			workcontent.upleft = source.readString();
+			workcontent.corelength = source.readString();
+			workcontent.holedeep = source.readString();
+			workcontent.pressure = source.readString();
+			workcontent.rotatespeed = source.readString();
+			workcontent.pump = source.readString();
 			return workcontent;
 		}
 
@@ -65,13 +65,13 @@ public class Workcontent implements Parcelable {
 		parcel.writeString(starttime);
 		parcel.writeString(endtime);
 		parcel.writeString(type);
-		parcel.writeFloat(drillinglength);
-		parcel.writeFloat(upleft);
-		parcel.writeFloat(corelength);
-		parcel.writeFloat(holedeep);
-		parcel.writeFloat(pressure);
-		parcel.writeFloat(rotatespeed);
-		parcel.writeFloat(pump);
+		parcel.writeString(drillinglength);
+		parcel.writeString(upleft);
+		parcel.writeString(corelength);
+		parcel.writeString(holedeep);
+		parcel.writeString(pressure);
+		parcel.writeString(rotatespeed);
+		parcel.writeString(pump);
 		
 	}
 	public String getStarttime() {
@@ -92,48 +92,7 @@ public class Workcontent implements Parcelable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public float getUpleft() {
-		return upleft;
-	}
-	public void setUpleft(float upleft) {
-		this.upleft = upleft;
-	}
-	public float getCorelength() {
-		return corelength;
-	}
-	public void setCorelength(float corelength) {
-		this.corelength = corelength;
-	}
-	public float getHoledeep() {
-		return holedeep;
-	}
-	public void setHoledeep(float holedeep) {
-		this.holedeep = holedeep;
-	}
-	public float getPressure() {
-		return pressure;
-	}
-	public void setPressure(float pressure) {
-		this.pressure = pressure;
-	}
-	public float getRotatespeed() {
-		return rotatespeed;
-	}
-	public void setRotatespeed(float rotatespeed) {
-		this.rotatespeed = rotatespeed;
-	}
-	public float getPump() {
-		return pump;
-	}
-	public void setPump(float pump) {
-		this.pump = pump;
-	}
-	public float getDrillinglength() {
-		return drillinglength;
-	}
-	public void setDrillinglength(float drillinglength) {
-		this.drillinglength = drillinglength;
-	}
+	
 	public String getDrillbit() {
 		return drillbit;
 	}
@@ -158,12 +117,7 @@ public class Workcontent implements Parcelable {
 	public void setCorenumber(String corenumber) {
 		this.corenumber = corenumber;
 	}
-	public float getCoreleftlength() {
-		return coreleftlength;
-	}
-	public void setCoreleftlength(float coreleftlength) {
-		this.coreleftlength = coreleftlength;
-	}
+	
 	public Long getTourreportid() {
 		return tourreportid;
 	}
@@ -175,6 +129,54 @@ public class Workcontent implements Parcelable {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public String getDrillinglength() {
+		return drillinglength;
+	}
+	public void setDrillinglength(String drillinglength) {
+		this.drillinglength = drillinglength;
+	}
+	public String getUpleft() {
+		return upleft;
+	}
+	public void setUpleft(String upleft) {
+		this.upleft = upleft;
+	}
+	public String getCorelength() {
+		return corelength;
+	}
+	public void setCorelength(String corelength) {
+		this.corelength = corelength;
+	}
+	public String getCoreleftlength() {
+		return coreleftlength;
+	}
+	public void setCoreleftlength(String coreleftlength) {
+		this.coreleftlength = coreleftlength;
+	}
+	public String getHoledeep() {
+		return holedeep;
+	}
+	public void setHoledeep(String holedeep) {
+		this.holedeep = holedeep;
+	}
+	public String getPressure() {
+		return pressure;
+	}
+	public void setPressure(String pressure) {
+		this.pressure = pressure;
+	}
+	public String getRotatespeed() {
+		return rotatespeed;
+	}
+	public void setRotatespeed(String rotatespeed) {
+		this.rotatespeed = rotatespeed;
+	}
+	public String getPump() {
+		return pump;
+	}
+	public void setPump(String pump) {
+		this.pump = pump;
 	}
 	
 	

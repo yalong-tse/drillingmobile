@@ -65,19 +65,19 @@ public class DBHelper extends SQLiteOpenHelper
 
 	// 数据库名称
 	public static final String DB_NAME = "drilling";
-	public static final int VERSION = 7;
+	public static final int VERSION = 8;
 
 	public static final String DB_CREATE_TOURREPORT = "CREATE TABLE IF NOT EXISTS  " +
 			"tourreport ( _id INTEGEREGER PRIMARY KEY, tourreportid integer, holeid varchar(32), holenumber varchar(32),administrator VARCHAR(32),recorder varchar(32)," +
 			" projectmanager varchar(32),tourleader varchar(32), tourdate date,starttime varchar(10) ,endtime varchar(10)," +
-			" tourshift double, tourcore double, status integer,lastdeep double,currentdeep double, tourdrillingtime varchar(32)," +
+			" tourshift decimal(10,2), tourcore decimal(10,2), status integer,lastdeep decimal(10,2),currentdeep decimal(10,2), tourdrillingtime varchar(32)," +
 			" tourauxiliarytime varchar(32),holeaccidenttime varchar(32),deviceaccidenttime varchar(32), othertime varchar(32),totaltime varchar(32)," +
-			" takeoverremark varchar(200),instrumenttakeover varchar(100),centralizer float,antideviation varchar(32), syncflag integer);";
+			" takeoverremark varchar(200),instrumenttakeover varchar(100),centralizer decimal(10,2),antideviation varchar(32), syncflag integer);";
 	
 	public static final String DB_CREATE_WORKCONTENT = "create table if not exists workcontent(" +
 			" _id integereager primary key, id integer ,tourreportid integer, content varchar(30), starttime varchar(10), endtime varchar(10)," +
-			" upmore float,corename varchar(32),coregrade varchar(10),corenumber varchar(32),corelength float, coreleftlength float," + 
-			" drillinglength float,drillbit varchar(20), rotatespeed float,pumpquantity float,pumppressure float,holedeep float,mudamount varchar(10));";
+			" upmore decimal(5,2),corename varchar(32),coregrade varchar(10),corenumber varchar(32),corelength decimal(5,2), coreleftlength decimal(5,2)," + 
+			" drillinglength float,drillbit varchar(20), rotatespeed decimal(5,2),pumpquantity decimal(5,2),pumppressure decimal(5,2),holedeep decimal(5,2),mudamount varchar(10));";
 	
 	public static final String DB_DROP_TOURREPORT = "DROP TABLE IF EXISTS tourreport";
 	public static final String DB_DROP_WORKCONTENT = "Drop table if exists workcontent";

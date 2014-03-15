@@ -321,7 +321,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 				// 第四行
 				TableRow tr4 = new TableRow(this);
-				if (wc.getUpleft() != 0) {
+				if (Float.parseFloat(wc.getUpleft()) != 0) {
 					TextView tv_upleft = new TextView(this);
 					tv_upleft.setText("上余:" + wc.getUpleft());
 					tv_upleft.setPadding(15, 0, 0, 10);
@@ -329,7 +329,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					tr4.addView(tv_upleft);
 				}
 
-				if (wc.getDrillinglength() != 0) {
+				if (Float.parseFloat(wc.getDrillinglength()) != 0) {
 					TextView tv_drillinglength = new TextView(this);
 					tv_drillinglength.setTextColor(Color.BLACK);
 					tv_drillinglength.setText("进尺:" + wc.getDrillinglength());
@@ -337,14 +337,14 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 				
 
-				if (wc.getHoledeep() != 0) {
+				if (Float.parseFloat(wc.getHoledeep()) != 0) {
 					TextView tv_holedeep = new TextView(this);
 					tv_holedeep.setTextColor(Color.BLACK);
 					tv_holedeep.setText("孔深:" + wc.getHoledeep());
 					tr4.addView(tv_holedeep);
 				}
 
-				if (wc.getCorelength() != 0) {
+				if (Float.parseFloat(wc.getCorelength()) != 0) {
 					TextView tv_core = new TextView(this);
 					tv_core.setTextColor(Color.BLACK);
 					tv_core.setText("岩心长度:" + wc.getCorelength());
@@ -356,20 +356,20 @@ public class MainActivity extends Activity implements OnClickListener {
 				// 第五行
 				TableRow tr5 = new TableRow(this);
 				
-				if (wc.getPressure() != 0) {
+				if (Float.parseFloat(wc.getPressure()) != 0) {
 					TextView tv_pressure = new TextView(this);
 					tv_pressure.setText("钻压:" + wc.getPressure());
 					tv_pressure.setPadding(15, 0, 0, 10);
 					tr5.addView(tv_pressure);
 				}
 
-				if (wc.getRotatespeed() != 0) {
+				if (Float.parseFloat(wc.getRotatespeed()) != 0) {
 					TextView tv_speed = new TextView(this);
 					tv_speed.setText("转速:" + wc.getRotatespeed());
 					tr5.addView(tv_speed);
 				}
 
-				if (wc.getPump() != 0) {
+				if (Float.parseFloat(wc.getPump()) != 0) {
 					TextView tv_pump = new TextView(this);
 					tv_pump.setText("泵量:" + wc.getPump());
 					tr5.addView(tv_pump);
@@ -406,11 +406,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		float sum_core = 0;
 		float sum_holedeep = 0;
 		for (Workcontent wc : GlobalConstants.list_workcontents) {
-			if (wc.getHoledeep() > sum_holedeep) {
-				sum_holedeep = wc.getHoledeep();
+			if (Float.parseFloat(wc.getHoledeep()) > sum_holedeep) {
+				sum_holedeep = Float.parseFloat(wc.getHoledeep());
 			}
-			sum_drilling += wc.getDrillinglength();
-			sum_core += wc.getCorelength();
+			sum_drilling += Float.parseFloat(wc.getDrillinglength());
+			sum_core += Float.parseFloat(wc.getCorelength());
 		}
 
 		((TextView) findViewById(R.id.tourreport_core_length_value))

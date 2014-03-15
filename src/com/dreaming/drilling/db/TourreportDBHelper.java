@@ -98,6 +98,27 @@ public class TourreportDBHelper extends DBOperation {
 	}
 	
 	
+	
+	/**
+	 * 获取最新的钻孔深度
+	 * */
+	public float getLastHoleDeep()
+	{
+		float result = 0;
+		SQLiteDatabase db= this.dbHelper.getReadableDatabase();
+		Cursor cursor = db.query(DBHelper.TOURREPORT_TABLE_NAME, this.columns,null, null, null, null, "tourreportid desc");
+		//Log.d("test", "111111111111111");
+		if (cursor.moveToNext())
+		{
+			EntityTourreport entity = CursorToEntity(cursor);
+			result = entity.getCurrentdeep().floatValue();
+		}
+		
+		cursor.close();
+		return result;
+		
+	}
+	
 	/**
 	 * 保存班报的方法
 	 * 
@@ -119,11 +140,18 @@ public class TourreportDBHelper extends DBOperation {
 		cv.put("recorder", entity.getRecorder());
 		cv.put("projectmanager", entity.getProjectmanager());
 		cv.put("tourleader", entity.getTourleader());
-		cv.put("tourshift", entity.getTourshift().toString());
-		cv.put("tourcore", entity.getTourcore().toString());
+		
+		if(entity.getTourshift()!=null)
+			cv.put("tourshift", entity.getTourshift().toString());
+		
+		if(entity.getTourcore()!=null)
+			cv.put("tourcore", entity.getTourcore().toString());
+		
 		cv.put("status", entity.getStatus());
-		cv.put("lastdeep", entity.getLastdeep().toString());
-		cv.put("currentdeep", entity.getCurrentdeep().toString());
+		if(entity.getLastdeep()!=null)
+			cv.put("lastdeep", entity.getLastdeep().toString());
+		if(entity.getCurrentdeep()!=null)
+			cv.put("currentdeep", entity.getCurrentdeep().toString());
 		cv.put("tourdrillingtime ", entity.getTourdrillingtime());
 		cv.put("tourauxiliarytime ", entity.getTourauxiliarytime());
 		cv.put("holeaccidenttime", entity.getHoleaccidenttime());

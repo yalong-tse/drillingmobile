@@ -241,11 +241,14 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 					json.put("tourdate", tour.getTourdate());
 					json.put("starttime", tour.getStarttime());
 					json.put("endtime", tour.getEndtime());
-					json.put("tourshift", tour.getTourshift().toString());
-					json.put("tourcore", tour.getTourcore().toString());
+					json.put("tourshift", tour.getTourshift()==null?"":tour.getTourshift().toString());
+					json.put("tourcore", tour.getTourcore()==null?"":tour.getTourcore().toString());
 					json.put("status", tour.getStatus());
-					json.put("lastdeep", tour.getLastdeep().toString());
-					json.put("currentdeep", tour.getCurrentdeep().toString());
+					if(tour.getLastdeep()!=null)
+						json.put("lastdeep", tour.getLastdeep().toString());
+					else
+						json.put("lastdeep", "");
+					json.put("currentdeep", tour.getCurrentdeep()==null?"":tour.getCurrentdeep().toString());
 					json.put("tourdrillingtime", tour.getTourdrillingtime());
 					json.put("tourauxiliarytime", tour.getTourauxiliarytime());
 					json.put("holeaccidenttime", tour.getHoleaccidenttime());
@@ -278,7 +281,6 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 						workcontents.put(workcontent);
 					}
 					json.put("workcontent", workcontents);
-					
 					
 					json.toString();
 		            Log.d(DEBUG_TAG, urls[0]);

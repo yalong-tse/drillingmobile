@@ -30,18 +30,18 @@ public class EntityWorkcontent {
 	private String content;
 	private Date starttime;
 	private Date endtime;
-	private Float upmore;
+	private String upmore;
 	private String corename;
 	private String coregrade;
 	private String corenumber;
-	private Float corelength;
-	private Float coreleftlength;
-	private Float drillinglength;
+	private String corelength;
+	private String coreleftlength;
+	private String drillinglength;
 	private String drillbit;
-	private Float rotatespeed;
-	private Float pumpquantity;
-	private Float pumppressure;
-	private Float holedeep;
+	private String rotatespeed;
+	private String pumpquantity;
+	private String pumppressure;
+	private String holedeep;
 
 	public Integer getId() {
 		return id;
@@ -83,11 +83,11 @@ public class EntityWorkcontent {
 		this.endtime = endtime;
 	}
 
-	public Float getUpmore() {
+	public String getUpmore() {
 		return upmore;
 	}
 
-	public void setUpmore(Float upmore) {
+	public void setUpmore(String upmore) {
 		this.upmore = upmore;
 	}
 
@@ -115,27 +115,27 @@ public class EntityWorkcontent {
 		this.corenumber = corenumber;
 	}
 
-	public Float getCorelength() {
+	public String getCorelength() {
 		return corelength;
 	}
 
-	public void setCorelength(Float corelength) {
+	public void setCorelength(String corelength) {
 		this.corelength = corelength;
 	}
 
-	public Float getCoreleftlength() {
+	public String getCoreleftlength() {
 		return coreleftlength;
 	}
 
-	public void setCoreleftlength(Float coreleftlength) {
+	public void setCoreleftlength(String coreleftlength) {
 		this.coreleftlength = coreleftlength;
 	}
 
-	public Float getDrillinglength() {
+	public String getDrillinglength() {
 		return drillinglength;
 	}
 
-	public void setDrillinglength(Float drillinglength) {
+	public void setDrillinglength(String drillinglength) {
 		this.drillinglength = drillinglength;
 	}
 
@@ -147,36 +147,38 @@ public class EntityWorkcontent {
 		this.drillbit = drillbit;
 	}
 
-	public Float getRotatespeed() {
+	public String getRotatespeed() {
 		return rotatespeed;
 	}
 
-	public void setRotatespeed(Float rotatespeed) {
+	public void setRotatespeed(String rotatespeed) {
 		this.rotatespeed = rotatespeed;
 	}
 
-	public Float getPumpquantity() {
+	public String getPumpquantity() {
 		return pumpquantity;
 	}
 
-	public void setPumpquantity(Float pumpquantity) {
+	public void setPumpquantity(String pumpquantity) {
 		this.pumpquantity = pumpquantity;
 	}
 
-	public Float getPumppressure() {
+	public String getPumppressure() {
 		return pumppressure;
 	}
 
-	public void setPumppressure(Float pumppressure) {
+	public void setPumppressure(String pumppressure) {
 		this.pumppressure = pumppressure;
 	}
 
-	public Float getHoledeep() {
+	public String getHoledeep() {
 		return holedeep;
 	}
 
-	public void setHoledeep(Float holedeep) {
+	public void setHoledeep(String holedeep) {
 		this.holedeep = holedeep;
 	}
+
+	
 
 }
