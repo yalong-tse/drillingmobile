@@ -79,6 +79,11 @@
     <string name="onduty_title">记录员</string>
     <string name="onduty_hint">输入记录员</string>
 
+    
+    <!-- 班报查看页面 -->
+    <string name="tourreportview_onduty_title">值班人员</string>
+    
+    
     <!-- 底部公共菜单模块 -->
     <string name="menu_bottom_1">班报填写</string>
     <string name="menu_bottom_2">班报查看</string>

@@ -1,5 +1,6 @@
 package com.dreaming.drilling.bean;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -53,11 +54,11 @@ public class EntityTourreport {
 	private String starttime;
 	private String endtime;
 
-	private Float tourshift;
-	private Float tourcore;
+	private BigDecimal tourshift;
+	private BigDecimal tourcore;
 	private Integer status;
-	private Float lastdeep;
-	private Float currentdeep;
+	private BigDecimal lastdeep;
+	private BigDecimal currentdeep;
 	private String tourdrillingtime;
 	private String tourauxiliarytime;
 	private String holeaccidenttime;
@@ -142,21 +143,6 @@ public class EntityTourreport {
 		this.endtime = endtime;
 	}
 
-	public Float getTourshift() {
-		return tourshift;
-	}
-
-	public void setTourshift(Float tourshift) {
-		this.tourshift = tourshift;
-	}
-
-	public Float getTourcore() {
-		return tourcore;
-	}
-
-	public void setTourcore(Float tourcore) {
-		this.tourcore = tourcore;
-	}
 
 	public Integer getStatus() {
 		return status;
@@ -166,21 +152,7 @@ public class EntityTourreport {
 		this.status = status;
 	}
 
-	public Float getLastdeep() {
-		return lastdeep;
-	}
 
-	public void setLastdeep(Float lastdeep) {
-		this.lastdeep = lastdeep;
-	}
-
-	public Float getCurrentdeep() {
-		return currentdeep;
-	}
-
-	public void setCurrentdeep(Float currentdeep) {
-		this.currentdeep = currentdeep;
-	}
 
 	public String getTourdrillingtime() {
 		return tourdrillingtime;
@@ -285,7 +257,38 @@ public class EntityTourreport {
 	public void setSyncflag(Integer syncflag) {
 		this.syncflag = syncflag;
 	}
-	
+
+	public BigDecimal getTourshift() {
+		return tourshift;
+	}
+
+	public void setTourshift(BigDecimal tourshift) {
+		this.tourshift = tourshift;
+	}
+
+	public BigDecimal getTourcore() {
+		return tourcore;
+	}
+
+	public void setTourcore(BigDecimal tourcore) {
+		this.tourcore = tourcore;
+	}
+
+	public BigDecimal getLastdeep() {
+		return lastdeep;
+	}
+
+	public void setLastdeep(BigDecimal lastdeep) {
+		this.lastdeep = lastdeep;
+	}
+
+	public BigDecimal getCurrentdeep() {
+		return currentdeep;
+	}
+
+	public void setCurrentdeep(BigDecimal currentdeep) {
+		this.currentdeep = currentdeep;
+	}
 	
 	
 }

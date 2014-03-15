@@ -1,5 +1,6 @@
 package com.dreaming.drilling.db;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,11 +119,11 @@ public class TourreportDBHelper extends DBOperation {
 		cv.put("recorder", entity.getRecorder());
 		cv.put("projectmanager", entity.getProjectmanager());
 		cv.put("tourleader", entity.getTourleader());
-		cv.put("tourshift", entity.getTourshift());
-		cv.put("tourcore", entity.getTourcore());
+		cv.put("tourshift", entity.getTourshift().toString());
+		cv.put("tourcore", entity.getTourcore().toString());
 		cv.put("status", entity.getStatus());
-		cv.put("lastdeep", entity.getLastdeep());
-		cv.put("currentdeep", entity.getCurrentdeep());
+		cv.put("lastdeep", entity.getLastdeep().toString());
+		cv.put("currentdeep", entity.getCurrentdeep().toString());
 		cv.put("tourdrillingtime ", entity.getTourdrillingtime());
 		cv.put("tourauxiliarytime ", entity.getTourauxiliarytime());
 		cv.put("holeaccidenttime", entity.getHoleaccidenttime());
@@ -241,10 +242,19 @@ public class TourreportDBHelper extends DBOperation {
 		entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
 		entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
 		entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
-		entity.setTourshift(cursor.getFloat(cursor.getColumnIndex("tourshift")));
-		entity.setTourcore(cursor.getFloat(cursor.getColumnIndex("tourcore")));
-		entity.setLastdeep(cursor.getFloat(cursor.getColumnIndex("lastdeep")));
-		entity.setCurrentdeep(cursor.getFloat(cursor.getColumnIndex("currentdeep")));
+		
+		if(cursor.getString(cursor.getColumnIndex("tourshift"))!=null && !cursor.getString(cursor.getColumnIndex("tourshift")).equalsIgnoreCase(""))
+			entity.setTourshift(new BigDecimal(cursor.getString(cursor.getColumnIndex("tourshift"))));
+		
+		if(cursor.getString(cursor.getColumnIndex("tourcore"))!=null && !cursor.getString(cursor.getColumnIndex("tourcore")).equalsIgnoreCase(""))
+			entity.setTourcore(new BigDecimal(cursor.getString(cursor.getColumnIndex("tourcore"))));
+		
+		if(cursor.getString(cursor.getColumnIndex("lastdeep")) !=null && !cursor.getString(cursor.getColumnIndex("lastdeep")).equalsIgnoreCase(""))
+			entity.setLastdeep(new BigDecimal(cursor.getString(cursor.getColumnIndex("lastdeep"))));
+		
+		if(cursor.getString(cursor.getColumnIndex("currentdeep"))!=null && !cursor.getString(cursor.getColumnIndex("currentdeep")).equalsIgnoreCase(""))
+			entity.setCurrentdeep(new BigDecimal(cursor.getString(cursor.getColumnIndex("currentdeep"))));
+		
 		entity.setTourdrillingtime(cursor.getString(cursor.getColumnIndex("tourdrillingtime")));
 		entity.setTourauxiliarytime(cursor.getString(cursor.getColumnIndex("tourauxiliarytime")));
 		entity.setHoleaccidenttime(cursor.getString(cursor.getColumnIndex("holeaccidenttime")));

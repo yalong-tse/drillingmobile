@@ -68,8 +68,9 @@ public class TourreportViewActivity extends Activity implements OnClickListener 
 		if(tourreport!=null)
 		{
 			// 矿区
-			TextView tv_minearea = (TextView) findViewById(R.id.view_tourreportminearea_value);
+			//TextView tv_minearea = (TextView) findViewById(R.id.view_tourreportminearea_value);
 			//tv_minearea.setText(tourreport.getMinearea());
+			
 			
 			// 班报日期
 			TextView tv_date = (TextView) findViewById(R.id.view_tourreport_date_value);
@@ -88,8 +89,8 @@ public class TourreportViewActivity extends Activity implements OnClickListener 
 			tv_holenumber.setText(tourreport.getHolenumber());
 			
 			// 钻机编号
-			TextView tv_rigmahine_number = (TextView) findViewById(R.id.view_tourreport_rigmachine_number_value);
-			tv_rigmahine_number.setText("");
+			//TextView tv_rigmahine_number = (TextView) findViewById(R.id.view_tourreport_rigmachine_number_value);
+			//tv_rigmahine_number.setText("");
 			
 			
 			
@@ -167,8 +168,9 @@ public class TourreportViewActivity extends Activity implements OnClickListener 
 				tl.setStretchAllColumns(true);
 				tl.setShrinkAllColumns(true);
 
-				// 第二行
-				TableRow tr2 = new TableRow(this);
+				
+				// 第一行
+				TableRow tr1 = new TableRow(this);
 				
 				TextView tv_time = new TextView(this);
 				tv_time.setPadding(15, 0, 0, 10);
@@ -176,9 +178,15 @@ public class TourreportViewActivity extends Activity implements OnClickListener 
 				tv_time.setText("时间:" + wc.getStarttime() + "至"
 						+ wc.getEndtime());
 				tv_time.setTextSize(15);
-				tr2.addView(tv_time);
-
+				tr1.addView(tv_time);
+				tl.addView(tr1, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
+				
+				
+				// 第二行
+				TableRow tr2 = new TableRow(this);
+				
 				TextView tv_content = new TextView(this);
+				tv_content.setPadding(15, 0, 0, 10);
 				tv_content.setTextColor(Color.BLACK);
 				tv_content.setTextSize(15);
 				tv_content.setText("内容:" + wc.getType());
@@ -186,8 +194,6 @@ public class TourreportViewActivity extends Activity implements OnClickListener 
 				tr2.addView(tv_content);
 				tl.addView(tr2, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));
 				
-				
-
 				// 第三行
 				TableRow tr3 = new TableRow(this);
 				if (wc.getUpleft() != 0) {

@@ -1,5 +1,6 @@
 package com.dreaming.drilling.activity;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -668,9 +669,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		tr.setTotaltime(((TextView)findViewById(R.id.tourreport_summary_time_value)).getText().toString());
 		
 		// 进尺等工作量统计
-		tr.setTourshift(Float.parseFloat(((TextView)findViewById(R.id.tourreport_drillinglength_value)).getText().toString()));
-		tr.setTourcore(Float.parseFloat(((TextView)findViewById(R.id.tourreport_core_length_value)).getText().toString()));
-		tr.setCurrentdeep(Float.parseFloat(((TextView)findViewById(R.id.tourreport_holedeep_value)).getText().toString()));
+		tr.setTourshift(new BigDecimal(((TextView)findViewById(R.id.tourreport_drillinglength_value)).getText().toString()));
+		tr.setTourcore(new BigDecimal(((TextView)findViewById(R.id.tourreport_core_length_value)).getText().toString()));
+		tr.setCurrentdeep(new BigDecimal(((TextView)findViewById(R.id.tourreport_holedeep_value)).getText().toString()));
 		
 		// 保存项目经理、班长、记录员
 		String projectmanager_id = this.sharedPrefs.getString("projectmanager_id", "");
