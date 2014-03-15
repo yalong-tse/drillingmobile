@@ -299,6 +299,9 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 					animation.cancel();
 				}
 				
+				// 通知变化
+				//adapter.notify();
+				
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
