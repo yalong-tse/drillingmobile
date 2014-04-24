@@ -14,6 +14,11 @@ import com.dreaming.drilling.utils.GlobalConstants;
 public class LoginActivity extends Activity implements OnClickListener{
 	SharedPreferences sharedPrefs;
 	
+	// 初期先写这样，后期提供界面来设置
+	private String server_address = "1.192.121.159";
+	private String server_port = "5000";
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,8 +26,13 @@ public class LoginActivity extends Activity implements OnClickListener{
 		
 		// 如果server_address和server_port没有设定
 		if (!"".equals(sharedPrefs.getString("server_address", "")) && !"".equals(sharedPrefs.getString("server_port", ""))) { 
-			
+			SharedPreferences.Editor localEditor = this.sharedPrefs.edit();
+			localEditor.putString("server_address", this.server_address);
+			localEditor.putString("server_port",this.server_port);
+			localEditor.commit();
 		}
+		
+		
 		
 		
 		
@@ -73,6 +83,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 		if(username!=null && password!=null)
 		{
 			Toast.makeText(this, username +"," + password, Toast.LENGTH_SHORT).show();
+			
 		}
 		
 		
@@ -83,6 +94,11 @@ public class LoginActivity extends Activity implements OnClickListener{
 	 * */
 	private void reset_login()
 	{
+		EditText ed_username = (EditText) findViewById(R.id.txtUsername);
+		EditText ed_password = (EditText) findViewById(R.id.txtPassword);
+		
+		ed_username.getText().clear();
+		ed_password.getText().clear();
 		
 		
 	}
