@@ -2,42 +2,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_layerlist"
     android:orientation="vertical"
-    android:padding="10dip">
+    android:gravity="center_vertical"
+    android:padding="10dip" >
 
-   	<!-- Email Label -->
+    <!-- username label -->
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Username (Enter 'test')"
+        android:layout_marginBottom="5dip"
         android:singleLine="true"
-        android:layout_marginBottom="5dip"/>
-    
-    <!-- Email input text -->
-    <EditText android:id="@+id/txtUsername"
+        android:textColor="@color/black"
+        android:text="@string/login_username" />
+
+    <!-- username input text -->
+
+    <EditText
+        android:id="@+id/txtUsername"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dip"/>
-    
+        android:layout_marginBottom="10dip" />
+
     <!-- Password Label -->
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Password (Enter 'test')"
-        android:layout_marginBottom="5dip"/>
-    
+        android:layout_marginBottom="5dip"
+        android:textColor="@color/black"
+        android:text="@string/login_password" />
+
     <!-- Password input text -->
-    <EditText android:id="@+id/txtPassword"
+
+    <EditText
+        android:id="@+id/txtPassword"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dip"
         android:password="true"
-        android:singleLine="true"/>
-    
-    <!-- Login button -->
-    <Button android:id="@+id/btnLogin"
-        android:layout_width="fill_parent"
+        android:singleLine="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"/>
+        android:layout_marginLeft="5dip"
+        android:orientation="horizontal" >
+
+        <!-- Login button -->
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="2"
+            android:textColor="@color/black"
+            android:text="@string/login_button_login" />
+        
+        <Button android:id="@+id/btnReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="2"
+            android:textColor="@color/black"
+            android:text="@string/login_button_reset"/>
+    </LinearLayout>
 
 </LinearLayout>

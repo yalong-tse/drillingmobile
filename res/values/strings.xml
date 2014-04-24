@@ -126,4 +126,12 @@
     <string name="xlistview_header_last_time">上次更新时间：</string>
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    
+    <!-- 登录界面 -->
+    <string name="login_username">用户名</string>
+    <string name="login_password">密码</string>
+    <string name="login_button_login">登录</string>
+    <string name="login_button_reset">重置</string>
+    <string name="login_server_ip">服务器IP地址</string>
+    <string name="login_server_port">端口号</string>
 </resources>
