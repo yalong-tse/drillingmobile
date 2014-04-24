@@ -33,6 +33,8 @@ import com.dreaming.drilling.bean.SpinnerData;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.utils.RestClient;
 
+
+
 public class DrillSettingsActivity extends FragmentActivity implements ServerDialogFragment.ServerDialogListener , OnClickListener{
 	
 	private static String DEBUG_TAG = "DrillSettingsActivity";
@@ -70,9 +72,10 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		
 		TextView textView_title = (TextView) findViewById(R.id.title);
 		textView_title.setText("个人设置");
-		TextView serverip = (TextView) findViewById(R.id.text_server_ip_value);
-//		this.sharedPrefs = this.getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
-		serverip.setText(this.sharedPrefs.getString("serverip",server));
+		
+		//TextView serverip = (TextView) findViewById(R.id.text_server_ip_value);
+		//this.sharedPrefs = this.getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
+		//serverip.setText(this.sharedPrefs.getString("serverip",server));
 		
 		initview();
 		
@@ -106,13 +109,14 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		}
 		
 		
-		ip = (TextView) findViewById(R.id.text_server_ip_value);
-		ip.setText(server);
+		//ip = (TextView) findViewById(R.id.text_server_ip_value);
+		//ip.setText(server);
 		
-		LinearLayout server_ip_layout = (LinearLayout)findViewById(R.id.layout_server_ip);
-		Button btn_getContract = (Button) findViewById(R.id.btn_getcontract);
-		server_ip_layout.setOnClickListener(server_ip_listener);
-		btn_getContract.setOnClickListener(contract_listener);
+		//LinearLayout server_ip_layout = (LinearLayout)findViewById(R.id.layout_server_ip);
+		//Button btn_getContract = (Button) findViewById(R.id.btn_getcontract);
+		//server_ip_layout.setOnClickListener(server_ip_listener);
+		//btn_getContract.setOnClickListener(contract_listener);
+		
 		
 		findViewById(R.id.menu_add_tourreport).setOnClickListener(this);
 		findViewById(R.id.menu_tourreport_list).setOnClickListener(this);
@@ -141,13 +145,13 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	
 	private void showAlertDialog() {
 		
-		if(ip==null)
-			ip = (TextView) findViewById(R.id.text_server_ip_value);
+		//if(ip==null)
+		//	ip = (TextView) findViewById(R.id.text_server_ip_value);
 		
 		DialogFragment dialog = ServerDialogFragment.newInstance(ip.getText().toString());
 		
-//		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//		imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+		//InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		//imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
 		
 		dialog.show(getSupportFragmentManager(), "server ip");
 	}
@@ -174,19 +178,20 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
     // Fragment.onAttach() callback, which it uses to call the following methods
     // defined by the ServerDialogFragment.ServerDialogListener interface
 	// 
-	@Override
-	public void onDialogPositiveClick(DialogFragment dialog, String editText) {
-		ip = (TextView) findViewById(R.id.text_server_ip_value);
-		ip.setText(editText);
-		server = editText;
-//		Log.d("-------------------------------------------------", server);
-		//GlobalConstants.fetchurl = server;
+	//@Override
+	//public void onDialogPositiveClick(DialogFragment dialog, String editText) {
+	//	ip = (TextView) findViewById(R.id.text_server_ip_value);
+	//	ip.setText(editText);
+	//	server = editText;
+	//Log.d("-------------------------------------------------", server);
+	//GlobalConstants.fetchurl = server;
 		
-		editor = getPreference();
-		editor.putString("serverip", server);
-		editor.commit();
-	}
+	//	editor = getPreference();
+	//	editor.putString("serverip", server);
+	//	editor.commit();
+	//}
 
+	
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		// User touched the dialog's negative button
@@ -452,61 +457,6 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 						
 			editor.commit();
 			
-			/*
-			// 获取该钻孔的人员配组，填充UI
-			List<HoleDeployments> holelist = RestClient.populate(server+peopleurl+data1.getId());
-			projectmanager = (TextView) findViewById(R.id.settings_projectmanager); 
-			holeleader = (TextView) findViewById(R.id.settings_holeleader); 
-			tourleader1 = (TextView) findViewById(R.id.settings_tourleader1); 
-			tourleader2 = (TextView) findViewById(R.id.settings_tourleader2); 
-			tourleader3 = (TextView) findViewById(R.id.settings_tourleader3); 
-			
-			projectmanager.setText(""); 
-			holeleader.setText(""); 
-			tourleader1.setText(""); 
-			tourleader2.setText(""); 
-			tourleader3.setText(""); 
-			
-			editor.remove("projectmanager_id"); editor.remove("projectmanager_name");
-			editor.remove("holeleader_id"); editor.remove("holeleader_name");
-			editor.remove("tourleader1_id"); editor.remove("tourleader1_name");
-			editor.remove("tourleader2_id"); editor.remove("tourleader2_name");
-			editor.remove("tourleader3_id"); editor.remove("tourleader3_name");
-			
-			int i = 1;
-			for(HoleDeployments h : holelist) {
-				PeopleType p = PeopleType.valueOf(h.getType().toUpperCase());
-				switch(p) {
-				case PROJECTMANAGER:
-					projectmanager.setText(h.getName());
-					editor.putString("projectmanager_id", h.getId());
-					editor.putString("projectmanager_name", h.getName());
-					break;
-				case HOLELEADER:
-					holeleader.setText(h.getName());
-					editor.putString("holeleader_id", h.getId());
-					editor.putString("holeleader_name", h.getName());
-					break;
-				case TOURLEADER:
-					if(i == 1) {
-						tourleader1.setText(h.getName());
-						editor.putString("tourleader1_id", h.getId());
-						editor.putString("tourleader1_name", h.getName());
-					} else if ( i == 2) {
-						tourleader2.setText(h.getName());
-						editor.putString("tourleader2_id", h.getId());
-						editor.putString("tourleader2_name", h.getName());
-					} else if (i == 3) {
-						tourleader3.setText(h.getName());
-						editor.putString("tourleader3_id", h.getId());
-						editor.putString("tourleader3_name", h.getName());
-					}
-					i++;
-					break;
-				}
-			}
-			*/
-			
 			
 		}
 
@@ -529,8 +479,6 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		if (!this.sharedPrefs.getBoolean("first2", true))
 			return;
 
-		
-		
 		/*SharedPreferences.Editor localEditor = this.sharedPrefs.edit();
 
 		// 系统所需的基本配置
@@ -568,6 +516,14 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		//	break;
 		}
 	}
+
+
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog, String editText) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
 
 

@@ -247,4 +247,41 @@ public class RestClient {
     	
     	return result;
     }
+    
+    
+    /**
+     * 
+     * 验证用户登录，验证用户是否可以登录
+     * 
+     * **/
+    public static String validate_user(String httpurl) {
+    	String result=null;
+    	 try {
+             URL url = new URL(httpurl);
+             HttpURLConnection urlConnection = 
+                 (HttpURLConnection) url.openConnection();
+             urlConnection.setReadTimeout(10000 /* milliseconds */);
+             urlConnection.setConnectTimeout(15000 /* milliseconds */);
+             urlConnection.setRequestMethod("GET");
+             urlConnection.connect();
+             // gets the server json data
+             BufferedReader bufferedReader = 
+                 new BufferedReader(new InputStreamReader(
+                         urlConnection.getInputStream()));
+             String next;
+             while ((next = bufferedReader.readLine()) != null){
+            	 if(next.equalsIgnoreCase("false"))
+            		 result = "false";
+            	 else
+            		 result = next;
+            	 
+             }
+         } catch (MalformedURLException e) {
+             e.printStackTrace();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+    	
+    	return result;
+    }
 }
