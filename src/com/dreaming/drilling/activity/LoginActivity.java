@@ -8,9 +8,11 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +22,7 @@ import com.dreaming.drilling.bean.SpinnerData;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.utils.RestClient;
 
-public class LoginActivity extends Activity implements ServerDialogFragment.ServerDialogListener ,OnClickListener{
+public class LoginActivity extends FragmentActivity implements ServerDialogFragment.ServerDialogListener ,OnClickListener{
 	SharedPreferences sharedPrefs;
 	
 	// 初期先写这样，后期提供界面来设置
@@ -38,13 +40,12 @@ public class LoginActivity extends Activity implements ServerDialogFragment.Serv
 		initView();
 		
 		
-		
 		// 设置控件上的值
 		EditText serverip = (EditText) findViewById(R.id.txtServerIpAndPort);
 		this.sharedPrefs = this.getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
 		String text_pref = this.sharedPrefs.getString("serverip",server_address);
 		
-		Toast.makeText(this, text_pref, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, text_pref, Toast.LENGTH_SHORT).show();
 		
 		if(text_pref!=null)
 			serverip.append(text_pref);
@@ -75,6 +76,10 @@ public class LoginActivity extends Activity implements ServerDialogFragment.Serv
 
 		findViewById(R.id.btnLogin).setOnClickListener(this);
 		findViewById(R.id.btnReset).setOnClickListener(this);
+		
+		LinearLayout server_ip_layout = (LinearLayout)findViewById(R.id.lr_serveripandport);
+		server_ip_layout.setOnClickListener(server_ip_listener);
+		
 	}
 	
 	
@@ -172,5 +177,29 @@ public class LoginActivity extends Activity implements ServerDialogFragment.Serv
 		this.sharedPrefs = this.getSharedPreferences(
 				GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
 		return this.sharedPrefs.edit();
+	}
+	
+	
+	private OnClickListener server_ip_listener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			showAlertDialog();
+		}
+	};
+	
+	
+	private void showAlertDialog() {
+		
+		//if(ip==null)
+		//	ip = (TextView) findViewById(R.id.text_server_ip_value);
+		EditText serverip = (EditText) findViewById(R.id.txtServerIpAndPort);
+		
+		DialogFragment dialog = ServerDialogFragment.newInstance(serverip.getText().toString());
+		
+		//InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		//imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+		
+		dialog.show(getSupportFragmentManager(), "server ip");
 	}
 }

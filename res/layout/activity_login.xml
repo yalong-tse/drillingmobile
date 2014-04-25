@@ -19,6 +19,7 @@
     <!-- server ip and port input text -->
 
     <LinearLayout
+        android:id="@+id/lr_serveripandport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
