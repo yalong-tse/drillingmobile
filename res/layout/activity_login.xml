@@ -3,9 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_layerlist"
-    android:orientation="vertical"
     android:gravity="center_vertical"
+    android:orientation="vertical"
     android:padding="10dip" >
+
+    <!-- server ip and port label -->
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:singleLine="true"
+        android:text="@string/login_server_ip_and_port"
+        android:textColor="@color/black" />
+
+    <!-- server ip and port input text -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/txtServerIpAndPort"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:editable="false" />
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_arrow" />
+    </LinearLayout>
 
     <!-- username label -->
 
@@ -14,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dip"
         android:singleLine="true"
-        android:textColor="@color/black"
-        android:text="@string/login_username" />
+        android:text="@string/login_username"
+        android:textColor="@color/black" />
 
     <!-- username input text -->
 
@@ -31,8 +62,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dip"
-        android:textColor="@color/black"
-        android:text="@string/login_password" />
+        android:text="@string/login_password"
+        android:textColor="@color/black" />
 
     <!-- Password input text -->
 
@@ -58,16 +89,17 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_weight="2"
-            android:textColor="@color/black"
-            android:text="@string/login_button_login" />
-        
-        <Button android:id="@+id/btnReset"
+            android:text="@string/login_button_login"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnReset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_weight="2"
-            android:textColor="@color/black"
-            android:text="@string/login_button_reset"/>
+            android:text="@string/login_button_reset"
+            android:textColor="@color/black" />
     </LinearLayout>
 
 </LinearLayout>

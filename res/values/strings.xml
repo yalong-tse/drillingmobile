@@ -134,4 +134,6 @@
     <string name="login_button_reset">重置</string>
     <string name="login_server_ip">服务器IP地址</string>
     <string name="login_server_port">端口号</string>
+    <string name="login_server_ip_and_port">服务器IP地址和端口</string>
+    
 </resources>

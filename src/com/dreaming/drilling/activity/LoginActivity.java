@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -19,31 +20,35 @@ import com.dreaming.drilling.bean.SpinnerData;
 import com.dreaming.drilling.utils.GlobalConstants;
 import com.dreaming.drilling.utils.RestClient;
 
-public class LoginActivity extends Activity implements OnClickListener{
+public class LoginActivity extends Activity implements ServerDialogFragment.ServerDialogListener ,OnClickListener{
 	SharedPreferences sharedPrefs;
 	
 	// 初期先写这样，后期提供界面来设置
-	private String server_address = "1.192.121.159";
-	private String server_port = "5000";
+	private String server_address = "1.192.121.159:5000";
 	
 	private String validate_user_url = "/mobile/validateuser.json?";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		sharedPrefs = getApplicationContext().getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
+		//sharedPrefs = getApplicationContext().getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
 		
-		// 如果server_address和server_port没有设定
-		if (!"".equals(sharedPrefs.getString("server_address", "")) && !"".equals(sharedPrefs.getString("server_port", ""))) { 
-			SharedPreferences.Editor localEditor = this.sharedPrefs.edit();
-			localEditor.putString("server_address", this.server_address);
-			localEditor.putString("server_port",this.server_port);
-			localEditor.commit();
-		}
-		
+
 		setContentView(R.layout.activity_login);
-		
 		initView();
+		
+		
+		
+		// 设置控件上的值
+		EditText serverip = (EditText) findViewById(R.id.txtServerIpAndPort);
+		this.sharedPrefs = this.getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
+		String text_pref = this.sharedPrefs.getString("serverip",server_address);
+		
+		Toast.makeText(this, text_pref, Toast.LENGTH_SHORT).show();
+		
+		if(text_pref!=null)
+			serverip.append(text_pref);
+		
 		
 	}
 	
@@ -90,10 +95,9 @@ public class LoginActivity extends Activity implements OnClickListener{
 		{
 			//Toast.makeText(this, username +"," + password, Toast.LENGTH_SHORT).show();
 			// 验证用户
-			String full_url = "http://"+server_address+":"+server_port+validate_user_url+"?account="+username + "&password=" + password;
+			String full_url = "http://"+server_address+validate_user_url+"?account="+username + "&password=" + password;
 			new ValidateUser().execute(full_url);
 		}
-		
 		
 	}
 	
@@ -138,5 +142,35 @@ public class LoginActivity extends Activity implements OnClickListener{
 		}
 		
 		
+	}
+
+
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog, String editText) {
+		// TODO Auto-generated method stub
+		EditText server_ip = (EditText) findViewById(R.id.txtServerIpAndPort);
+		server_ip.setText(editText);
+		server_address = editText;
+		// 如果server_address和server_port没有设定
+		//if (!"".equals(sharedPrefs.getString("server_address", ""))) {
+		SharedPreferences.Editor localEditor = getPreference();
+		localEditor.putString("serverip", this.server_address);
+		localEditor.commit();
+		//}
+		
+	}
+
+
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	public SharedPreferences.Editor getPreference() {
+		this.sharedPrefs = this.getSharedPreferences(
+				GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
+		return this.sharedPrefs.edit();
 	}
 }

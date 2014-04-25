@@ -35,7 +35,7 @@ import com.dreaming.drilling.utils.RestClient;
 
 
 
-public class DrillSettingsActivity extends FragmentActivity implements ServerDialogFragment.ServerDialogListener , OnClickListener{
+public class DrillSettingsActivity extends FragmentActivity implements OnClickListener{
 	
 	private static String DEBUG_TAG = "DrillSettingsActivity";
 	protected SharedPreferences sharedPrefs;
@@ -191,13 +191,6 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 	//	editor.commit();
 	//}
 
-	
-	@Override
-	public void onDialogNegativeClick(DialogFragment dialog) {
-		// User touched the dialog's negative button
-		
-	}
-	
 	private class FetchDataTask extends AsyncTask<String, Void, List<SpinnerData>> {
 
 		@Override
@@ -517,12 +510,6 @@ public class DrillSettingsActivity extends FragmentActivity implements ServerDia
 		}
 	}
 
-
-	@Override
-	public void onDialogPositiveClick(DialogFragment dialog, String editText) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
 
