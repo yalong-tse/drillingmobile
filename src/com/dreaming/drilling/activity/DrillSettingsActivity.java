@@ -65,6 +65,8 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 	private TextView tv_drilltower;  // 钻塔
 	private TextView tv_pump;  // 泥浆泵
 	
+	
+	private String http_str = "http://";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -117,7 +119,7 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 		Toast.makeText(DrillSettingsActivity.this, "result is:" + server+queryownholes_url+GlobalConstants.userid, Toast.LENGTH_LONG).show();
 		
 		
-		new FetchHoleDataTask().execute("http://"+server+queryownholes_url+GlobalConstants.userid);
+		new FetchHoleDataTask().execute(http_str+server+queryownholes_url+GlobalConstants.userid);
 		
 		//ip = (TextView) findViewById(R.id.text_server_ip_value);
 		//ip.setText(server);
@@ -445,10 +447,10 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 			SpinnerData data1 = adapter_hole.getItem(position);
 			Log.d(DEBUG_TAG, "钻孔id："+data1.getId()+";钻孔holenumber："+data1.getName());
 			
-			new FetchDeploymentDataTask().execute(server+peopleurl+data1.getId());  // 获取项目经理、机长、班长
+			new FetchDeploymentDataTask().execute(http_str+server+peopleurl+data1.getId());  // 获取项目经理、机长、班长
 			
 			//Toast.makeText(DrillSettingsActivity.this, "url is:" +server+detailurl+data1.getId(), Toast.LENGTH_LONG).show();
-			new FetchHoleDetail().execute(server+detailurl+data1.getId());  // 获取钻孔的详细情况
+			new FetchHoleDetail().execute(http_str+server+detailurl+data1.getId());  // 获取钻孔的详细情况
 			
 			TextView tv = (TextView)view;  
             tv.setTextColor(getResources().getColor(R.color.black));    //设置颜色  
