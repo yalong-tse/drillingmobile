@@ -1,6 +1,7 @@
 package com.dreaming.drilling.utils;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -121,9 +122,13 @@ public class RestClient {
         }
     }
     
-    // 配置界面 返回 合同列表  和 钻孔列表的方法
-    public static ArrayList<SpinnerData> populate(String httpurl, String id, String name) {
+    // 配置界面返回钻孔列表的方法
+    public static ArrayList<SpinnerData> getHolelist(String httpurl) {
     	Log.d("RestClient", "url: "+httpurl);
+    	
+    	//Toast.makeText(null, "in the url" + httpurl
+    	//		, Toast.LENGTH_LONG).show();
+    	
         ArrayList<SpinnerData> items = new ArrayList<SpinnerData>();
         SpinnerData data;
      
@@ -146,8 +151,8 @@ public class RestClient {
                 for (int i = 0; i < ja.length(); i++) {
                     JSONObject jo = (JSONObject) ja.get(i);
 //                    data = new SpinnerData(jo.getString("id"), jo.getString("name"));
-                    data = new SpinnerData(jo.getString(id), jo.getString(name));
-                    Log.i("RestClient", id+jo.getString(id)+";" + name+ jo.getString(name));
+                    data = new SpinnerData(jo.getString("id"), jo.getString("contractname") + "|" +jo.getString("holenumber"));
+                    Log.i("RestClient", jo.getString("id")+";" + "name:" + jo.getString("holenumber"));
                     items.add(data);
                 }
             }
@@ -258,30 +263,51 @@ public class RestClient {
     	String result=null;
     	 try {
              URL url = new URL(httpurl);
-             HttpURLConnection urlConnection = 
-                 (HttpURLConnection) url.openConnection();
+             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
              urlConnection.setReadTimeout(10000 /* milliseconds */);
              urlConnection.setConnectTimeout(15000 /* milliseconds */);
              urlConnection.setRequestMethod("GET");
-             urlConnection.connect();
-             // gets the server json data
-             BufferedReader bufferedReader = 
-                 new BufferedReader(new InputStreamReader(
-                         urlConnection.getInputStream()));
-             String next;
-             while ((next = bufferedReader.readLine()) != null){
-            	 if(next.equalsIgnoreCase("false"))
-            		 result = "false";
-            	 else
-            		 result = next;
-            	 
-             }
+             
+             //urlConnection.connect();
+             
+             InputStream is = urlConnection.getInputStream();//得到网络返回的输入流
+             String return_string = readData(is,"utf-8");
+
+        	 if(return_string.equalsIgnoreCase("false"))
+        	 {
+        		result = "false";
+        	 }
+        	 else
+        	 {
+        		 //String[] arr = return_string.split("_");
+        		 result = return_string;
+        	 }
+        	 
+        	 
          } catch (MalformedURLException e) {
              e.printStackTrace();
          } catch (IOException e) {
              e.printStackTrace();
-         }
+         } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     	return result;
     }
+    
+  //第一个参数为输入流,第二个参数为字符集编码
+    private static String readData(InputStream inSream, String charsetName) throws Exception{
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = -1;
+        while( (len = inSream.read(buffer)) != -1 ){
+            outStream.write(buffer, 0, len);
+        }
+        byte[] data = outStream.toByteArray();
+        outStream.close();
+        inSream.close();
+        return new String(data, charsetName);
+    }
+
 }

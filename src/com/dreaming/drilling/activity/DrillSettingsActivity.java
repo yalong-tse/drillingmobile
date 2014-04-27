@@ -41,11 +41,12 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 	protected SharedPreferences sharedPrefs;
 	private SharedPreferences.Editor editor;
 	
-	private String server = "http://192.168.1.101:5000";
+	private String server;
 	private String contracturl = "/mobile/contracts.json";
 	private String holeurl = "/mobile/contractholes.json?contractid=";
 	private String peopleurl = "/mobile/getdeployments.json?holeid=";
 	private String detailurl = "/mobile/holedetail.json?holeid=";
+	private String queryownholes_url ="/mobile/queryownholes.json?userid=";
 	
 	private TextView ip;
 	private SpinAdapter adapter_contract;
@@ -74,8 +75,10 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 		textView_title.setText("个人设置");
 		
 		//TextView serverip = (TextView) findViewById(R.id.text_server_ip_value);
-		//this.sharedPrefs = this.getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
-		//serverip.setText(this.sharedPrefs.getString("serverip",server));
+		
+		this.sharedPrefs = this.getSharedPreferences(GlobalConstants.PREFERENCE_NAME, GlobalConstants.MODE);
+		
+		server = this.sharedPrefs.getString("serverip",server);
 		
 		initview();
 		
@@ -91,7 +94,7 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 		//Log.d("the hostslist size is ",GlobalConstants.holelist.size() +"");
 		
 		//Toast.makeText(this, "111111111", Toast.LENGTH_SHORT).show();
-		if(GlobalConstants.contractslist!=null)
+		/*if(GlobalConstants.contractslist!=null)
 		{
 			//Toast.makeText(this, "the size is:" + GlobalConstants.contractslist.size(), Toast.LENGTH_SHORT).show();
 			spinner_contract = (Spinner)findViewById(R.id.setting_spinner_contract);
@@ -99,6 +102,8 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 			adapter_contract.setDropDownViewResource(R.drawable.custom_spinner);
 			spinner_contract.setAdapter(adapter_contract);
 		}
+		*/
+		
 		
 		if(GlobalConstants.holelist!=null)
 		{
@@ -108,6 +113,11 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 			spinner_hole.setAdapter(adapter_hole);
 		}
 		
+		
+		Toast.makeText(DrillSettingsActivity.this, "result is:" + server+queryownholes_url+GlobalConstants.userid, Toast.LENGTH_LONG).show();
+		
+		
+		new FetchHoleDataTask().execute("http://"+server+queryownholes_url+GlobalConstants.userid);
 		
 		//ip = (TextView) findViewById(R.id.text_server_ip_value);
 		//ip.setText(server);
@@ -134,14 +144,14 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 		}
 	};
 	
-	private OnClickListener contract_listener = new OnClickListener() {
+/*	private OnClickListener contract_listener = new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
 			getContract(v);
 		}
 	};
-
+*/
 	
 	private void showAlertDialog() {
 		
@@ -159,19 +169,19 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 	/**
 	 * 获取合同列表
 	 */
-	private void getContract(View v) {
-		
-		ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-		if(networkInfo != null && networkInfo.isConnected()) {
-			// fetch data
-			new FetchDataTask().execute(server+contracturl);
-		} else {
-			// display error
-			Toast.makeText(this, "无网络连接", Toast.LENGTH_SHORT).show();
-		}
-		
-	}
+//	private void getContract(View v) {
+//		
+//		ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+//		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+//		if(networkInfo != null && networkInfo.isConnected()) {
+//			// fetch data
+//			new FetchDataTask().execute(server+contracturl);
+//		} else {
+//			// display error
+//			Toast.makeText(this, "无网络连接", Toast.LENGTH_SHORT).show();
+//		}
+//		
+//	}
 
 	
 	// The dialog fragment receives a reference to this Activity through the
@@ -191,7 +201,7 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 	//	editor.commit();
 	//}
 
-	private class FetchDataTask extends AsyncTask<String, Void, List<SpinnerData>> {
+	/*private class FetchDataTask extends AsyncTask<String, Void, List<SpinnerData>> {
 
 		@Override
 		protected List<SpinnerData> doInBackground(String... urls) {
@@ -235,7 +245,7 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 					
 					new FetchHoleDataTask().execute(server+holeurl+data.getId());
 					
-					/*// 填充钻孔列表
+					// 填充钻孔列表
 					spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
 					ArrayList<SpinnerData> holelist = RestClient.populate(server+holeurl+data.getId(), "id", "holenumber");
 					
@@ -247,7 +257,7 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 					// Apply the adapter to the spinner
 					spinner_hole.setAdapter(adapter_hole);
 					
-					spinner_hole.setOnItemSelectedListener(spinnerhole_listener);*/
+					spinner_hole.setOnItemSelectedListener(spinnerhole_listener);
 					
 				}
 
@@ -259,13 +269,14 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 			});
 		}
 		
-	}
+	}*/
 	
 	private class FetchHoleDataTask extends AsyncTask<String, Void, List<SpinnerData>> {
 
 		@Override
 		protected List<SpinnerData> doInBackground(String... urls) {
-			ArrayList<SpinnerData> list = RestClient.populate(urls[0], "id", "holenumber");
+			//Toast.makeText(DrillSettingsActivity.this, urls[0], Toast.LENGTH_LONG).show();
+			ArrayList<SpinnerData> list = RestClient.getHolelist(urls[0]);
 			return list;
 		}
 		

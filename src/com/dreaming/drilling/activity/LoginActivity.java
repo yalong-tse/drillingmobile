@@ -28,7 +28,7 @@ public class LoginActivity extends FragmentActivity implements ServerDialogFragm
 	// 初期先写这样，后期提供界面来设置
 	private String server_address = "1.192.121.159:5000";
 	
-	private String validate_user_url = "/mobile/validateuser.json?";
+	private String validate_user_url = "/mobile/validateuser.json";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -135,9 +135,12 @@ public class LoginActivity extends FragmentActivity implements ServerDialogFragm
 		protected void onPostExecute(String result) {
 			if (result!=null && !result.equalsIgnoreCase("false"))
 			{
+				GlobalConstants.userid = result;
 				// 登录成功了
 				Intent intent = new Intent(LoginActivity.this, DrillSettingsActivity.class);
 				startActivity(intent);
+				//Toast.makeText(LoginActivity.this, result, Toast.LENGTH_SHORT).show();
+				
 			}
 			else
 			{

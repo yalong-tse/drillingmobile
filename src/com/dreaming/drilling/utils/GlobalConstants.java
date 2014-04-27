@@ -38,6 +38,9 @@ public class GlobalConstants {
 	public static Takeovercontent takeover = new Takeovercontent();
 	
 	
+	// 当前的登录用户
+	public static String userid; 
+	
 	public static void remove_workcontent(Workcontent wc)
 	{
 		list_workcontents.remove(wc);
