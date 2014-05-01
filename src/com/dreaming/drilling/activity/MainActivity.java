@@ -441,7 +441,15 @@ public class MainActivity extends Activity implements OnClickListener {
 
 			Date start_date = sdf.parse(start_str);
 			Date end_date = sdf.parse(end_str);
-			long computedtime = ((end_date.getTime() - start_date.getTime()) / (60 * 1000));
+			
+			// 处理时间相差为负的情况
+			long temptime = end_date.getTime() - start_date.getTime();
+			if(temptime<0)
+			{
+				temptime = temptime + (24*60*60*1000);
+			}
+			
+			long computedtime = (temptime / (60 * 1000));
 			totaltime += computedtime;
 			
 			if(obj.getType().equalsIgnoreCase("钻进"))
