@@ -118,7 +118,7 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 		}
 		
 		
-		Toast.makeText(DrillSettingsActivity.this, "result is:" + server+queryownholes_url+GlobalConstants.userid, Toast.LENGTH_LONG).show();
+		//Toast.makeText(DrillSettingsActivity.this, "result is:" + server+queryownholes_url+GlobalConstants.userid, Toast.LENGTH_LONG).show();
 		
 		
 		new FetchHoleDataTask().execute(http_str+server+queryownholes_url+GlobalConstants.userid);
