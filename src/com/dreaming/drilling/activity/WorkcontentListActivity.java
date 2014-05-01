@@ -297,7 +297,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 					// 更新同步标识
 					Log.d("test ----------", "the tour id is:" + tour.getId());
 					tourreportDB.updateSyncflag(tour.getId(), 1);
-//					adapter.notifyDataSetChanged();  // 通知listview更新数据
+					//adapter.notifyDataSetChanged();  // 通知listview更新数据
 					animation.cancel();
 				}
 				
@@ -348,6 +348,21 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		switch(item.getItemId()) 
 		{
 		case ITEM1:  // 删除listview
+			
+			
+			
+			//System.out.println("Item id="+item.getItemId());  
+            //System.out.println("position="+getListAdapter().getItemId(menuInfo.position));  
+            /** 
+             * getListAdapter().getItemId(menuInfo.position)返回的值是Long型， 
+             * 而list.remove(position)是String java.util.ArrayList.remove(int index)， 
+             * 所以当执行到这里的时候，如果直接使用Long型的话，由于不是int型的，所以默认 
+             * 使用的是:boolean java.util.ArrayList.remove(Object object) 
+             * 两个remove()不匹配，所以重载的是remove(Object object)，而这个方法是不能删除item的 
+             * 所以需要将得到的position强制转换为int型的才能运行 
+             */  
+            //list.remove(getListAdapter().getItemId(menuInfo.position));这句话是错误的
+			// http://blog.csdn.net/wangbofei/article/details/7482760
 			Log.d("WorkContentListActivity", "位置是："+ menuInfo.position);
 			int pos = (int) adapter.getItemId(menuInfo.position-1);
 			Map<String, Object> workitem = (Map<String, Object>)adapter.getItem(pos);
