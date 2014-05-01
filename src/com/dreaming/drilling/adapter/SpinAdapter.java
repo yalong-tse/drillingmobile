@@ -36,6 +36,10 @@ public class SpinAdapter extends ArrayAdapter<SpinnerData> {
 		return position;
 	}
 	
+	// 自定义custom view
+	// 显示图标，区分外协孔和内部孔
+	// @editor niu_hr 
+	// @updateDate 2014-05-01
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
@@ -50,21 +54,22 @@ public class SpinAdapter extends ArrayAdapter<SpinnerData> {
 		
 		// And finally return your dynamic (or custom) view for each spinner item
 		return label;
+		
 	}
 	
 	// And here is when the "chooser" is popped up
 	// Normally is the same view, but you can customize it if you want
-	@Override
-	public View getDropDownView(int position, View convertView, ViewGroup parent) {
-		TextView label = new TextView(context);
-		
-		label.setGravity(Gravity.CENTER);
-		label.setTextSize(20);
-		label.setTextColor(Color.BLACK);
-		
-		label.setText(getItem(position).getName());
-		
-		return label;
-	}
+//	@Override
+//	public View getDropDownView(int position, View convertView, ViewGroup parent) {
+//		TextView label = new TextView(context);
+//		
+//		label.setGravity(Gravity.CENTER);
+//		label.setTextSize(20);
+//		label.setTextColor(Color.BLACK);
+//		
+//		label.setText(getItem(position).getName());
+//		
+//		return label;
+//	}
 	
 }
