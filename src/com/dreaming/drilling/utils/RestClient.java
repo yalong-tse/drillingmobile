@@ -152,7 +152,8 @@ public class RestClient {
                     JSONObject jo = (JSONObject) ja.get(i);
 //                    data = new SpinnerData(jo.getString("id"), jo.getString("name"));
                     data = new SpinnerData(jo.getString("id"), jo.getString("contractname") + "|" +jo.getString("holenumber"));
-                    Log.i("RestClient", jo.getString("id")+";" + "name:" + jo.getString("holenumber"));
+                    data.setOuterflag(jo.getInt("outerflag"));
+                    Log.i("RestClient", jo.getString("id")+";" + "name:" + jo.getString("holenumber")+";outerflag(是否外协):"+jo.getInt("outerflag"));
                     items.add(data);
                 }
             }

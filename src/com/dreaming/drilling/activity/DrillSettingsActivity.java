@@ -3,13 +3,9 @@ package com.dreaming.drilling.activity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -19,13 +15,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dreaming.drilling.R;
+import com.dreaming.drilling.adapter.HoleAdapter;
 import com.dreaming.drilling.adapter.SpinAdapter;
 import com.dreaming.drilling.bean.HoleDeployments;
 import com.dreaming.drilling.bean.HoleDetail;
@@ -51,6 +46,7 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 	private TextView ip;
 	private SpinAdapter adapter_contract;
 	private SpinAdapter adapter_hole; 
+	private HoleAdapter hole_adapter;
 	private Spinner spinner_contract;  // 合同spinner
 	private Spinner spinner_hole;          // 钻孔spinner
 	
@@ -109,14 +105,20 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 		
 		if(GlobalConstants.holelist!=null)
 		{
+			
+			Log.d("DrillSettings", "111111111111111");
 			spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
-			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, GlobalConstants.holelist);
-			adapter_hole.setDropDownViewResource(R.drawable.custom_spinner);
-			spinner_hole.setAdapter(adapter_hole);
+			
+//			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, GlobalConstants.holelist);
+//			adapter_hole.setDropDownViewResource(R.drawable.custom_spinner);
+//			spinner_hole.setAdapter(adapter_hole);
+			
+			hole_adapter = new HoleAdapter(this, GlobalConstants.holelist);
+			spinner_hole.setAdapter(hole_adapter);
 		}
 		
 		
-		Toast.makeText(DrillSettingsActivity.this, "result is:" + server+queryownholes_url+GlobalConstants.userid, Toast.LENGTH_LONG).show();
+		//Toast.makeText(DrillSettingsActivity.this, "result is:" + server+queryownholes_url+GlobalConstants.userid, Toast.LENGTH_LONG).show();
 		
 		
 		new FetchHoleDataTask().execute(http_str+server+queryownholes_url+GlobalConstants.userid);
@@ -284,18 +286,23 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 		
 		@Override
 		protected void onPostExecute(List<SpinnerData> result) {
+			Log.d("DrillSettings", "2222222222222222222");
 			// 填充钻孔列表
 			if(spinner_hole==null)
 				spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
-			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, result);
+			
+			hole_adapter = new HoleAdapter(DrillSettingsActivity.this, result);
+			spinner_hole.setAdapter(hole_adapter);
+			
+//			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, result);
 			
 			GlobalConstants.holelist = result;
 			
 			// Specify the layout to use when the list of choices appears
-			adapter_hole.setDropDownViewResource(R.drawable.custom_spinner);
+//			adapter_hole.setDropDownViewResource(R.drawable.custom_spinner);
 			
 			// Apply the adapter to the spinner
-			spinner_hole.setAdapter(adapter_hole);
+//			spinner_hole.setAdapter(adapter_hole);
 			
 			spinner_hole.setOnItemSelectedListener(spinnerhole_listener);
 		}
@@ -444,7 +451,8 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 		public void onItemSelected(AdapterView<?> parent, View view,
 				int position, long id) {
 			
-			SpinnerData data1 = adapter_hole.getItem(position);
+//			SpinnerData data1 = adapter_hole.getItem(position);
+			SpinnerData data1 = (SpinnerData) hole_adapter.getItem(position);
 			Log.d(DEBUG_TAG, "钻孔id："+data1.getId()+";钻孔holenumber："+data1.getName());
 			
 			new FetchDeploymentDataTask().execute(http_str+server+peopleurl+data1.getId());  // 获取项目经理、机长、班长
@@ -452,9 +460,9 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 			//Toast.makeText(DrillSettingsActivity.this, "url is:" +server+detailurl+data1.getId(), Toast.LENGTH_LONG).show();
 			new FetchHoleDetail().execute(http_str+server+detailurl+data1.getId());  // 获取钻孔的详细情况
 			
-			TextView tv = (TextView)view;  
-            tv.setTextColor(getResources().getColor(R.color.black));    //设置颜色  
-            tv.setTextSize(15.0f);    //设置大小  
+//			TextView tv = (TextView)view;  
+//            tv.setTextColor(getResources().getColor(R.color.black));    //设置颜色  
+//            tv.setTextSize(15.0f);    //设置大小  
             
 			editor = getPreference();
 			// 保存到sharedpreference
