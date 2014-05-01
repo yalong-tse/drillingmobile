@@ -133,6 +133,7 @@ public class TourreportDBHelper extends DBOperation {
 		Long result = System.currentTimeMillis();
 		cv.put("tourreportid", result);
 		cv.put("holenumber", entity.getHolenumber());
+		cv.put("holeid", entity.getHoleid());
 		cv.put("endtime", entity.getEndtime());
 		cv.put("starttime", entity.getStarttime());
 		cv.put("tourdate", entity.getTourdate());

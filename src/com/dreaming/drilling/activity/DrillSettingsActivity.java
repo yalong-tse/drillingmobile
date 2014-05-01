@@ -106,7 +106,7 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 		if(GlobalConstants.holelist!=null)
 		{
 			
-			Log.d("DrillSettings", "111111111111111");
+			//Log.d("DrillSettings", "111111111111111");
 			spinner_hole = (Spinner) findViewById(R.id.setting_spinner_hole);
 			
 //			adapter_hole = new SpinAdapter(DrillSettingsActivity.this, R.drawable.drop_list_hover, GlobalConstants.holelist);
