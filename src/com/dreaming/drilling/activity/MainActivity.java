@@ -70,7 +70,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Spinner spinner_starttime;
 	private Spinner spinner_endtime;
 
-	String[] tourtime = {"00:00","8:00","16:00","12:00"};
+	String[] tourtime = {"00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00",
+			"09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00",
+			"20:00","21:00","22:00","23:00","24:00"};
 	
 	private TextView tv_minearea;
 	private TextView tv_geologysituation;
@@ -157,7 +159,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				// TODO Auto-generated method stub
 				 String value=parent.getItemAtPosition(position).toString();
 				 GlobalConstants.tour_starttime = value;
-				 if(position==tourtime.length-1)
+				/* if(position==tourtime.length-1)
 				 {
 					 String end_value = parent.getItemAtPosition(0).toString();
 					 spinner_endtime.setSelection(0);
@@ -166,7 +168,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				 {
 					 String end_value = parent.getItemAtPosition(position+1).toString();
 					 spinner_endtime.setSelection(position+1);
-				 }
+				 }*/
 			}
 
 			@Override
@@ -447,6 +449,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				drilltime += computedtime; 
 			}
 			else if(obj.getType().equalsIgnoreCase("起下钻取心") || obj.getType().equalsIgnoreCase("起钻取心")
+					|| obj.getType().equalsIgnoreCase("交班")
+					|| obj.getType().equalsIgnoreCase("接班")
+					|| obj.getType().equalsIgnoreCase("辅助")
 					|| obj.getType().equalsIgnoreCase("起钻")
 					|| obj.getType().equalsIgnoreCase("下钻")
 					|| obj.getType().equalsIgnoreCase("取心"))
@@ -650,6 +655,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		EntityTourreport tr = new EntityTourreport();
 		
 		tr.setHolenumber(((TextView)findViewById(R.id.tourreport_holenumber_value)).getText().toString());
+		// 增加holeid 的情况，每次提交的时候使用
+		tr.setHoleid(this.sharedPrefs.getString("holeid", "3"));
 		tr.setTourdate(((TextView)findViewById(R.id.tourreport_date_value)).getText().toString());
 		
 		tr.setStarttime(GlobalConstants.tour_starttime);
