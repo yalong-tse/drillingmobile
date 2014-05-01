@@ -44,7 +44,7 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
     private Spinner spinner_workcontent;
 
     private String title_name = "工作内容";
-    private String[] workcontent_arr = {"钻进","起下钻取心","起钻取心","起钻","下钻","取心","孔内事故","设备事故","停待","简易水文观测","封孔","其他"};
+    private String[] workcontent_arr = {"接班","交班","辅助","钻进","起下钻取心","起钻取心","起钻","下钻","取心","孔内事故","设备事故","停待","简易水文观测","封孔","其他"};
     private String currentselected;
     
 	@Override
@@ -179,7 +179,7 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 					findViewById(R.id.linelayout_corenumber).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
-					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_drillinglength).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
@@ -194,7 +194,7 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 					findViewById(R.id.linelayout_corenumber).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
-					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_drillinglength).setVisibility(View.VISIBLE);
 					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
 					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
@@ -214,6 +214,19 @@ public class WorkcontentActivity extends Activity implements OnClickListener{
 					findViewById(R.id.linelayout_mudamount).setVisibility(View.VISIBLE);
 				}
 				
+				else if(str.equalsIgnoreCase("接班") || str.equalsIgnoreCase("交班") || str.equalsIgnoreCase("辅助"))
+				{
+					findViewById(R.id.linelayout_corelength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_coreleft).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_corenumber).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_upleft).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_holedeep).setVisibility(View.VISIBLE);
+					findViewById(R.id.linelayout_drillinglength).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pressure).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_pump).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_rotatespeed).setVisibility(View.GONE);
+					findViewById(R.id.linelayout_mudamount).setVisibility(View.VISIBLE);
+				}
 				
 				//Toast.makeText(WorkcontentActivity.this, "你点击的是:"+str, 2000).show();
 				

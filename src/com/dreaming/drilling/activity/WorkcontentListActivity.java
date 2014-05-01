@@ -92,6 +92,8 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 	private long currentpage = 1;
 	private long pagesize = 5;
 	
+	private String http_str = "http://";
+	
 	// 动画特性
 	private Animation animation;
 	
@@ -157,7 +159,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 				//btn_sync.invalidate();
 				animation.start();
 				btn_sync.startAnimation(animation);
-				new PostDataTask().execute(serverip + sync_post_url);
+				new PostDataTask().execute(http_str+serverip + sync_post_url);
 			} else {
 				// display error
 				Toast.makeText(WorkcontentListActivity.this, "无网络连接", Toast.LENGTH_SHORT).show();
@@ -229,11 +231,11 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 				List<EntityTourreport> list = tourreportDB.getAllTourreportsNoSync();
 				List<Workcontent> list_workcontent;
 				JSONObject json, workcontent; 
-				JSONArray workcontents = new JSONArray();
+				
 				for(EntityTourreport tour : list) {
 					json = new JSONObject();
 //					json.put("holdid", tour.getHoleid());
-					json.put("holeid", holeid);
+					json.put("holeid", tour.getHoleid());
 					json.put("administrator", tour.getAdministrator());
 					json.put("recorder", tour.getRecorder());
 					json.put("projectmanager", tour.getProjectmanager());
@@ -261,6 +263,8 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 					
 					list_workcontent = new WorkcontentDBHelper(WorkcontentListActivity.this).getWorkcontentByTourreportId(Long.parseLong(tour.getId()));
 					
+					JSONArray workcontents = new JSONArray();
+					
 					for (Workcontent c: list_workcontent) {
 						workcontent = new JSONObject();
 						workcontent.put("content", c.getType());
@@ -280,6 +284,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 						workcontent.put("holedeep", c.getHoledeep());
 						workcontents.put(workcontent);
 					}
+					
 					json.put("workcontent", workcontents);
 					
 					json.toString();
