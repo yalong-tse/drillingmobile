@@ -69,15 +69,26 @@ public class WorkcontentListviewAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Object getItem(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getItem(int position) {
+		return listItems.get(position);
 	}
 
 	@Override
-	public long getItemId(int arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public long getItemId(int position) {
+		return position;
+	}
+	
+	/**
+	 * 删除listview中的值
+	 * @author: niu_hr
+	 * @editor: niu_hr
+	 * @createDate 2014年5月1日
+	 * @updateDate 2014年5月1日
+	 * @param position
+	 */
+	public void remove(int position) {
+		listItems.remove(position);
+		this.notifyDataSetChanged();
 	}
 
 	@SuppressLint("ResourceAsColor")

@@ -25,33 +25,25 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.Animation.AnimationListener;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,12 +89,17 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 	
 	private Handler mHandler;
 	
+	private static final int ITEM1=Menu.FIRST;  
+    private static final int ITEM2=Menu.FIRST+1;  
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_workcontent_list);
 		initview();
 		initAnimation();
+		XListView lv = (XListView) findViewById(R.id.workcontent_list);
+		registerForContextMenu(lv);
 		
 	}
 	
@@ -295,7 +292,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 					// 更新同步标识
 					Log.d("test ----------", "the tour id is:" + tour.getId());
 					tourreportDB.updateSyncflag(tour.getId(), 1);
-					
+					adapter.notifyDataSetChanged();  // 通知listview更新数据
 					animation.cancel();
 				}
 				
@@ -321,6 +318,55 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 		return true;
 	}
 	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		
+		if(v.getId() == R.id.workcontent_list) {
+			
+			
+			XListView lv = (XListView) v;
+			menu.setHeaderTitle("确认删除该班报么？");  
+	        menu.add(0, ITEM1, 0, "确认");        
+	        menu.add(0, ITEM2, 0, "取消"); 
+			//MenuInflater inflater = getMenuInflater();
+		    //inflater.inflate(R.menu.context_menu, menu);
+		}
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		//获得AdapterContextMenuInfo,以此来获得选择的listview项目
+		AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo)item.getMenuInfo();    
+		//Toast.makeText(getApplicationContext(), adapter.getItem(menuInfo.position)+"", 0).show();
+		switch(item.getItemId()) 
+		{
+		case ITEM1:  // 删除listview
+			Log.d("WorkContentListActivity", "位置是："+ menuInfo.position);
+			int pos = (int) adapter.getItemId(menuInfo.position-1);
+			Map<String, Object> workitem = (Map<String, Object>)adapter.getItem(pos);
+			if(workitem.get("syncflag").toString().equalsIgnoreCase("0")) { // 0，未同步
+				String tourreportid = (String) workitem.get("tourreportid");  // 班报的主键
+				TourreportDBHelper db_tourreportHelper = new TourreportDBHelper(this);
+				if (db_tourreportHelper.removeTourreportById(tourreportid)) {  // 数据库删除成功，同时删除listview
+					adapter.remove(pos);
+					Toast.makeText(this, "删除成功!", Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(this, "删除失败!", Toast.LENGTH_SHORT).show();
+				}
+				
+				
+			} else { // 1, 已经同步，禁止删除
+				Toast.makeText(this, "已经同步的班报禁止删除!", Toast.LENGTH_SHORT).show();
+			}
+			break;
+		case ITEM2:  // do nothing
+			break;
+		}
+		
+		return super.onContextItemSelected(item);
+	}
 	
 	/**
 	 * 

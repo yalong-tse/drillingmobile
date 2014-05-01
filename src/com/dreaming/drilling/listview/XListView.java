@@ -5,6 +5,8 @@
  * @author Maxwin
  * @description An ListView support (a) Pull down to refresh, (b) Pull up to load more.
  * 		Implement IXListViewListener, and see stopRefresh() / stopLoadMore().
+ * 
+ * https://github.com/Maxwin-z/XListView-Android/
  */
 package com.dreaming.drilling.listview;
 
@@ -24,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
+// 
 public class XListView extends ListView implements OnScrollListener {
 
 	private float mLastY = -1; // save event y
@@ -372,4 +375,5 @@ public class XListView extends ListView implements OnScrollListener {
 
 		public void onLoadMore();
 	}
+	
 }

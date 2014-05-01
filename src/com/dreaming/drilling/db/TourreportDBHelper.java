@@ -4,13 +4,15 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dreaming.drilling.bean.EntityTourreport;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.dreaming.drilling.bean.EntityTourreport;
 
 /**
  * 班报的数据库操作类
@@ -27,6 +29,42 @@ public class TourreportDBHelper extends DBOperation {
 	
 	public TourreportDBHelper(Context context) {
 		super(context);
+	}
+	
+	/**
+	 * 删除班报，同时删除工作内容
+	 * @Description: 
+	 * @author: niu_hr
+	 * @editor: niu_hr
+	 * @createDate 2014年5月1日
+	 * @updateDate 2014年5月1日
+	 * @param tourreportId
+	 * @return
+	 */
+	public boolean removeTourreportById(String tourreportId) {
+		boolean flag = true;
+		SQLiteDatabase db = this.dbHelper.getWritableDatabase();
+		// 开启事务
+		db.beginTransaction();
+		String sqlTour = "delete from tourreport where tourreportid="+tourreportId;
+		String sqlWorkContent = "delete from workcontent where tourreportid="+ tourreportId;
+		try {
+			db.execSQL(sqlTour);
+			db.execSQL(sqlWorkContent);
+			
+			//设置事务标志为成功，当结束事务时就会提交事务  
+	        db.setTransactionSuccessful();  
+			
+		}catch(SQLException e) {
+			Log.i("err", "delete failed");
+			flag = false;
+		}finally {
+			//结束事务  
+	        db.endTransaction(); 
+		}
+		db.close();
+		
+		return flag;
 	}
 
 	/**
