@@ -297,7 +297,7 @@ public class WorkcontentListActivity extends Activity implements OnClickListener
 					// 更新同步标识
 					Log.d("test ----------", "the tour id is:" + tour.getId());
 					tourreportDB.updateSyncflag(tour.getId(), 1);
-					adapter.notifyDataSetChanged();  // 通知listview更新数据
+//					adapter.notifyDataSetChanged();  // 通知listview更新数据
 					animation.cancel();
 				}
 				

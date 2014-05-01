@@ -59,17 +59,17 @@ public class SpinAdapter extends ArrayAdapter<SpinnerData> {
 	
 	// And here is when the "chooser" is popped up
 	// Normally is the same view, but you can customize it if you want
-//	@Override
-//	public View getDropDownView(int position, View convertView, ViewGroup parent) {
-//		TextView label = new TextView(context);
-//		
-//		label.setGravity(Gravity.CENTER);
-//		label.setTextSize(20);
-//		label.setTextColor(Color.BLACK);
-//		
-//		label.setText(getItem(position).getName());
-//		
-//		return label;
-//	}
+	@Override
+	public View getDropDownView(int position, View convertView, ViewGroup parent) {
+		TextView label = new TextView(context);
+		
+		label.setGravity(Gravity.CENTER);
+		label.setTextSize(20);
+		label.setTextColor(Color.BLACK);
+		
+		label.setText(getItem(position).getName());
+		
+		return label;
+	}
 	
 }
