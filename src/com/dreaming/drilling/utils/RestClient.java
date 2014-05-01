@@ -234,7 +234,7 @@ public class RestClient {
                  //JSONArray ja = new JSONArray(next);
                  JSONObject jo = new JSONObject(next);
                  Log.d("minearea",jo.getString("minearea"));
-                 result = new HoleDetail(jo.getString("minearea"),jo.getString("actualdeep"),jo.getString("holenumber"),jo.getString("geologysituation"));
+                 result = new HoleDetail(jo.getString("minearea"),jo.getString("actualdeep"),jo.getString("holenumber"),jo.getString("geologysituation"),jo.getString("outerflag"));
                  //for (int i = 0; i < ja.length(); i++) {
                  //    JSONObject jo = (JSONObject) ja.get(i);
                  //    data = new HoleDeployments(jo.getString("id"), jo.getString("name"), jo.getString("type"));

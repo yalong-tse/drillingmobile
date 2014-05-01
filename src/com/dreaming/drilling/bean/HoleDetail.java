@@ -1,6 +1,7 @@
 package com.dreaming.drilling.bean;
 
 /**
+ * 
  * 从云端返回的钻孔的详细信息
  * 
  * */
@@ -10,15 +11,17 @@ public class HoleDetail {
 	private String actualdeep; // 远端返回的钻孔的实际深度
 	private String holenumber; // 钻孔编号
 	private String geologysituation; // 云端返回的地层情况的信息
+	private String outferlag;  // 外协孔标志
 
 	public HoleDetail(){}
 	
-	public HoleDetail(String $minearea,String $actualdeep,String $holenumber,String $geologysituation)
+	public HoleDetail(String $minearea,String $actualdeep,String $holenumber,String $geologysituation,String $outerflag)
 	{
 		this.minearea = $minearea;
 		this.actualdeep = $actualdeep;
 		this.holenumber = $holenumber;
 		this.geologysituation = $geologysituation;
+		this.outferlag = $outerflag;
 		
 	}
 	public String getMinearea() {
@@ -52,5 +55,16 @@ public class HoleDetail {
 	public void setGeologysituation(String geologysituation) {
 		this.geologysituation = geologysituation;
 	}
+
+	// 外协孔标志
+	public String getOutferlag() {
+		return outferlag;
+	}
+
+	public void setOutferlag(String outferlag) {
+		this.outferlag = outferlag;
+	}
+	
+	
 
 }

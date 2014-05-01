@@ -328,6 +328,7 @@ public class DrillSettingsActivity extends FragmentActivity implements OnClickLi
 			editor.remove("geologysituation");
 			editor.putString("minearea", result.getMinearea());
 			editor.putString("geologysituation", result.getGeologysituation());
+			editor.putString("outerflag",result.getOutferlag());
 			editor.commit();
 			
 			tv_minearea = (TextView) findViewById(R.id.settings_minearea);

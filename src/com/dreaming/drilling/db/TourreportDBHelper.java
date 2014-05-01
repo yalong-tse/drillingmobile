@@ -19,7 +19,7 @@ import com.dreaming.drilling.bean.EntityTourreport;
  * */
 public class TourreportDBHelper extends DBOperation {
 
-	private String[] columns = {"tourreportid","holenumber","tourdate",
+	private String[] columns = {"tourreportid","holenumber","holeid","tourdate",
 			"starttime","endtime","tourshift","tourcore","lastdeep",
 			"currentdeep","tourdrillingtime","tourauxiliarytime",
 			"othertime","holeaccidenttime","deviceaccidenttime","totaltime",
@@ -83,6 +83,7 @@ public class TourreportDBHelper extends DBOperation {
 			EntityTourreport entity = CursorToEntity(cursor);
 			result.add(entity);
 		}
+		
 		cursor.close();
 		return result;
 	}
@@ -306,6 +307,7 @@ public class TourreportDBHelper extends DBOperation {
 		
 		entity.setId(cursor.getString(cursor.getColumnIndex("tourreportid")));
 		entity.setHolenumber(cursor.getString(cursor.getColumnIndex("holenumber")));
+		entity.setHoleid(cursor.getString(cursor.getColumnIndex("holeid")));
 		entity.setTourdate(cursor.getString(cursor.getColumnIndex("tourdate")));
 		entity.setStarttime(cursor.getString(cursor.getColumnIndex("starttime")));
 		entity.setEndtime(cursor.getString(cursor.getColumnIndex("endtime")));
